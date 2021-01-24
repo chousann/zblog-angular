@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-xs-12 col-md-9 side-left">
+    <div class="panel panel-default">
+      <div class="panel-body streams-tags">
+
+        <ng-container *ngFor="let row of tags.content">
+          <div class="col-sm-6 row-item">
+            <h2 class="title">
+              <a [routerLink]="['/tag', {name: row.name}]"><i class="fa fa-quote-left"></i> {{row.name}}</a>
+              <span class="label label-default">{{row.posts}}</span>
+            </h2>
+            <ng-container *ngIf="row.post">
+              <div class="media">
+                <div class="media-left">
+                  <!-- <@utils.showAva post.author "media-object"/> -->
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">
+                    <a [routerLink]="['/view', {id: row.post.id}]">{{row.post.title}}</a>
+                  </h4>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="tags.content.length < 1">
+          <div class="infos">
+            <div class="media-heading">该目录下还没有内容!</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Pager -->
+    <div class="text-center">
+      <!-- <@utils.pager request.requestURI!"", results, 5/> -->
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-3 side-right">
+    <app-right></app-right>
+  </div>
+
+</div>

@@ -1,0 +1,71 @@
+<form id="submitForm" class="form" action="{{base}}/post/submit" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="status" [(ngModel)]="post.status" />
+  <input type="hidden" name="editor" [(ngModel)]="post.editor" />
+  <div class="row">
+    <div class="col-xs-12 col-md-8 side-left">
+      <div id="message"></div>
+      <ng-container *ngIf="!(editingOut && editingOut.view)">
+        <input type="hidden" [(ngModel)]="post.id" name="id" />
+        <input type="hidden" [(ngModel)]="post.authorId" name="authorId" />
+      </ng-container>
+      <input type="hidden" [(ngModel)]="post.thumbnail" id="thumbnail" name="thumbnail" />
+
+      <div class="form-group">
+        <input type="text" [(ngModel)]="post.title" class="form-control" name="title" maxlength="128"
+          placeholder="请输入标题" required>
+      </div>
+      <div class="form-group">
+        <app-vditor></app-vditor>
+        <!-- <div id="md" appEditor [editormdConfig]="conf" (onEditorChange)="syncModel($event)">
+          <textarea style="display: block;" [(ngModel)]="post.content"></textarea>
+        </div> -->
+        <!-- <app-markdown name="content" [(ngModel)]="post.content"></app-markdown> -->
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4 side-right">
+      <div class="panel panel-default">
+        <div class="thumbnail-box">
+          <!-- <div class="convent_choice" id="thumbnail_image" style="background: url(<@resource src=view.thumbnail/>);">
+            <div class="upload-btn">
+              <label>
+                <span>点击选择一张图片</span>
+                <input [(ngModel)]="post.file" id="upload_btn" type="file" name="file" accept="image/*" title="点击添加图片">
+              </label>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">发布到</h3>
+        </div>
+        <div class="panel-body">
+          <select [(ngModel)]="post.channelId" class="form-control" name="channelId" required>
+            <option value="">请选择栏目</option>
+            <ng-container *ngFor="let item of editingOut.channels">
+              <option value="{{item.id}}" *ngIf="item.id == post.channelId" selected>{{item.name}}</option>
+              <option value="{{item.id}}" *ngIf="!(item.id == post.channelId)">{{item.name}}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">标签(用逗号或空格分隔)</h3>
+        </div>
+        <div class="panel-body">
+          <input [(ngModel)]="post.tags" type="text" id="tags" name="tags" class="form-control"
+            placeholder="添加相关标签，逗号分隔 (最多4个)">
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <div class="form-group">
+          <div class="text-center">
+            <button type="button" data-status="0" class="btn btn-primary" event="post_submit"
+              style="padding-left: 30px; padding-right: 30px;" (click)="postSubmit()">发布</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

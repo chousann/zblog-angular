@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12 col-md-9 side-left">
+    <div class="posts">
+      <ul class="posts-list">
+        <app-posts [channelId]="channelDetailOut.channel.id" [pageNo]="channelDetailOut.pageNo"
+          [order]="channelDetailOut.order"></app-posts>
+      </ul>
+    </div>
+
+    <!-- Pager -->
+    <div class="text-center">
+      <!-- <@utils.pager request.requestURI!"", results, 5/> -->
+    </div>
+
+  </div>
+
+  <div class="col-xs-12 col-md-3 side-right">
+    <app-right></app-right>
+  </div>
+</div>

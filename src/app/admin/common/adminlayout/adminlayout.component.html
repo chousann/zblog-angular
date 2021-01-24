@@ -1,0 +1,86 @@
+<ng-template #head></ng-template>
+<div class="wrapper">
+    <!-- Main Header -->
+    <header class="main-header">
+        <a [routerLink]="['/']" class="logo">
+            <span class="logo-mini">MBG</span>
+            <span class="logo-lg"><b>M</b>BLOG</span>
+        </a>
+        <nav class="navbar navbar-static-top">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li><a [routerLink]="['/']" title="跳转到前台"><i class="fa fa-television"></i></a></li>
+                    <li class="messages-menu">
+                        <a href="/users/{{rootWebDto.accountProfile.id}}/messages">
+                            <i class="fa fa-envelope-o"></i>
+                            <span *ngIf="rootWebDto.accountProfile.badgesCount.messages > 0"
+                                class="label label-success">{{rootWebDto.accountProfile.badgesCount.messages}}</span>
+                        </a>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img [src]="rootWebDto.accountProfile.avatar" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{rootWebDto.accountProfile.username}}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                <img [src]="rootWebDto.accountProfile.avatar" class="img-circle" alt="User Image">
+                                <p>{{rootWebDto.accountProfile.username}}</p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="/settings/profile" class="btn btn-default btn-flat">个人资料</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a (click)="logout()" class="btn btn-default btn-flat">退出登录</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Left side column -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img [src]="rootWebDto.accountProfile.avatar" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{rootWebDto.accountProfile.username}}</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">MENUS</li>
+
+                <li>
+                    <a [routerLink]="['/admin']" class="active"><i class="fa fa-dashboard"></i><span>仪表盘</span></a>
+                </li>
+                <ng-container *ngFor="let menu of rootWebDto.accountProfile.menus">
+                    <li><a [routerLink]="[menu.url]"><i class="{{menu.icon}}"></i><span>{{menu.name}}</span></a></li>
+                </ng-container>
+            </ul>
+        </section>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <router-outlet name="content"></router-outlet>
+    </div>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs"></div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2019 <a href="#">mtons</a>.</strong> All rights reserved.
+    </footer>
