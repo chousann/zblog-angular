@@ -4109,7 +4109,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    baseUrl: 'http://192.168.1.3:1000/',
+    baseUrl: 'https://zblog.ngrok2.xiaomiqiu.cn/',
     basesocket: 'wss://moly.ngrok2.xiaomiqiu.cn/'
 };
 /*
