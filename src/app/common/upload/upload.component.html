@@ -1,0 +1,8 @@
+<div class="convent_choice" id="thumbnail_image" [ngStyle]="{'background-image':'url('+path+')'}">
+  <div class="upload-btn">
+    <label>
+      <span>点击选择一张图片</span>
+      <input #filesMulti type="file" name="file" accept="image/*" title="点击添加图片" (change)="fileChange()">
+    </label>
+  </div>
+</div>

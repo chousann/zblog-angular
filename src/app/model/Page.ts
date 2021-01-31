@@ -12,8 +12,14 @@ export class Page<T> {
 
 	public number: number;
 
+	public totalPages: number;
+
+	public size: number;
+
 	public copy(data: Page<T>) {
 		this.content = data.content;
 		this.number = data.number;
+		this.totalPages = data.totalPages;
+		this.size = data.size;
 	}
 }

@@ -33,6 +33,12 @@ import { SitesComponent } from './admin/common/sites/sites.component';
 import { ChannelviewComponent } from './admin/channelview/channelview.component';
 import { AdmineditComponent } from './admin/adminedit/adminedit.component';
 import { FrameComponent } from './site/common/frame/frame.component';
+import { UserhomeComponent } from './site/userhome/userhome.component';
+import { SidebarComponent } from './site/common/sidebar/sidebar.component';
+import { PagerComponent } from './site/common/pager/pager.component';
+import { PagelinkComponent } from './site/common/pagelink/pagelink.component';
+import { AvatarsettingComponent } from './site/avatarsetting/avatarsetting.component';
+import { UploadComponent } from './common/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +68,13 @@ import { FrameComponent } from './site/common/frame/frame.component';
     SitesComponent,
     ChannelviewComponent,
     AdmineditComponent,
-    FrameComponent
+    FrameComponent,
+    UserhomeComponent,
+    SidebarComponent,
+    PagerComponent,
+    PagelinkComponent,
+    AvatarsettingComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

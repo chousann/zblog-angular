@@ -1,0 +1,9 @@
+<ng-container *ngIf="idx == 0">
+  <li><span>...</span></li>
+</ng-container>
+<ng-container *ngIf="pageNo == idx">
+  <li class="active"><span>{{idx}}</span></li>
+</ng-container>
+<ng-container *ngIf="idx != 0 && pageNo != idx">
+  <li><a href="{{url}}{{idx}}">{{idx}}</a></li>
+</ng-container>

@@ -1,0 +1,71 @@
+<ul class="list-group about-user">
+  <li class="list-group-item user-card">
+    <div class="user-avatar">
+      <a [routerLink]="['/userhome', {userId:info.user.id}]">
+        <img class="img-circle" [src]="baseUrl + info.user.avatar"/>
+    </a>
+    </div>
+    <div class="user-name">
+      <span>{{info.user.name}}</span>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="user-datas">
+      <ul>
+        <li><strong>{{info.user.posts}}</strong><span>发布</span></li>
+        <li class="noborder"><strong>{{info.user.comments}}</strong><span>评论</span></li>
+      </ul>
+    </div>
+  </li>
+  <ng-container *ngIf="info.owner">
+    <li class="list-group-item">
+      <a class="btn btn-primary btn-block btn-sm" [routerLink]="['/avatarsetting']">
+        <i class="icon icon-note"></i> 编辑个人资料
+      </a>
+    </li>
+  </ng-container>
+</ul>
+<nav class="navbar navbar-default shadow-box background-white">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header visible-xs">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#home-navbar"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">导航</span>
+    </div>
+  </div>
+  <div id="home-navbar" class="collapse navbar-collapse">
+    <ul class="list-group user-nav first">
+      <li class="list-group-item">
+        <a [routerLink]="['/userhome', {userId: info.user.id}]"><i class="icon icon-list"></i> 发表的文章</a>
+      </li>
+      <li class="list-group-item">
+        <a href="users/user.id/comments"><i class="icon icon-speech"></i> 发表的评论</a>
+      </li>
+      <li class="list-group-item">
+        <a href="users/user.id/favorites"><i class="icon icon-heart"></i> 收藏的文章</a>
+      </li>
+    </ul>
+
+    <ng-container *ngIf="info.owner">
+      <ul class="list-group user-nav">
+        <li class="list-group-item">
+          <a href="/users/user.id/messages">
+            <i class="icon icon-envelope"></i> 通知
+            <ng-container *ngIf="rootWebDto.accountProfile.badgesCount.messages > 0">
+              <span class="label label-danger">{{rootWebDto.accountProfile.badgesCount.messages}}</span>
+            </ng-container>
+            <ng-container *ngIf="!(rootWebDto.accountProfile.badgesCount.messages > 0)">
+                <span class="label label-default">0</span>
+            </ng-container>
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</nav>

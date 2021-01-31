@@ -11,7 +11,7 @@ export class LayoutComponent implements OnInit {
   template: string[] = [
     // 'link,assets/dist/vendors/pace/themes/pace-theme-minimal.css',
   // 'link,assets/dist/css/plugins.css',
-  'link,assets/css/style.css',
+  'link,assets/site/css/style.css',
   'link,assets/dist/vendors/simple-line-icons/css/simple-line-icons.css',
   'link,assets/dist/vendors/font-awesome/css/font-awesome.min.css',
   // 'script,assets/dist/vendors/pace/pace.min.js',

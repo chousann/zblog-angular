@@ -1,0 +1,85 @@
+<div class="panel panel-default stacked">
+  <div class="panel-heading">
+    <ul class="nav nav-pills account-tab">
+      <li [ngClass]="{'active': block == 'profile'}"><a (click)="select('profile')">基本信息</a></li>
+      <li [ngClass]="{'active': block == 'avatar'}"><a (click)="select('avatar')">修改头像</a></li>
+      <li [ngClass]="{'active': block == 'password'}"><a (click)="select('password')">修改密码</a></li>
+    </ul>
+  </div>
+  <!-- 基本信息 -->
+  <div *ngIf="block == 'profile'" class="panel-body">
+    <div id="message">
+      <!-- <@layout.extends name="/inc/action_message.ftl" /> -->
+    </div>
+    <div class="tab-pane active" id="profile">
+      <form id="submitForm" action="profile" method="post" class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="nickname">昵称</label>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" name="name" [(ngModel)]="profile.name" maxlength="7" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="nickname">个性签名</label>
+          <div class="col-lg-6">
+            <textarea name="signature" class="form-control" rows="3" maxlength="128" [(ngModel)]="profile.signature"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary" (click)="settingProfile()">提交</button>
+          </div>
+        </div><!-- /form-actions -->
+      </form>
+    </div>
+  </div><!-- /panel-content -->
+  <!-- 修改头像 -->
+  <div *ngIf="block == 'avatar'" class="panel-body">
+    <div id="message">
+      <!-- <@layout.extends name="/inc/action_message.ftl" /> -->
+    </div>
+    <div class="upload-btn">
+      <label>
+        <span>点击选择一张图片</span>
+        <input #filesMulti id="upload_btn" type="file" name="file" accept="image/*" title="点击添加图片"
+          (change)="fileChange()">
+      </label>
+    </div>
+    <div class="update_ava">
+      <img [src]="rootWebDto.accountProfile.avatar" id="target" alt="[Example]" />
+    </div>
+  </div><!-- /panel-content -->
+  <!-- 修改密码 -->
+  <div *ngIf="block == 'password'" class="panel-body">
+    <div id="message">
+      <!-- <@layout.extends name="/inc/action_message.ftl" /> -->
+    </div>
+    <div class="tab-pane active" id="passwd">
+      <form id="submitForm" action="password" method="post" class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="password">当前密码</label>
+          <div class="col-lg-4">
+            <input type="password" class="form-control" [(ngModel)]="password.oldPassword" name="oldPassword" maxlength="18" placeholder="请输入当前密码" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="password">新密码</label>
+          <div class="col-lg-4">
+            <input type="password" class="form-control" id="password" [(ngModel)]="password.password" name="password" placeholder="请输入新密码" maxlength="18" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="password2">确认密码</label>
+          <div class="col-lg-4">
+            <input type="password" class="form-control" [(ngModel)]="password.password2" name="password2" data-required placeholder="请再输入一遍新密码" maxlength="18" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="text-center">
+          <button type="submit" class="btn btn-primary" (click)="settingPassword()">提交</button>
+          </div>
+        </div><!-- /form-actions -->
+      </form>
+    </div>
+  </div><!-- /panel-content -->
+</div><!-- /panel -->

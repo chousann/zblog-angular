@@ -20,6 +20,8 @@ export class PostsComponent implements OnInit, OnChanges {
   @Input() pageNo: number;
   @Input() order: string;
 
+  public baseUrl: string = environment.baseUrl;
+
   public allposts: Page<PostVO> = new Page<PostVO>();
   constructor(private http: HttpclientService,
     private localstorage: LocalstorageService,

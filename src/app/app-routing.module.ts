@@ -18,6 +18,8 @@ import { TagComponent } from './site/tag/tag.component';
 import { TagsComponent } from './site/tags/tags.component';
 import { ViewComponent } from './site/view/view.component';
 import { FrameComponent } from './site/common/frame/frame.component';
+import { UserhomeComponent } from './site/userhome/userhome.component';
+import { AvatarsettingComponent } from './site/avatarsetting/avatarsetting.component';
 
 const routes: Routes = [
   {
@@ -195,6 +197,40 @@ const routes: Routes = [
   },
   {
     path: 'frame', component: FrameComponent,
+  },
+  {
+    path: 'userhome', component: LayoutComponent,
+    children: [
+      {
+        path: '', outlet: 'header',
+        component: HeaderComponent
+      },
+      {
+        path: '', outlet: 'content',
+        component: UserhomeComponent
+      },
+      {
+        path: '', outlet: 'footer',
+        component: FooterComponent
+      }
+    ]
+  },
+  {
+    path: 'avatarsetting', component: LayoutComponent,
+    children: [
+      {
+        path: '', outlet: 'header',
+        component: HeaderComponent
+      },
+      {
+        path: '', outlet: 'content',
+        component: AvatarsettingComponent
+      },
+      {
+        path: '', outlet: 'footer',
+        component: FooterComponent
+      }
+    ]
   }
 ];
 

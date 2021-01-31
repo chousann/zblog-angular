@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     return this.http.post(environment.baseUrl + 'login', this.user)
       .then(async (authData: AccountProfile) => {
         if (authData) {
+          authData.avatar = environment.baseUrl + authData.avatar;
           this.rootWebDto.accountProfile = authData;
           this.localstorage.set("authToken", authData.authToken);
           this.router.navigate(['/']);

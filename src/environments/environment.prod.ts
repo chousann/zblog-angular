@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:1000/',
+  baseUrl: 'https://zblog.ngrok2.xiaomiqiu.cn/',
   basesocket: 'wss://moly.ngrok2.xiaomiqiu.cn/'
 };

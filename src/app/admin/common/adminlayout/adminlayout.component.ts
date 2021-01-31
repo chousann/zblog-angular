@@ -1,6 +1,7 @@
 import { Compiler, Component, ComponentFactory, NgModule, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { environment } from 'src/environments/environment';
 import { AdminOut } from '../../../model/AdminOut';
 import { RootWebDto } from '../../../model/RootWebDto';
 @Component({
@@ -10,6 +11,8 @@ import { RootWebDto } from '../../../model/RootWebDto';
 })
 export class AdminlayoutComponent implements OnInit {
 
+  public baseUrl: string = environment.baseUrl;
+  
   template: string[] = [
       'link,assets/dist/vendors/font-awesome/css/font-awesome.min.css',
       'link,assets/admin/dist/css/site.css',

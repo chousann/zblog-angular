@@ -41,6 +41,10 @@ export class EditingComponent implements OnInit {
     this.getEditingInit();
   }
 
+  changePath(path: string) {
+    this.post.thumbnail = path;
+  }
+
   getEditingInit() {
 
     this.http.post(environment.baseUrl + 'post/editing?AuthToken='+this.rootWebDto.accountProfile.authToken, {})

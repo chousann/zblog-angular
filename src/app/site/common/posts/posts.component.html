@@ -5,7 +5,7 @@
         <div class="posts-item-img">
           <a [routerLink]="['/view', {id:row.id}]" title="">
             <div class="overlay"></div>
-            <img class="lazy thumbnail" src="<@resource src=row.thumbnail/>" style="display: inline-block;">
+            <img class="lazy thumbnail" [src]="baseUrl + row.thumbnail" style="display: inline-block;">
           </a>
         </div>
         <div class="posts-item posts-item-gallery">
@@ -17,7 +17,7 @@
             <ul>
               <li class="post-author hidden-xs">
                 <div class="avatar">
-                  <img src="<@resource src=row.author.avatar + '?t=' + .now?time/>" class="lazy avatar avatar-50 photo"
+                  <img [src]="baseUrl + row.author.avatar" class="lazy avatar avatar-50 photo"
                     height="50" width="50">
                 </div>
                 <a href="/users/{{row.author.id}}" target="_blank" disabled>{{row.author.name}}</a>
@@ -46,9 +46,9 @@
             <ul>
               <li class="post-author hidden-xs">
                 <div class="avatar">
-                  <img src="{{row.author.avatar}}" class="lazy avatar avatar-50 photo" height="50" width="50">
+                  <img src="{{baseUrl + row.author.avatar}}" class="lazy avatar avatar-50 photo" height="50" width="50">
                 </div>
-                <a href="/users/{{row.author.id}}" target="_blank">{{row.author.name}}</a>
+                <a [routerLink]="['/userhome', {userId:row.author.id}]">{{row.author.name}}</a>
               </li>
               <li class="ico-cat">
                 <!-- <@utils.showChannel row /> -->
