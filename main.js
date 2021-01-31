@@ -478,7 +478,7 @@ var ChannelviewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template #head></ng-template>\n<div class=\"wrapper\">\n    <!-- Main Header -->\n    <header class=\"main-header\">\n        <a [routerLink]=\"['/']\" class=\"logo\">\n            <span class=\"logo-mini\">MBG</span>\n            <span class=\"logo-lg\"><b>M</b>BLOG</span>\n        </a>\n        <nav class=\"navbar navbar-static-top\">\n            <a href=\"#\" class=\"sidebar-toggle\" data-toggle=\"push-menu\" role=\"button\">\n                <span class=\"sr-only\">Toggle navigation</span>\n            </a>\n            <div class=\"navbar-custom-menu\">\n                <ul class=\"nav navbar-nav\">\n                    <li><a [routerLink]=\"['/']\" title=\"跳转到前台\"><i class=\"fa fa-television\"></i></a></li>\n                    <li class=\"messages-menu\">\n                        <a href=\"/users/{{rootWebDto.accountProfile.id}}/messages\">\n                            <i class=\"fa fa-envelope-o\"></i>\n                            <span *ngIf=\"rootWebDto.accountProfile.badgesCount.messages > 0\"\n                                class=\"label label-success\">{{rootWebDto.accountProfile.badgesCount.messages}}</span>\n                        </a>\n                    </li>\n                    <li class=\"dropdown user user-menu\">\n                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                            <img [src]=\"rootWebDto.accountProfile.avatar\" class=\"user-image\" alt=\"User Image\">\n                            <span class=\"hidden-xs\">{{rootWebDto.accountProfile.username}}</span>\n                        </a>\n                        <ul class=\"dropdown-menu\">\n                            <li class=\"user-header\">\n                                <img [src]=\"rootWebDto.accountProfile.avatar\" class=\"img-circle\" alt=\"User Image\">\n                                <p>{{rootWebDto.accountProfile.username}}</p>\n                            </li>\n                            <li class=\"user-footer\">\n                                <div class=\"pull-left\">\n                                    <a href=\"/settings/profile\" class=\"btn btn-default btn-flat\">个人资料</a>\n                                </div>\n                                <div class=\"pull-right\">\n                                    <a (click)=\"logout()\" class=\"btn btn-default btn-flat\">退出登录</a>\n                                </div>\n                            </li>\n                        </ul>\n                    </li>\n                </ul>\n            </div>\n        </nav>\n    </header>\n\n    <!-- Left side column -->\n    <aside class=\"main-sidebar\">\n        <section class=\"sidebar\">\n            <div class=\"user-panel\">\n                <div class=\"pull-left image\">\n                    <img [src]=\"rootWebDto.accountProfile.avatar\" class=\"img-circle\" alt=\"User Image\">\n                </div>\n                <div class=\"pull-left info\">\n                    <p>{{rootWebDto.accountProfile.username}}</p>\n                    <a href=\"#\"><i class=\"fa fa-circle text-success\"></i> Online</a>\n                </div>\n            </div>\n\n            <!-- Sidebar Menu -->\n            <ul class=\"sidebar-menu\" data-widget=\"tree\">\n                <li class=\"header\">MENUS</li>\n\n                <li>\n                    <a [routerLink]=\"['/admin']\" class=\"active\"><i class=\"fa fa-dashboard\"></i><span>仪表盘</span></a>\n                </li>\n                <ng-container *ngFor=\"let menu of rootWebDto.accountProfile.menus\">\n                    <li><a [routerLink]=\"[menu.url]\"><i class=\"{{menu.icon}}\"></i><span>{{menu.name}}</span></a></li>\n                </ng-container>\n            </ul>\n        </section>\n    </aside>\n\n    <!-- Content Wrapper. Contains page content -->\n    <div class=\"content-wrapper\">\n        <router-outlet name=\"content\"></router-outlet>\n    </div>\n\n    <!-- Main Footer -->\n    <footer class=\"main-footer\">\n        <!-- To the right -->\n        <div class=\"pull-right hidden-xs\"></div>\n        <!-- Default to the left -->\n        <strong>Copyright &copy; 2019 <a href=\"#\">mtons</a>.</strong> All rights reserved.\n    </footer>"
+module.exports = "<ng-template #head></ng-template>\n<div class=\"wrapper\">\n    <!-- Main Header -->\n    <header class=\"main-header\">\n        <a [routerLink]=\"['/']\" class=\"logo\">\n            <span class=\"logo-mini\">MBG</span>\n            <span class=\"logo-lg\"><b>M</b>BLOG</span>\n        </a>\n        <nav class=\"navbar navbar-static-top\">\n            <a href=\"#\" class=\"sidebar-toggle\" data-toggle=\"push-menu\" role=\"button\">\n                <span class=\"sr-only\">Toggle navigation</span>\n            </a>\n            <div class=\"navbar-custom-menu\">\n                <ul class=\"nav navbar-nav\">\n                    <li><a [routerLink]=\"['/']\" title=\"跳转到前台\"><i class=\"fa fa-television\"></i></a></li>\n                    <li class=\"messages-menu\">\n                        <a href=\"/users/{{rootWebDto.accountProfile.id}}/messages\">\n                            <i class=\"fa fa-envelope-o\"></i>\n                            <span *ngIf=\"rootWebDto.accountProfile.badgesCount.messages > 0\"\n                                class=\"label label-success\">{{rootWebDto.accountProfile.badgesCount.messages}}</span>\n                        </a>\n                    </li>\n                    <li class=\"dropdown user user-menu\">\n                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                            <img [src]=\"baseUrl + rootWebDto.accountProfile.avatar\" class=\"user-image\" alt=\"User Image\">\n                            <span class=\"hidden-xs\">{{rootWebDto.accountProfile.username}}</span>\n                        </a>\n                        <ul class=\"dropdown-menu\">\n                            <li class=\"user-header\">\n                                <img [src]=\"baseUrl + rootWebDto.accountProfile.avatar\" class=\"img-circle\" alt=\"User Image\">\n                                <p>{{rootWebDto.accountProfile.username}}</p>\n                            </li>\n                            <li class=\"user-footer\">\n                                <div class=\"pull-left\">\n                                    <a href=\"/settings/profile\" class=\"btn btn-default btn-flat\">个人资料</a>\n                                </div>\n                                <div class=\"pull-right\">\n                                    <a (click)=\"logout()\" class=\"btn btn-default btn-flat\">退出登录</a>\n                                </div>\n                            </li>\n                        </ul>\n                    </li>\n                </ul>\n            </div>\n        </nav>\n    </header>\n\n    <!-- Left side column -->\n    <aside class=\"main-sidebar\">\n        <section class=\"sidebar\">\n            <div class=\"user-panel\">\n                <div class=\"pull-left image\">\n                    <img [src]=\"baseUrl + rootWebDto.accountProfile.avatar\" class=\"img-circle\" alt=\"User Image\">\n                </div>\n                <div class=\"pull-left info\">\n                    <p>{{rootWebDto.accountProfile.username}}</p>\n                    <a href=\"#\"><i class=\"fa fa-circle text-success\"></i> Online</a>\n                </div>\n            </div>\n\n            <!-- Sidebar Menu -->\n            <ul class=\"sidebar-menu\" data-widget=\"tree\">\n                <li class=\"header\">MENUS</li>\n\n                <li>\n                    <a [routerLink]=\"['/admin']\" class=\"active\"><i class=\"fa fa-dashboard\"></i><span>仪表盘</span></a>\n                </li>\n                <ng-container *ngFor=\"let menu of rootWebDto.accountProfile.menus\">\n                    <li><a [routerLink]=\"[menu.url]\"><i class=\"{{menu.icon}}\"></i><span>{{menu.name}}</span></a></li>\n                </ng-container>\n            </ul>\n        </section>\n    </aside>\n\n    <!-- Content Wrapper. Contains page content -->\n    <div class=\"content-wrapper\">\n        <router-outlet name=\"content\"></router-outlet>\n    </div>\n\n    <!-- Main Footer -->\n    <footer class=\"main-footer\">\n        <!-- To the right -->\n        <div class=\"pull-right hidden-xs\"></div>\n        <!-- Default to the left -->\n        <strong>Copyright &copy; 2019 <a href=\"#\">mtons</a>.</strong> All rights reserved.\n    </footer>"
 
 /***/ }),
 
@@ -506,7 +506,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/httpclient/httpclient.service */ "./src/app/service/httpclient/httpclient.service.ts");
-/* harmony import */ var _model_RootWebDto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../model/RootWebDto */ "./src/app/model/RootWebDto.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _model_RootWebDto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../model/RootWebDto */ "./src/app/model/RootWebDto.ts");
+
 
 
 
@@ -516,6 +518,7 @@ var AdminlayoutComponent = /** @class */ (function () {
         this.rootWebDto = rootWebDto;
         this.compiler = compiler;
         this.http = http;
+        this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl;
         this.template = [
             'link,assets/dist/vendors/font-awesome/css/font-awesome.min.css',
             'link,assets/admin/dist/css/site.css',
@@ -579,7 +582,7 @@ var AdminlayoutComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./adminlayout.component.html */ "./src/app/admin/common/adminlayout/adminlayout.component.html"),
             styles: [__webpack_require__(/*! ./adminlayout.component.sass */ "./src/app/admin/common/adminlayout/adminlayout.component.sass")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_model_RootWebDto__WEBPACK_IMPORTED_MODULE_3__["RootWebDto"],
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_model_RootWebDto__WEBPACK_IMPORTED_MODULE_4__["RootWebDto"],
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["Compiler"],
             src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_2__["HttpclientService"]])
     ], AdminlayoutComponent);
@@ -966,6 +969,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _site_tags_tags_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./site/tags/tags.component */ "./src/app/site/tags/tags.component.ts");
 /* harmony import */ var _site_view_view_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./site/view/view.component */ "./src/app/site/view/view.component.ts");
 /* harmony import */ var _site_common_frame_frame_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./site/common/frame/frame.component */ "./src/app/site/common/frame/frame.component.ts");
+/* harmony import */ var _site_userhome_userhome_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./site/userhome/userhome.component */ "./src/app/site/userhome/userhome.component.ts");
+/* harmony import */ var _site_avatarsetting_avatarsetting_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./site/avatarsetting/avatarsetting.component */ "./src/app/site/avatarsetting/avatarsetting.component.ts");
+
+
 
 
 
@@ -1163,6 +1170,40 @@ var routes = [
     },
     {
         path: 'frame', component: _site_common_frame_frame_component__WEBPACK_IMPORTED_MODULE_20__["FrameComponent"],
+    },
+    {
+        path: 'userhome', component: _site_common_layout_layout_component__WEBPACK_IMPORTED_MODULE_13__["LayoutComponent"],
+        children: [
+            {
+                path: '', outlet: 'header',
+                component: _site_common_header_header_component__WEBPACK_IMPORTED_MODULE_11__["HeaderComponent"]
+            },
+            {
+                path: '', outlet: 'content',
+                component: _site_userhome_userhome_component__WEBPACK_IMPORTED_MODULE_21__["UserhomeComponent"]
+            },
+            {
+                path: '', outlet: 'footer',
+                component: _site_common_footer_footer_component__WEBPACK_IMPORTED_MODULE_10__["FooterComponent"]
+            }
+        ]
+    },
+    {
+        path: 'avatarsetting', component: _site_common_layout_layout_component__WEBPACK_IMPORTED_MODULE_13__["LayoutComponent"],
+        children: [
+            {
+                path: '', outlet: 'header',
+                component: _site_common_header_header_component__WEBPACK_IMPORTED_MODULE_11__["HeaderComponent"]
+            },
+            {
+                path: '', outlet: 'content',
+                component: _site_avatarsetting_avatarsetting_component__WEBPACK_IMPORTED_MODULE_22__["AvatarsettingComponent"]
+            },
+            {
+                path: '', outlet: 'footer',
+                component: _site_common_footer_footer_component__WEBPACK_IMPORTED_MODULE_10__["FooterComponent"]
+            }
+        ]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -1347,6 +1388,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_channelview_channelview_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./admin/channelview/channelview.component */ "./src/app/admin/channelview/channelview.component.ts");
 /* harmony import */ var _admin_adminedit_adminedit_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./admin/adminedit/adminedit.component */ "./src/app/admin/adminedit/adminedit.component.ts");
 /* harmony import */ var _site_common_frame_frame_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./site/common/frame/frame.component */ "./src/app/site/common/frame/frame.component.ts");
+/* harmony import */ var _site_userhome_userhome_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./site/userhome/userhome.component */ "./src/app/site/userhome/userhome.component.ts");
+/* harmony import */ var _site_common_sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./site/common/sidebar/sidebar.component */ "./src/app/site/common/sidebar/sidebar.component.ts");
+/* harmony import */ var _site_common_pager_pager_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./site/common/pager/pager.component */ "./src/app/site/common/pager/pager.component.ts");
+/* harmony import */ var _site_common_pagelink_pagelink_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./site/common/pagelink/pagelink.component */ "./src/app/site/common/pagelink/pagelink.component.ts");
+/* harmony import */ var _site_avatarsetting_avatarsetting_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./site/avatarsetting/avatarsetting.component */ "./src/app/site/avatarsetting/avatarsetting.component.ts");
+/* harmony import */ var _common_upload_upload_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./common/upload/upload.component */ "./src/app/common/upload/upload.component.ts");
+
+
+
+
+
+
 
 
 
@@ -1413,7 +1466,13 @@ var AppModule = /** @class */ (function () {
                 _admin_common_sites_sites_component__WEBPACK_IMPORTED_MODULE_30__["SitesComponent"],
                 _admin_channelview_channelview_component__WEBPACK_IMPORTED_MODULE_31__["ChannelviewComponent"],
                 _admin_adminedit_adminedit_component__WEBPACK_IMPORTED_MODULE_32__["AdmineditComponent"],
-                _site_common_frame_frame_component__WEBPACK_IMPORTED_MODULE_33__["FrameComponent"]
+                _site_common_frame_frame_component__WEBPACK_IMPORTED_MODULE_33__["FrameComponent"],
+                _site_userhome_userhome_component__WEBPACK_IMPORTED_MODULE_34__["UserhomeComponent"],
+                _site_common_sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_35__["SidebarComponent"],
+                _site_common_pager_pager_component__WEBPACK_IMPORTED_MODULE_36__["PagerComponent"],
+                _site_common_pagelink_pagelink_component__WEBPACK_IMPORTED_MODULE_37__["PagelinkComponent"],
+                _site_avatarsetting_avatarsetting_component__WEBPACK_IMPORTED_MODULE_38__["AvatarsettingComponent"],
+                _common_upload_upload_component__WEBPACK_IMPORTED_MODULE_39__["UploadComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -1618,6 +1677,148 @@ var MarkdownComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], MarkdownComponent);
     return MarkdownComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/common/upload/upload.component.html":
+/*!*****************************************************!*\
+  !*** ./src/app/common/upload/upload.component.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"convent_choice\" id=\"thumbnail_image\" [ngStyle]=\"{'background-image':'url('+path+')'}\">\n  <div class=\"upload-btn\">\n    <label>\n      <span>点击选择一张图片</span>\n      <input #filesMulti type=\"file\" name=\"file\" accept=\"image/*\" title=\"点击添加图片\" (change)=\"fileChange()\">\n    </label>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/common/upload/upload.component.sass":
+/*!*****************************************************!*\
+  !*** ./src/app/common/upload/upload.component.sass ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbW1vbi91cGxvYWQvdXBsb2FkLmNvbXBvbmVudC5zYXNzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/common/upload/upload.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/common/upload/upload.component.ts ***!
+  \***************************************************/
+/*! exports provided: upload_VALUE_ACCESSOR, UploadComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "upload_VALUE_ACCESSOR", function() { return upload_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UploadComponent", function() { return UploadComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_model_RootWebDto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/RootWebDto */ "./src/app/model/RootWebDto.ts");
+/* harmony import */ var src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/httpclient/httpclient.service */ "./src/app/service/httpclient/httpclient.service.ts");
+/* harmony import */ var src_app_service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/localstorage/localstorage.service */ "./src/app/service/localstorage/localstorage.service.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+
+
+
+
+
+var upload_VALUE_ACCESSOR = {
+    provide: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NG_VALUE_ACCESSOR"],
+    useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["forwardRef"])(function () { return UploadComponent; }),
+    multi: true,
+};
+var UploadComponent = /** @class */ (function () {
+    function UploadComponent(http, localstorage, sanitizer, activatedRoute, rootWebDto) {
+        this.http = http;
+        this.localstorage = localstorage;
+        this.sanitizer = sanitizer;
+        this.activatedRoute = activatedRoute;
+        this.rootWebDto = rootWebDto;
+        this.paths = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].baseUrl;
+        this.changePath = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    UploadComponent.prototype.OnChange = function (_) {
+    };
+    UploadComponent.prototype.writeValue = function (obj) {
+        this.paths.setValue(obj);
+    };
+    UploadComponent.prototype.registerOnChange = function (fn) {
+        this.OnChange = fn;
+        console.log('registerOnChange');
+    };
+    UploadComponent.prototype.registerOnTouched = function (fn) {
+        console.log('registerOnTouched');
+    };
+    UploadComponent.prototype.setDisabledState = function (isDisabled) {
+        if (isDisabled) {
+            this.paths.disable();
+        }
+        else {
+            this.paths.enable();
+        }
+    };
+    UploadComponent.prototype.ngOnInit = function () {
+    };
+    UploadComponent.prototype.fileChange = function () {
+        this.fileUpload();
+    };
+    UploadComponent.prototype.fileUpload = function () {
+        var _this = this;
+        // 获取选中的文件数组
+        var t_files = this.fileMulti.nativeElement.files;
+        // 构造参数
+        var formData = new FormData();
+        for (var i = 0; i < t_files.length; i++) {
+            formData.append('file', t_files[i], t_files[i].name);
+        }
+        // 上传至服务器
+        this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].baseUrl + "post/upload?AuthToken=" + this.rootWebDto.accountProfile.authToken, formData)
+            .then(function (data) {
+            _this.path = _this.baseUrl + data[0].path;
+            _this.paths.setValue(data[0].path);
+            _this.OnChange(data[0].path);
+            _this.changePath.emit(data[0].path);
+            console.log(data[0].path);
+        })
+            .catch(function () {
+            console.log("error");
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], UploadComponent.prototype, "changePath", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('filesMulti'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], UploadComponent.prototype, "fileMulti", void 0);
+    UploadComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-upload',
+            template: __webpack_require__(/*! ./upload.component.html */ "./src/app/common/upload/upload.component.html"),
+            providers: [upload_VALUE_ACCESSOR],
+            styles: [__webpack_require__(/*! ./upload.component.sass */ "./src/app/common/upload/upload.component.sass")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_6__["HttpclientService"],
+            src_app_service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_7__["LocalstorageService"],
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["DomSanitizer"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
+            src_app_model_RootWebDto__WEBPACK_IMPORTED_MODULE_5__["RootWebDto"]])
+    ], UploadComponent);
+    return UploadComponent;
 }());
 
 
@@ -2149,8 +2350,40 @@ var Page = /** @class */ (function () {
     Page.prototype.copy = function (data) {
         this.content = data.content;
         this.number = data.number;
+        this.totalPages = data.totalPages;
+        this.size = data.size;
     };
     return Page;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/PasswordIn.ts":
+/*!*************************************!*\
+  !*** ./src/app/model/PasswordIn.ts ***!
+  \*************************************/
+/*! exports provided: PasswordIn */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PasswordIn", function() { return PasswordIn; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var PasswordIn = /** @class */ (function () {
+    function PasswordIn() {
+    }
+    PasswordIn = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], PasswordIn);
+    return PasswordIn;
 }());
 
 
@@ -2312,6 +2545,36 @@ var PostVO = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/model/ProfileIn.ts":
+/*!************************************!*\
+  !*** ./src/app/model/ProfileIn.ts ***!
+  \************************************/
+/*! exports provided: ProfileIn */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileIn", function() { return ProfileIn; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ProfileIn = /** @class */ (function () {
+    function ProfileIn() {
+    }
+    ProfileIn = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ProfileIn);
+    return ProfileIn;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/RootWebDto.ts":
 /*!*************************************!*\
   !*** ./src/app/model/RootWebDto.ts ***!
@@ -2437,6 +2700,44 @@ var TagDetailOut = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], TagDetailOut);
     return TagDetailOut;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/UserInfoOut.ts":
+/*!**************************************!*\
+  !*** ./src/app/model/UserInfoOut.ts ***!
+  \**************************************/
+/*! exports provided: UserInfoOut */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserInfoOut", function() { return UserInfoOut; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _UserVO__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserVO */ "./src/app/model/UserVO.ts");
+
+
+
+var UserInfoOut = /** @class */ (function () {
+    function UserInfoOut() {
+        this.user = new _UserVO__WEBPACK_IMPORTED_MODULE_2__["UserVO"]();
+    }
+    UserInfoOut.prototype.copy = function (data) {
+        this.user = data.user;
+        this.owner = data.owner;
+        this.pageNo = data.pageNo;
+    };
+    UserInfoOut = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], UserInfoOut);
+    return UserInfoOut;
 }());
 
 
@@ -2623,6 +2924,150 @@ var LocalstorageService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], LocalstorageService);
     return LocalstorageService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/site/avatarsetting/avatarsetting.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/site/avatarsetting/avatarsetting.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-default stacked\">\n  <div class=\"panel-heading\">\n    <ul class=\"nav nav-pills account-tab\">\n      <li [ngClass]=\"{'active': block == 'profile'}\"><a (click)=\"select('profile')\">基本信息</a></li>\n      <li [ngClass]=\"{'active': block == 'avatar'}\"><a (click)=\"select('avatar')\">修改头像</a></li>\n      <li [ngClass]=\"{'active': block == 'password'}\"><a (click)=\"select('password')\">修改密码</a></li>\n    </ul>\n  </div>\n  <!-- 基本信息 -->\n  <div *ngIf=\"block == 'profile'\" class=\"panel-body\">\n    <div id=\"message\">\n      <!-- <@layout.extends name=\"/inc/action_message.ftl\" /> -->\n    </div>\n    <div class=\"tab-pane active\" id=\"profile\">\n      <form id=\"submitForm\" action=\"profile\" method=\"post\" class=\"form-horizontal\">\n        <div class=\"form-group\">\n          <label class=\"control-label col-lg-3\" for=\"nickname\">昵称</label>\n          <div class=\"col-lg-4\">\n            <input type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"profile.name\" maxlength=\"7\" required>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label class=\"control-label col-lg-3\" for=\"nickname\">个性签名</label>\n          <div class=\"col-lg-6\">\n            <textarea name=\"signature\" class=\"form-control\" rows=\"3\" maxlength=\"128\" [(ngModel)]=\"profile.signature\"></textarea>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"text-center\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"settingProfile()\">提交</button>\n          </div>\n        </div><!-- /form-actions -->\n      </form>\n    </div>\n  </div><!-- /panel-content -->\n  <!-- 修改头像 -->\n  <div *ngIf=\"block == 'avatar'\" class=\"panel-body\">\n    <div id=\"message\">\n      <!-- <@layout.extends name=\"/inc/action_message.ftl\" /> -->\n    </div>\n    <div class=\"upload-btn\">\n      <label>\n        <span>点击选择一张图片</span>\n        <input #filesMulti id=\"upload_btn\" type=\"file\" name=\"file\" accept=\"image/*\" title=\"点击添加图片\"\n          (change)=\"fileChange()\">\n      </label>\n    </div>\n    <div class=\"update_ava\">\n      <img [src]=\"rootWebDto.accountProfile.avatar\" id=\"target\" alt=\"[Example]\" />\n    </div>\n  </div><!-- /panel-content -->\n  <!-- 修改密码 -->\n  <div *ngIf=\"block == 'password'\" class=\"panel-body\">\n    <div id=\"message\">\n      <!-- <@layout.extends name=\"/inc/action_message.ftl\" /> -->\n    </div>\n    <div class=\"tab-pane active\" id=\"passwd\">\n      <form id=\"submitForm\" action=\"password\" method=\"post\" class=\"form-horizontal\">\n        <div class=\"form-group\">\n          <label class=\"control-label col-lg-3\" for=\"password\">当前密码</label>\n          <div class=\"col-lg-4\">\n            <input type=\"password\" class=\"form-control\" [(ngModel)]=\"password.oldPassword\" name=\"oldPassword\" maxlength=\"18\" placeholder=\"请输入当前密码\" required>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label class=\"control-label col-lg-3\" for=\"password\">新密码</label>\n          <div class=\"col-lg-4\">\n            <input type=\"password\" class=\"form-control\" id=\"password\" [(ngModel)]=\"password.password\" name=\"password\" placeholder=\"请输入新密码\" maxlength=\"18\" required>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label class=\"control-label col-lg-3\" for=\"password2\">确认密码</label>\n          <div class=\"col-lg-4\">\n            <input type=\"password\" class=\"form-control\" [(ngModel)]=\"password.password2\" name=\"password2\" data-required placeholder=\"请再输入一遍新密码\" maxlength=\"18\" required>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <div class=\"text-center\">\n          <button type=\"submit\" class=\"btn btn-primary\" (click)=\"settingPassword()\">提交</button>\n          </div>\n        </div><!-- /form-actions -->\n      </form>\n    </div>\n  </div><!-- /panel-content -->\n</div><!-- /panel -->"
+
+/***/ }),
+
+/***/ "./src/app/site/avatarsetting/avatarsetting.component.sass":
+/*!*****************************************************************!*\
+  !*** ./src/app/site/avatarsetting/avatarsetting.component.sass ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpdGUvYXZhdGFyc2V0dGluZy9hdmF0YXJzZXR0aW5nLmNvbXBvbmVudC5zYXNzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/site/avatarsetting/avatarsetting.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/site/avatarsetting/avatarsetting.component.ts ***!
+  \***************************************************************/
+/*! exports provided: AvatarsettingComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AvatarsettingComponent", function() { return AvatarsettingComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_model_PasswordIn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/PasswordIn */ "./src/app/model/PasswordIn.ts");
+/* harmony import */ var src_app_model_ProfileIn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/model/ProfileIn */ "./src/app/model/ProfileIn.ts");
+/* harmony import */ var src_app_model_RootWebDto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/RootWebDto */ "./src/app/model/RootWebDto.ts");
+/* harmony import */ var src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/httpclient/httpclient.service */ "./src/app/service/httpclient/httpclient.service.ts");
+/* harmony import */ var src_app_service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/localstorage/localstorage.service */ "./src/app/service/localstorage/localstorage.service.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+
+
+
+
+
+var AvatarsettingComponent = /** @class */ (function () {
+    function AvatarsettingComponent(http, localstorage, activatedRoute, rootWebDto, zone, router) {
+        this.http = http;
+        this.localstorage = localstorage;
+        this.activatedRoute = activatedRoute;
+        this.rootWebDto = rootWebDto;
+        this.zone = zone;
+        this.router = router;
+        this.block = "profile";
+        // 定义文件数组
+        this.fileData = [];
+        this.profile = new src_app_model_ProfileIn__WEBPACK_IMPORTED_MODULE_4__["ProfileIn"]();
+        this.password = new src_app_model_PasswordIn__WEBPACK_IMPORTED_MODULE_3__["PasswordIn"]();
+    }
+    AvatarsettingComponent.prototype.ngOnInit = function () {
+    };
+    AvatarsettingComponent.prototype.select = function (value) {
+        this.block = value;
+    };
+    AvatarsettingComponent.prototype.fileChange = function () {
+        this.fileUpload();
+    };
+    AvatarsettingComponent.prototype.fileUpload = function () {
+        var _this = this;
+        // 获取选中的文件数组
+        var t_files = this.fileMulti.nativeElement.files;
+        // 构造参数
+        var formData = new FormData();
+        for (var i = 0; i < t_files.length; i++) {
+            formData.append('file', t_files[i], t_files[i].name);
+        }
+        // 上传至服务器
+        this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].baseUrl + "settings/avatar?AuthToken=" + this.rootWebDto.accountProfile.authToken, formData)
+            .then(function (data) {
+            _this.rootWebDto.accountProfile.avatar = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].baseUrl + data.path;
+            console.log(data.path);
+        })
+            .catch(function () {
+            console.log("error");
+        });
+    };
+    AvatarsettingComponent.prototype.settingProfile = function () {
+        var _this = this;
+        if (this.profile.signature == null || this.profile.signature == "" || this.profile.name == null || this.profile.name == "") {
+            return;
+        }
+        // 上传至服务器
+        this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].baseUrl + "settings/profile?AuthToken=" + this.rootWebDto.accountProfile.authToken, this.profile)
+            .then(function (data) {
+            _this.rootWebDto.accountProfile.name = data.view.name;
+            console.log(data);
+        })
+            .catch(function () {
+            console.log("error");
+        });
+    };
+    AvatarsettingComponent.prototype.settingPassword = function () {
+        if (this.password.password == null || this.password.password == "" || this.password.password2 == null || this.password.password == ""
+            || this.password.password != this.password.password2 || this.password.oldPassword == null || this.password.oldPassword == "") {
+            return;
+        }
+        // 上传至服务器
+        this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].baseUrl + "settings/password?AuthToken=" + this.rootWebDto.accountProfile.authToken, this.password)
+            .then(function (data) {
+            console.log(data);
+        })
+            .catch(function () {
+            console.log("error");
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('filesMulti'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], AvatarsettingComponent.prototype, "fileMulti", void 0);
+    AvatarsettingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-avatarsetting',
+            template: __webpack_require__(/*! ./avatarsetting.component.html */ "./src/app/site/avatarsetting/avatarsetting.component.html"),
+            styles: [__webpack_require__(/*! ./avatarsetting.component.sass */ "./src/app/site/avatarsetting/avatarsetting.component.sass")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_6__["HttpclientService"],
+            src_app_service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_7__["LocalstorageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            src_app_model_RootWebDto__WEBPACK_IMPORTED_MODULE_5__["RootWebDto"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], AvatarsettingComponent);
+    return AvatarsettingComponent;
 }());
 
 
@@ -2873,7 +3318,7 @@ var FrameComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Login dialog BEGIN -->\n<div id=\"login_alert\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-dialog\" role=\"document\" style=\"width: 400px;\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span\n                        aria-hidden=\"true\">&times;</span></button>\n                <h4 class=\"modal-title\">请登录</h4>\n            </div>\n            <div class=\"modal-body\">\n                <form method=\"POST\" action=\"/login\" accept-charset=\"UTF-8\">\n                    <div class=\"form-group\">\n                        <label class=\"control-label\" for=\"username\">账号</label>\n                        <input class=\"form-control\" id=\"ajax_login_username\" name=\"username\" type=\"text\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"control-label\" for=\"password\">密码</label>\n                        <input class=\"form-control\" id=\"ajax_login_password\" name=\"password\" type=\"password\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <button id=\"ajax_login_submit\" class=\"btn btn-primary btn-block btn-sm\" type=\"button\">\n                            登录 Use it\n                        </button>\n                    </div>\n                    <div class=\"form-group\">\n                        <div id=\"ajax_login_message\" class=\"text-danger\"></div>\n                    </div>\n                    <!-- <@controls name=\"register\"> -->\n                    <fieldset class=\"form-group\">\n                        <!-- <#if site.hasValue(\"weibo_client_id\")> -->\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_weibo\">\n                            <i class=\"fa fa-weibo\"></i> 微博帐号登录\n                        </a>\n                        <!-- </#if>\n                          <#if site.hasValue(\"qq_app_id\")> -->\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_qq\">\n                            <i class=\"fa fa-qq\"></i> QQ帐号登录\n                        </a>\n                        <!-- </#if>\n                          <#if site.hasValue(\"github_client_id\")> -->\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_github\">\n                            <i class=\"fa fa-github\"></i> Github帐号登录\n                        </a>\n                        <!-- </#if> -->\n                    </fieldset>\n                    <!-- </@controls> -->\n                </form>\n            </div>\n        </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n</div><!-- /.modal -->\n<!-- Login dialog END -->\n\n<!--[if lt IE 9]>\n<div class=\"alert alert-danger alert-dismissible fade in\" role=\"alert\" style=\"margin-bottom:0\">\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">×</span><span class=\"sr-only\">Close</span></button>\n<strong>您正在使用低版本浏览器，</strong> 在本页面的显示效果可能有差异。\n建议您升级到\n<a href=\"http://www.google.cn/intl/zh-CN/chrome/\" target=\"_blank\">Chrome</a>\n或以下浏览器：\n<a href=\"www.mozilla.org/en-US/firefox/‎\" target=\"_blank\">Firefox</a> /\n<a href=\"http://www.apple.com.cn/safari/\" target=\"_blank\">Safari</a> /\n<a href=\"http://www.opera.com/\" target=\"_blank\">Opera</a> /\n<a href=\"http://windows.microsoft.com/en-us/internet-explorer/download-ie\" target=\"_blank\">Internet Explorer 9+</a>\n</div>\n<![endif]-->\n\n<!-- Fixed navbar -->\n<header class=\"site-header headroom\">\n    <div class=\"container\">\n        <nav class=\"navbar\" role=\"navigation\">\n            <div class=\"navbar-header\">\n                <button class=\"navbar-toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                    <span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" [routerLink]=\"['/']\">\n                    <img src=\"{{siteInfo.options.site_logo}}\" />\n                </a>\n            </div>\n            <div class=\"collapse navbar-collapse\">\n                <ul class=\"nav navbar-nav\">\n                    <li data=\"user\" *ngIf=\"rootWebDto.accountProfile\">\n                        <a [routerLink]=\"['/']\" nav=\"user\">我的主页</a>\n                    </li>\n                    <!-- </#if>\n        <#list channels as row> -->\n                    <ng-container *ngFor=\"let row of siteInfo.list\">\n                        <li *ngIf=\"row.type == 1\">\n                            <a [routerLink]=\"['/channel', {id:row.id}]\">{{row.name}}</a>\n                        </li>\n                        <li *ngIf=\"row.type == 2\">\n                            <a [routerLink]=\"['/frame', {src:row.key}]\">{{row.name}}</a>\n                        </li>\n                        <li *ngIf=\"row.type == 3\">\n                            <a [href]=\"row.key\" target=\"_blank\">{{row.name}}</a>\n                        </li>\n                    </ng-container>\n                    <!-- </#list> -->\n                    <li>\n                        <a [routerLink]=\"['/tags']\" nav=\"tags\">标签</a>\n                    </li>\n                </ul>\n                <ul class=\"navbar-button list-inline\" id=\"header_user\">\n                    <li view=\"search\" class=\"hidden-xs hidden-sm\">\n                        <form method=\"GET\" action=\"base/search\" accept-charset=\"UTF-8\" class=\"navbar-form navbar-left\">\n                            <div class=\"form-group\">\n                                <input class=\"form-control search-input mac-style\" placeholder=\"搜索\" name=\"kw\"\n                                    type=\"text\" value=\"{{kw}}\">\n                                <button class=\"search-btn\" type=\"submit\"><i class=\"fa fa-search\"></i></button>\n                            </div>\n                        </form>\n                    </li>\n                    <ng-container *ngIf=\"rootWebDto.accountProfile\">\n                        <!-- <#if profile??>\n                  <@controls name=\"post\"> -->\n                        <li>\n                            <a [routerLink]=\"['/editing']\" class=\"plus color-setting\"><i class=\"icon icon-note\"></i> 写文章</a>\n                        </li>\n                        <!-- </@controls> -->\n                        <li class=\"dropdown\">\n                            <a class=\"user dropdown-toggle color-setting\" data-toggle=\"dropdown\">\n                                <img class=\"img-circle\" src=\"{{rootWebDto.accountProfile.avatar}}\">\n                                <span>{{rootWebDto.accountProfile.name}}</span>\n                            </a>\n                            <ul class=\"dropdown-menu\" role=\"menu\">\n                                <li>\n                                    <a href=\"base/users/profile.id\">我的主页</a>\n                                </li>\n                                <li>\n                                    <a href=\"base/settings/profile\">编辑资料</a>\n                                </li>\n                                <!-- <@shiro.hasPermission name=\"admin\"> -->\n                                <li><a [routerLink]=\"['/admin']\">后台管理</a></li>\n                                <!-- </@shiro.hasPermission> -->\n                                <li><a (click)=\"logout()\">退出</a></li>\n                            </ul>\n                        </li>\n                    </ng-container>\n                    <ng-container *ngIf=\"!(rootWebDto.accountProfile)\">\n                        <li><a [routerLink]=\"['/login']\" class=\"btn btn-default btn-sm signup\">登录</a></li>\n                        <!-- <@controls name=\"register\"> -->\n                        <li><a [routerLink]=\"['/frame', {src: 'https://material.angular.cn/'}]\" href=\"base/register\" class=\"btn btn-primary btn-sm signup\">注册</a></li>\n                        <!-- </@controls>\n      </#if> -->\n                    </ng-container>\n                </ul>\n            </div>\n        </nav>\n    </div>\n</header>\n\n<!-- Header END -->"
+module.exports = "<!-- Login dialog BEGIN -->\n<div id=\"login_alert\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-dialog\" role=\"document\" style=\"width: 400px;\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span\n                        aria-hidden=\"true\">&times;</span></button>\n                <h4 class=\"modal-title\">请登录</h4>\n            </div>\n            <div class=\"modal-body\">\n                <form method=\"POST\" action=\"/login\" accept-charset=\"UTF-8\">\n                    <div class=\"form-group\">\n                        <label class=\"control-label\" for=\"username\">账号</label>\n                        <input class=\"form-control\" id=\"ajax_login_username\" name=\"username\" type=\"text\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"control-label\" for=\"password\">密码</label>\n                        <input class=\"form-control\" id=\"ajax_login_password\" name=\"password\" type=\"password\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <button id=\"ajax_login_submit\" class=\"btn btn-primary btn-block btn-sm\" type=\"button\">\n                            登录 Use it\n                        </button>\n                    </div>\n                    <div class=\"form-group\">\n                        <div id=\"ajax_login_message\" class=\"text-danger\"></div>\n                    </div>\n                    <!-- <@controls name=\"register\"> -->\n                    <fieldset class=\"form-group\">\n                        <!-- <#if site.hasValue(\"weibo_client_id\")> -->\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_weibo\">\n                            <i class=\"fa fa-weibo\"></i> 微博帐号登录\n                        </a>\n                        <!-- </#if>\n                          <#if site.hasValue(\"qq_app_id\")> -->\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_qq\">\n                            <i class=\"fa fa-qq\"></i> QQ帐号登录\n                        </a>\n                        <!-- </#if>\n                          <#if site.hasValue(\"github_client_id\")> -->\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_github\">\n                            <i class=\"fa fa-github\"></i> Github帐号登录\n                        </a>\n                        <!-- </#if> -->\n                    </fieldset>\n                    <!-- </@controls> -->\n                </form>\n            </div>\n        </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n</div><!-- /.modal -->\n<!-- Login dialog END -->\n\n<!--[if lt IE 9]>\n<div class=\"alert alert-danger alert-dismissible fade in\" role=\"alert\" style=\"margin-bottom:0\">\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">×</span><span class=\"sr-only\">Close</span></button>\n<strong>您正在使用低版本浏览器，</strong> 在本页面的显示效果可能有差异。\n建议您升级到\n<a href=\"http://www.google.cn/intl/zh-CN/chrome/\" target=\"_blank\">Chrome</a>\n或以下浏览器：\n<a href=\"www.mozilla.org/en-US/firefox/‎\" target=\"_blank\">Firefox</a> /\n<a href=\"http://www.apple.com.cn/safari/\" target=\"_blank\">Safari</a> /\n<a href=\"http://www.opera.com/\" target=\"_blank\">Opera</a> /\n<a href=\"http://windows.microsoft.com/en-us/internet-explorer/download-ie\" target=\"_blank\">Internet Explorer 9+</a>\n</div>\n<![endif]-->\n\n<!-- Fixed navbar -->\n<header class=\"site-header headroom\">\n    <div class=\"container\">\n        <nav class=\"navbar\" role=\"navigation\">\n            <div class=\"navbar-header\">\n                <button class=\"navbar-toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n                    <span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" [routerLink]=\"['/']\">\n                    <img src=\"{{siteInfo.options.site_logo}}\" />\n                </a>\n            </div>\n            <div class=\"collapse navbar-collapse\">\n                <ul class=\"nav navbar-nav\">\n                    <li data=\"user\" *ngIf=\"rootWebDto.accountProfile\">\n                        <a [routerLink]=\"['/userhome', {userId:rootWebDto.accountProfile.id}]\" nav=\"user\">我的主页</a>\n                    </li>\n                    <!-- </#if>\n        <#list channels as row> -->\n                    <ng-container *ngFor=\"let row of siteInfo.list\">\n                        <li *ngIf=\"row.type == 1\">\n                            <a [routerLink]=\"['/channel', {id:row.id}]\">{{row.name}}</a>\n                        </li>\n                        <li *ngIf=\"row.type == 2\">\n                            <a [routerLink]=\"['/frame', {src:row.key}]\">{{row.name}}</a>\n                        </li>\n                        <li *ngIf=\"row.type == 3\">\n                            <a [href]=\"row.key\" target=\"_blank\">{{row.name}}</a>\n                        </li>\n                    </ng-container>\n                    <!-- </#list> -->\n                    <li>\n                        <a [routerLink]=\"['/tags']\" nav=\"tags\">标签</a>\n                    </li>\n                </ul>\n                <ul class=\"navbar-button list-inline\" id=\"header_user\">\n                    <li view=\"search\" class=\"hidden-xs hidden-sm\">\n                        <form method=\"GET\" action=\"base/search\" accept-charset=\"UTF-8\" class=\"navbar-form navbar-left\">\n                            <div class=\"form-group\">\n                                <input class=\"form-control search-input mac-style\" placeholder=\"搜索\" name=\"kw\"\n                                    type=\"text\" value=\"{{kw}}\">\n                                <button class=\"search-btn\" type=\"submit\"><i class=\"fa fa-search\"></i></button>\n                            </div>\n                        </form>\n                    </li>\n                    <ng-container *ngIf=\"rootWebDto.accountProfile\">\n                        <!-- <#if profile??>\n                  <@controls name=\"post\"> -->\n                        <li>\n                            <a [routerLink]=\"['/editing']\" class=\"plus color-setting\"><i class=\"icon icon-note\"></i> 写文章</a>\n                        </li>\n                        <!-- </@controls> -->\n                        <li class=\"dropdown\">\n                            <a class=\"user dropdown-toggle color-setting\" data-toggle=\"dropdown\">\n                                <img class=\"img-circle\" src=\"{{rootWebDto.accountProfile.avatar}}\">\n                                <span>{{rootWebDto.accountProfile.name}}</span>\n                            </a>\n                            <ul class=\"dropdown-menu\" role=\"menu\">\n                                <li>\n                                    <a [routerLink]=\"['/userhome', {userId:rootWebDto.accountProfile.id}]\">我的主页</a>\n                                </li>\n                                <li>\n                                    <a href=\"base/settings/profile\">编辑资料</a>\n                                </li>\n                                <!-- <@shiro.hasPermission name=\"admin\"> -->\n                                <li><a [routerLink]=\"['/admin']\">后台管理</a></li>\n                                <!-- </@shiro.hasPermission> -->\n                                <li><a (click)=\"logout()\">退出</a></li>\n                            </ul>\n                        </li>\n                    </ng-container>\n                    <ng-container *ngIf=\"!(rootWebDto.accountProfile)\">\n                        <li><a [routerLink]=\"['/login']\" class=\"btn btn-default btn-sm signup\">登录</a></li>\n                        <!-- <@controls name=\"register\"> -->\n                        <li><a [routerLink]=\"['/frame', {src: 'https://material.angular.cn/'}]\" href=\"base/register\" class=\"btn btn-primary btn-sm signup\">注册</a></li>\n                        <!-- </@controls>\n      </#if> -->\n                    </ng-container>\n                </ul>\n            </div>\n        </nav>\n    </div>\n</header>\n\n<!-- Header END -->"
 
 /***/ }),
 
@@ -3030,7 +3475,7 @@ var LayoutComponent = /** @class */ (function () {
         this.template = [
             // 'link,assets/dist/vendors/pace/themes/pace-theme-minimal.css',
             // 'link,assets/dist/css/plugins.css',
-            'link,assets/css/style.css',
+            'link,assets/site/css/style.css',
             'link,assets/dist/vendors/simple-line-icons/css/simple-line-icons.css',
             'link,assets/dist/vendors/font-awesome/css/font-awesome.min.css',
         ];
@@ -3093,7 +3538,7 @@ var LayoutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngFor=\"let row of allposts.content\">\n  <li class=\"content\">\n    <ng-container *ngIf=\"row.post.thumbnail && row.post.thumbnail.length > 0\">\n      <div class=\"content-box\">\n        <div class=\"posts-item-img\">\n          <a [routerLink]=\"['/view', {id:row.post.id}]\" title=\"\">\n            <div class=\"overlay\"></div>\n            <img class=\"lazy thumbnail\" src=\"<@resource src=row.post.thumbnail/>\" style=\"display: inline-block;\">\n          </a>\n        </div>\n        <div class=\"posts-item posts-item-gallery\">\n          <h2><a [routerLink]=\"['/view', {id:row.post.id}]\">\n              {{row.title}}\n            </a></h2>\n          <div class=\"item-text\">{{row.post.summary}}</div>\n          <div class=\"item-info\">\n            <ul>\n              <li class=\"post-author hidden-xs\">\n                <div class=\"avatar\">\n                  <img src=\"<@resource src=row.post.author.avatar + '?t=' + .now?time/>\" class=\"lazy avatar avatar-50 photo\"\n                    height=\"50\" width=\"50\">\n                </div>\n                <a href=\"/users/{{row.post.author.id}}\" target=\"_blank\">{{row.post.author.name}}</a>\n              </li>\n              <li class=\"ico-cat\">\n                <!-- <@utils.showChannel row /> -->\n              </li>\n              <li class=\"ico-time\"><i class=\"icon-clock\"></i>{{(row.post.created)}}</li>\n              <li class=\"ico-eye hidden-xs\"><i class=\"icon-book-open\"></i>{{row.post.views}}</li>\n              <li class=\"ico-like hidden-xs\"><i class=\"icon-bubble\"></i>{{row.post.comments}}</li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"!(row.post.thumbnail && row.post.thumbnail.length > 0)\">\n      <div class=\"content-box posts-aside\">\n        <div class=\"posts-item\">\n          <div class=\"item-title\">\n            <h2><a [routerLink]=\"['/view', {id:row.post.id}]\">\n                {{row.post.title}}\n              </a></h2>\n          </div>\n          <div class=\"item-text\">{{row.post.summary}}</div>\n          <div class=\"item-info\">\n            <ul>\n              <li class=\"post-author hidden-xs\">\n                <div class=\"avatar\">\n                  <img src=\"{{row.post.author.avatar}}\" class=\"lazy avatar avatar-50 photo\" height=\"50\" width=\"50\">\n                </div>\n                <a href=\"/users/{{row.post.author.id}}\" target=\"_blank\">{{row.post.author.name}}</a>\n              </li>\n              <li class=\"ico-cat\">\n                <!-- <@utils.showChannel row /> -->\n              </li>\n              <li class=\"ico-time\"><i class=\"icon-clock\"></i>{{(row.post.created)}}</li>\n              <li class=\"ico-eye hidden-xs\"><i class=\"icon-book-open\"></i>{{row.post.views}}</li>\n              <li class=\"ico-like hidden-xs\"><i class=\"icon-bubble\"></i>{{row.post.comments}}</li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </ng-container>\n  </li>\n</ng-container>\n<ng-container *ngIf=\"allposts.content.length < 1\">\n  <li class=\"content\">\n    <div class=\"content-box posts-aside\">\n      <div class=\"posts-item\">该目录下还没有内容!</div>\n    </div>\n  </li>\n</ng-container>"
+module.exports = "<ng-container *ngFor=\"let row of allposts.content\">\n  <li class=\"content\">\n    <ng-container *ngIf=\"row.post.thumbnail && row.post.thumbnail.length > 0\">\n      <div class=\"content-box\">\n        <div class=\"posts-item-img\">\n          <a [routerLink]=\"['/view', {id:row.post.id}]\" title=\"\">\n            <div class=\"overlay\"></div>\n            <img class=\"lazy thumbnail\" src=\"<@resource src=row.post.thumbnail/>\" style=\"display: inline-block;\">\n          </a>\n        </div>\n        <div class=\"posts-item posts-item-gallery\">\n          <h2><a [routerLink]=\"['/view', {id:row.post.id}]\">\n              {{row.title}}\n            </a></h2>\n          <div class=\"item-text\">{{row.post.summary}}</div>\n          <div class=\"item-info\">\n            <ul>\n              <li class=\"post-author hidden-xs\">\n                <div class=\"avatar\">\n                  <img src=\"<@resource src=row.post.author.avatar + '?t=' + .now?time/>\" class=\"lazy avatar avatar-50 photo\"\n                    height=\"50\" width=\"50\">\n                </div>\n                <a href=\"/users/{{row.post.author.id}}\" target=\"_blank\">{{row.post.author.name}}</a>\n              </li>\n              <li class=\"ico-cat\">\n                <!-- <@utils.showChannel row /> -->\n              </li>\n              <li class=\"ico-time\"><i class=\"icon-clock\"></i>{{(row.post.created)}}</li>\n              <li class=\"ico-eye hidden-xs\"><i class=\"icon-book-open\"></i>{{row.post.views}}</li>\n              <li class=\"ico-like hidden-xs\"><i class=\"icon-bubble\"></i>{{row.post.comments}}</li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"!(row.post.thumbnail && row.post.thumbnail.length > 0)\">\n      <div class=\"content-box posts-aside\">\n        <div class=\"posts-item\">\n          <div class=\"item-title\">\n            <h2><a [routerLink]=\"['/view', {id:row.post.id}]\">\n                {{row.post.title}}\n              </a></h2>\n          </div>\n          <div class=\"item-text\">{{row.post.summary}}</div>\n          <div class=\"item-info\">\n            <ul>\n              <li class=\"post-author hidden-xs\">\n                <div class=\"avatar\">\n                  <img src=\"{{baseUrl + row.post.author.avatar}}\" class=\"lazy avatar avatar-50 photo\" height=\"50\" width=\"50\">\n                </div>\n                <a href=\"/users/{{row.post.author.id}}\" target=\"_blank\">{{row.post.author.name}}</a>\n              </li>\n              <li class=\"ico-cat\">\n                <!-- <@utils.showChannel row /> -->\n              </li>\n              <li class=\"ico-time\"><i class=\"icon-clock\"></i>{{(row.post.created)}}</li>\n              <li class=\"ico-eye hidden-xs\"><i class=\"icon-book-open\"></i>{{row.post.views}}</li>\n              <li class=\"ico-like hidden-xs\"><i class=\"icon-bubble\"></i>{{row.post.comments}}</li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </ng-container>\n  </li>\n</ng-container>\n<ng-container *ngIf=\"allposts.content.length < 1\">\n  <li class=\"content\">\n    <div class=\"content-box posts-aside\">\n      <div class=\"posts-item\">该目录下还没有内容!</div>\n    </div>\n  </li>\n</ng-container>"
 
 /***/ }),
 
@@ -3120,19 +3565,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListComponent", function() { return ListComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _model_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../model/Page */ "./src/app/model/Page.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _model_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../model/Page */ "./src/app/model/Page.ts");
+
 
 
 
 var ListComponent = /** @class */ (function () {
     function ListComponent() {
-        this.allposts = new _model_Page__WEBPACK_IMPORTED_MODULE_2__["Page"]();
+        this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseUrl;
+        this.allposts = new _model_Page__WEBPACK_IMPORTED_MODULE_3__["Page"]();
     }
     ListComponent.prototype.ngOnInit = function () {
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _model_Page__WEBPACK_IMPORTED_MODULE_2__["Page"])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _model_Page__WEBPACK_IMPORTED_MODULE_3__["Page"])
     ], ListComponent.prototype, "allposts", void 0);
     ListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -3149,6 +3597,147 @@ var ListComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/site/common/pagelink/pagelink.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/site/common/pagelink/pagelink.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-container *ngIf=\"idx == 0\">\n  <li><span>...</span></li>\n</ng-container>\n<ng-container *ngIf=\"pageNo == idx\">\n  <li class=\"active\"><span>{{idx}}</span></li>\n</ng-container>\n<ng-container *ngIf=\"idx != 0 && pageNo != idx\">\n  <li><a href=\"{{url}}{{idx}}\">{{idx}}</a></li>\n</ng-container>"
+
+/***/ }),
+
+/***/ "./src/app/site/common/pagelink/pagelink.component.sass":
+/*!**************************************************************!*\
+  !*** ./src/app/site/common/pagelink/pagelink.component.sass ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpdGUvY29tbW9uL3BhZ2VsaW5rL3BhZ2VsaW5rLmNvbXBvbmVudC5zYXNzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/site/common/pagelink/pagelink.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/site/common/pagelink/pagelink.component.ts ***!
+  \************************************************************/
+/*! exports provided: PagelinkComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagelinkComponent", function() { return PagelinkComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var PagelinkComponent = /** @class */ (function () {
+    function PagelinkComponent() {
+    }
+    PagelinkComponent.prototype.ngOnInit = function () {
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("pageNo"),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
+    ], PagelinkComponent.prototype, "pageNo", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("idx"),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
+    ], PagelinkComponent.prototype, "idx", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("url"),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
+    ], PagelinkComponent.prototype, "url", void 0);
+    PagelinkComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-pagelink',
+            template: __webpack_require__(/*! ./pagelink.component.html */ "./src/app/site/common/pagelink/pagelink.component.html"),
+            styles: [__webpack_require__(/*! ./pagelink.component.sass */ "./src/app/site/common/pagelink/pagelink.component.sass")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], PagelinkComponent);
+    return PagelinkComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/site/common/pager/pager.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/site/common/pager/pager.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-container *ngIf=\"p\">\n\n  <ul class=\"pagination\">\n    <!-- <#assign pageNo=p.number + 1 />\n    <#assign pageCount=p.totalPages /> -->\n    <ng-container *ngIf=\"p.number +1 > 1\">\n      <li><a href=\"${cURL}${pageNo - 1}\" pageNo=\"${pageNo - 1}\" class=\"prev\"><i class=\"fa fa-angle-left\"></i></a></li>\n    </ng-container>\n    <ng-container *ngIf=\"!(p.number + 1 > 1)\">\n      <li class=\"disabled\"><span><i class=\"fa fa-angle-left\"></i></span></li>\n    </ng-container>\n\n    <!-- <#local totalNo=span * 2 + 3 />\n    <#local totalNo1=totalNo - 1 /> -->\n\n    <ng-container *ngIf=\"p.totalPages > spans\">\n      <!-- <#if (pageNo <=span + 2)>\n        <#list 1..totalNo1 as i>\n          <app-pagelink [pageNo]=\"pageNo\" [idx]=\"i\" [url]=\"cURL\"></app-pagelink>\n        </#list>\n        <app-pagelink [pageNo]=\"0\" [idx]=\"0\" [url]=\"#\"></app-pagelink>\n        <app-pagelink [pageNo]=\"pageNo\" [idx]=\"pageCount\" [url]=\"cURL\"></app-pagelink>\n        <#elseif (pageNo> (pageCount - (span + 2)))>\n          <app-pagelink [pageNo]=\"pageNo\" [idx]=\"1\" [url]=\"cURL\"></app-pagelink>\n          <app-pagelink [pageNo]=\"0\" [idx]=\"0\" [url]=\"#\"></app-pagelink>\n          <#local num=pageCount - totalNo + 2 />\n          <#list num..pageCount as i>\n            <app-pagelink [pageNo]=\"pageNo\" [idx]=\"i\" [url]=\"cURL\"></app-pagelink>\n          </#list>\n          <#else>\n            <app-pagelink [pageNo]=\"pageNo\" [idx]=\"i\" [url]=\"cURL\"></app-pagelink>\n            <app-pagelink [pageNo]=\"0\" [idx]=\"0\" [url]=\"#\"></app-pagelink>\n            <#local num=pageNo - span />\n            <#local num2=pageNo + span />\n            <#list num..num2 as i>\n              <app-pagelink [pageNo]=\"pageNo\" [idx]=\"i\" [url]=\"cURL\"></app-pagelink>\n            </#list>\n            <app-pagelink [pageNo]=\"0\" [idx]=\"0\" [url]=\"#\"></app-pagelink>\n            <app-pagelink [pageNo]=\"pageNo\" [idx]=\"pageCount\" [url]=\"cURL\"></app-pagelink>\n      </#if> -->\n    </ng-container>\n    <ng-container *ngIf=\"p.totalPages <= spans && p.totalPages > 1\">\n      <ng-container *ngFor=\"let in of constructor(p.totalPages); let i = index\">\n        <app-pagelink [pageNo]=\"pageNo\" [idx]=\"i\" [url]=\"cURL\"></app-pagelink>\n      </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"p.totalPages <= 1\">\n      <app-pagelink [pageNo]=\"1\" [idx]=\"1\" [url]=\"cURL\"></app-pagelink>\n    </ng-container>\n\n    <ng-container *ngIf=\"p.number + 1 < p.totalPages\">\n      <li><a href=\"{{cURL}}{{pageNo + 1}}\"  class=\"next\"><i class=\"fa fa-angle-right\"></i></a></li>\n    </ng-container>\n    <ng-container *ngIf=\"!(p.number + 1 < p.totalPages)\">\n      <li class=\"disabled\"><span><i class=\"fa fa-angle-right\"></i></span></li>\n    </ng-container>\n  </ul>\n</ng-container>"
+
+/***/ }),
+
+/***/ "./src/app/site/common/pager/pager.component.sass":
+/*!********************************************************!*\
+  !*** ./src/app/site/common/pager/pager.component.sass ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpdGUvY29tbW9uL3BhZ2VyL3BhZ2VyLmNvbXBvbmVudC5zYXNzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/site/common/pager/pager.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/site/common/pager/pager.component.ts ***!
+  \******************************************************/
+/*! exports provided: PagerComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagerComponent", function() { return PagerComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var PagerComponent = /** @class */ (function () {
+    function PagerComponent() {
+    }
+    PagerComponent.prototype.ngOnChanges = function (changes) {
+        console.log(this.p);
+    };
+    PagerComponent.prototype.ngOnInit = function () {
+        this.span = (this.spans - 3) / 2;
+        // this.curl = this.url.indexOf('?') != -1? this.url + "&pageNo=": this.url + "?pageNo=";
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("url"),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
+    ], PagerComponent.prototype, "url", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("p"),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], PagerComponent.prototype, "p", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("spans"),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
+    ], PagerComponent.prototype, "spans", void 0);
+    PagerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-pager',
+            template: __webpack_require__(/*! ./pager.component.html */ "./src/app/site/common/pager/pager.component.html"),
+            styles: [__webpack_require__(/*! ./pager.component.sass */ "./src/app/site/common/pager/pager.component.sass")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], PagerComponent);
+    return PagerComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/site/common/posts/posts.component.html":
 /*!********************************************************!*\
   !*** ./src/app/site/common/posts/posts.component.html ***!
@@ -3156,7 +3745,7 @@ var ListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngFor=\"let row of allposts.content\">\r\n  <li class=\"content\">\r\n    <ng-container *ngIf=\"row.thumbnail && row.thumbnail.length > 0\">\r\n      <div class=\"content-box\">\r\n        <div class=\"posts-item-img\">\r\n          <a [routerLink]=\"['/view', {id:row.id}]\" title=\"\">\r\n            <div class=\"overlay\"></div>\r\n            <img class=\"lazy thumbnail\" src=\"<@resource src=row.thumbnail/>\" style=\"display: inline-block;\">\r\n          </a>\r\n        </div>\r\n        <div class=\"posts-item posts-item-gallery\">\r\n          <h2><a [routerLink]=\"['/view', {id:row.id}]\">\r\n              {{row.title}}\r\n            </a></h2>\r\n          <div class=\"item-text\">{{row.summary}}</div>\r\n          <div class=\"item-info\">\r\n            <ul>\r\n              <li class=\"post-author hidden-xs\">\r\n                <div class=\"avatar\">\r\n                  <img src=\"<@resource src=row.author.avatar + '?t=' + .now?time/>\" class=\"lazy avatar avatar-50 photo\"\r\n                    height=\"50\" width=\"50\">\r\n                </div>\r\n                <a href=\"/users/{{row.author.id}}\" target=\"_blank\" disabled>{{row.author.name}}</a>\r\n              </li>\r\n              <li class=\"ico-cat\">\r\n                <!-- <@utils.showChannel row /> -->\r\n              </li>\r\n              <li class=\"ico-time\"><i class=\"icon-clock\"></i>{{(row.created)}}</li>\r\n              <li class=\"ico-eye hidden-xs\"><i class=\"icon-book-open\"></i>{{row.views}}</li>\r\n              <li class=\"ico-like hidden-xs\"><i class=\"icon-bubble\"></i>{{row.comments}}</li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"!(row.thumbnail && row.thumbnail.length > 0)\">\r\n      <div class=\"content-box posts-aside\">\r\n        <div class=\"posts-item\">\r\n          <div class=\"item-title\">\r\n            <h2><a [routerLink]=\"['/view', {id:row.id}]\">\r\n                {{row.title}}\r\n              </a></h2>\r\n          </div>\r\n          <div class=\"item-text\">{{row.summary}}</div>\r\n          <div class=\"item-info\">\r\n            <ul>\r\n              <li class=\"post-author hidden-xs\">\r\n                <div class=\"avatar\">\r\n                  <img src=\"{{row.author.avatar}}\" class=\"lazy avatar avatar-50 photo\" height=\"50\" width=\"50\">\r\n                </div>\r\n                <a href=\"/users/{{row.author.id}}\" target=\"_blank\">{{row.author.name}}</a>\r\n              </li>\r\n              <li class=\"ico-cat\">\r\n                <!-- <@utils.showChannel row /> -->\r\n              </li>\r\n              <li class=\"ico-time\"><i class=\"icon-clock\"></i>{{(row.created)}}</li>\r\n              <li class=\"ico-eye hidden-xs\"><i class=\"icon-book-open\"></i>{{row.views}}</li>\r\n              <li class=\"ico-like hidden-xs\"><i class=\"icon-bubble\"></i>{{row.comments}}</li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n  </li>\r\n</ng-container>\r\n<ng-container *ngIf=\"allposts.content.length < 1\">\r\n  <li class=\"content\">\r\n    <div class=\"content-box posts-aside\">\r\n      <div class=\"posts-item\">该目录下还没有内容!</div>\r\n    </div>\r\n  </li>\r\n</ng-container>"
+module.exports = "<ng-container *ngFor=\"let row of allposts.content\">\r\n  <li class=\"content\">\r\n    <ng-container *ngIf=\"row.thumbnail && row.thumbnail.length > 0\">\r\n      <div class=\"content-box\">\r\n        <div class=\"posts-item-img\">\r\n          <a [routerLink]=\"['/view', {id:row.id}]\" title=\"\">\r\n            <div class=\"overlay\"></div>\r\n            <img class=\"lazy thumbnail\" [src]=\"baseUrl + row.thumbnail\" style=\"display: inline-block;\">\r\n          </a>\r\n        </div>\r\n        <div class=\"posts-item posts-item-gallery\">\r\n          <h2><a [routerLink]=\"['/view', {id:row.id}]\">\r\n              {{row.title}}\r\n            </a></h2>\r\n          <div class=\"item-text\">{{row.summary}}</div>\r\n          <div class=\"item-info\">\r\n            <ul>\r\n              <li class=\"post-author hidden-xs\">\r\n                <div class=\"avatar\">\r\n                  <img [src]=\"baseUrl + row.author.avatar\" class=\"lazy avatar avatar-50 photo\"\r\n                    height=\"50\" width=\"50\">\r\n                </div>\r\n                <a href=\"/users/{{row.author.id}}\" target=\"_blank\" disabled>{{row.author.name}}</a>\r\n              </li>\r\n              <li class=\"ico-cat\">\r\n                <!-- <@utils.showChannel row /> -->\r\n              </li>\r\n              <li class=\"ico-time\"><i class=\"icon-clock\"></i>{{(row.created)}}</li>\r\n              <li class=\"ico-eye hidden-xs\"><i class=\"icon-book-open\"></i>{{row.views}}</li>\r\n              <li class=\"ico-like hidden-xs\"><i class=\"icon-bubble\"></i>{{row.comments}}</li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"!(row.thumbnail && row.thumbnail.length > 0)\">\r\n      <div class=\"content-box posts-aside\">\r\n        <div class=\"posts-item\">\r\n          <div class=\"item-title\">\r\n            <h2><a [routerLink]=\"['/view', {id:row.id}]\">\r\n                {{row.title}}\r\n              </a></h2>\r\n          </div>\r\n          <div class=\"item-text\">{{row.summary}}</div>\r\n          <div class=\"item-info\">\r\n            <ul>\r\n              <li class=\"post-author hidden-xs\">\r\n                <div class=\"avatar\">\r\n                  <img src=\"{{baseUrl + row.author.avatar}}\" class=\"lazy avatar avatar-50 photo\" height=\"50\" width=\"50\">\r\n                </div>\r\n                <a [routerLink]=\"['/userhome', {userId:row.author.id}]\">{{row.author.name}}</a>\r\n              </li>\r\n              <li class=\"ico-cat\">\r\n                <!-- <@utils.showChannel row /> -->\r\n              </li>\r\n              <li class=\"ico-time\"><i class=\"icon-clock\"></i>{{(row.created)}}</li>\r\n              <li class=\"ico-eye hidden-xs\"><i class=\"icon-book-open\"></i>{{row.views}}</li>\r\n              <li class=\"ico-like hidden-xs\"><i class=\"icon-bubble\"></i>{{row.comments}}</li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n  </li>\r\n</ng-container>\r\n<ng-container *ngIf=\"allposts.content.length < 1\">\r\n  <li class=\"content\">\r\n    <div class=\"content-box posts-aside\">\r\n      <div class=\"posts-item\">该目录下还没有内容!</div>\r\n    </div>\r\n  </li>\r\n</ng-container>"
 
 /***/ }),
 
@@ -3205,6 +3794,7 @@ var PostsComponent = /** @class */ (function () {
         this.localstorage = localstorage;
         this.router = router;
         this.rootWebDto = rootWebDto;
+        this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl;
         this.allposts = new _model_Page__WEBPACK_IMPORTED_MODULE_6__["Page"]();
     }
     PostsComponent.prototype.ngOnChanges = function (changes) {
@@ -3364,6 +3954,107 @@ var RightComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/site/common/sidebar/sidebar.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/site/common/sidebar/sidebar.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ul class=\"list-group about-user\">\n  <li class=\"list-group-item user-card\">\n    <div class=\"user-avatar\">\n      <a [routerLink]=\"['/userhome', {userId:info.user.id}]\">\n        <img class=\"img-circle\" [src]=\"baseUrl + info.user.avatar\"/>\n    </a>\n    </div>\n    <div class=\"user-name\">\n      <span>{{info.user.name}}</span>\n    </div>\n  </li>\n  <li class=\"list-group-item\">\n    <div class=\"user-datas\">\n      <ul>\n        <li><strong>{{info.user.posts}}</strong><span>发布</span></li>\n        <li class=\"noborder\"><strong>{{info.user.comments}}</strong><span>评论</span></li>\n      </ul>\n    </div>\n  </li>\n  <ng-container *ngIf=\"info.owner\">\n    <li class=\"list-group-item\">\n      <a class=\"btn btn-primary btn-block btn-sm\" [routerLink]=\"['/avatarsetting']\">\n        <i class=\"icon icon-note\"></i> 编辑个人资料\n      </a>\n    </li>\n  </ng-container>\n</ul>\n<nav class=\"navbar navbar-default shadow-box background-white\">\n  <div class=\"container-fluid\">\n    <!-- Brand and toggle get grouped for better mobile display -->\n    <div class=\"navbar-header visible-xs\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#home-navbar\"\n        aria-expanded=\"false\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <span class=\"navbar-brand\">导航</span>\n    </div>\n  </div>\n  <div id=\"home-navbar\" class=\"collapse navbar-collapse\">\n    <ul class=\"list-group user-nav first\">\n      <li class=\"list-group-item\">\n        <a [routerLink]=\"['/userhome', {userId: info.user.id}]\"><i class=\"icon icon-list\"></i> 发表的文章</a>\n      </li>\n      <li class=\"list-group-item\">\n        <a href=\"users/user.id/comments\"><i class=\"icon icon-speech\"></i> 发表的评论</a>\n      </li>\n      <li class=\"list-group-item\">\n        <a href=\"users/user.id/favorites\"><i class=\"icon icon-heart\"></i> 收藏的文章</a>\n      </li>\n    </ul>\n\n    <ng-container *ngIf=\"info.owner\">\n      <ul class=\"list-group user-nav\">\n        <li class=\"list-group-item\">\n          <a href=\"/users/user.id/messages\">\n            <i class=\"icon icon-envelope\"></i> 通知\n            <ng-container *ngIf=\"rootWebDto.accountProfile.badgesCount.messages > 0\">\n              <span class=\"label label-danger\">{{rootWebDto.accountProfile.badgesCount.messages}}</span>\n            </ng-container>\n            <ng-container *ngIf=\"!(rootWebDto.accountProfile.badgesCount.messages > 0)\">\n                <span class=\"label label-default\">0</span>\n            </ng-container>\n          </a>\n        </li>\n      </ul>\n    </ng-container>\n  </div>\n</nav>"
+
+/***/ }),
+
+/***/ "./src/app/site/common/sidebar/sidebar.component.sass":
+/*!************************************************************!*\
+  !*** ./src/app/site/common/sidebar/sidebar.component.sass ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpdGUvY29tbW9uL3NpZGViYXIvc2lkZWJhci5jb21wb25lbnQuc2FzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/site/common/sidebar/sidebar.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/site/common/sidebar/sidebar.component.ts ***!
+  \**********************************************************/
+/*! exports provided: SidebarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SidebarComponent", function() { return SidebarComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_model_RootWebDto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/RootWebDto */ "./src/app/model/RootWebDto.ts");
+/* harmony import */ var src_app_model_UserInfoOut__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/model/UserInfoOut */ "./src/app/model/UserInfoOut.ts");
+/* harmony import */ var src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/httpclient/httpclient.service */ "./src/app/service/httpclient/httpclient.service.ts");
+/* harmony import */ var src_app_service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/localstorage/localstorage.service */ "./src/app/service/localstorage/localstorage.service.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+
+
+
+
+var SidebarComponent = /** @class */ (function () {
+    function SidebarComponent(http, localstorage, activatedRoute, rootWebDto, zone, router) {
+        this.http = http;
+        this.localstorage = localstorage;
+        this.activatedRoute = activatedRoute;
+        this.rootWebDto = rootWebDto;
+        this.zone = zone;
+        this.router = router;
+        this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].baseUrl;
+        this.info = new src_app_model_UserInfoOut__WEBPACK_IMPORTED_MODULE_4__["UserInfoOut"]();
+    }
+    SidebarComponent.prototype.ngOnChanges = function (changes) {
+        this.getUserInfo();
+    };
+    SidebarComponent.prototype.ngOnInit = function () {
+    };
+    SidebarComponent.prototype.getUserInfo = function () {
+        var _this = this;
+        this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].baseUrl + 'users/home?AuthToken=' + this.rootWebDto.accountProfile.authToken, { userId: this.userId })
+            .then(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.info.copy(data);
+                return [2 /*return*/];
+            });
+        }); })
+            .catch(function () {
+            console.log("error");
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("userId"),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], SidebarComponent.prototype, "userId", void 0);
+    SidebarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-sidebar',
+            template: __webpack_require__(/*! ./sidebar.component.html */ "./src/app/site/common/sidebar/sidebar.component.html"),
+            styles: [__webpack_require__(/*! ./sidebar.component.sass */ "./src/app/site/common/sidebar/sidebar.component.sass")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_5__["HttpclientService"],
+            src_app_service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_6__["LocalstorageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            src_app_model_RootWebDto__WEBPACK_IMPORTED_MODULE_3__["RootWebDto"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], SidebarComponent);
+    return SidebarComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/site/editing/editing.component.html":
 /*!*****************************************************!*\
   !*** ./src/app/site/editing/editing.component.html ***!
@@ -3371,7 +4062,7 @@ var RightComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form id=\"submitForm\" class=\"form\" action=\"{{base}}/post/submit\" method=\"post\" enctype=\"multipart/form-data\">\n  <input type=\"hidden\" name=\"status\" [(ngModel)]=\"post.status\" />\n  <input type=\"hidden\" name=\"editor\" [(ngModel)]=\"post.editor\" />\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 side-left\">\n      <div id=\"message\"></div>\n      <ng-container *ngIf=\"!(editingOut && editingOut.view)\">\n        <input type=\"hidden\" [(ngModel)]=\"post.id\" name=\"id\" />\n        <input type=\"hidden\" [(ngModel)]=\"post.authorId\" name=\"authorId\" />\n      </ng-container>\n      <input type=\"hidden\" [(ngModel)]=\"post.thumbnail\" id=\"thumbnail\" name=\"thumbnail\" />\n\n      <div class=\"form-group\">\n        <input type=\"text\" [(ngModel)]=\"post.title\" class=\"form-control\" name=\"title\" maxlength=\"128\"\n          placeholder=\"请输入标题\" required>\n      </div>\n      <div class=\"form-group\">\n        <app-vditor></app-vditor>\n        <!-- <div id=\"md\" appEditor [editormdConfig]=\"conf\" (onEditorChange)=\"syncModel($event)\">\n          <textarea style=\"display: block;\" [(ngModel)]=\"post.content\"></textarea>\n        </div> -->\n        <!-- <app-markdown name=\"content\" [(ngModel)]=\"post.content\"></app-markdown> -->\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-md-4 side-right\">\n      <div class=\"panel panel-default\">\n        <div class=\"thumbnail-box\">\n          <!-- <div class=\"convent_choice\" id=\"thumbnail_image\" style=\"background: url(<@resource src=view.thumbnail/>);\">\n            <div class=\"upload-btn\">\n              <label>\n                <span>点击选择一张图片</span>\n                <input [(ngModel)]=\"post.file\" id=\"upload_btn\" type=\"file\" name=\"file\" accept=\"image/*\" title=\"点击添加图片\">\n              </label>\n            </div>\n          </div> -->\n        </div>\n      </div>\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">发布到</h3>\n        </div>\n        <div class=\"panel-body\">\n          <select [(ngModel)]=\"post.channelId\" class=\"form-control\" name=\"channelId\" required>\n            <option value=\"\">请选择栏目</option>\n            <ng-container *ngFor=\"let item of editingOut.channels\">\n              <option value=\"{{item.id}}\" *ngIf=\"item.id == post.channelId\" selected>{{item.name}}</option>\n              <option value=\"{{item.id}}\" *ngIf=\"!(item.id == post.channelId)\">{{item.name}}</option>\n            </ng-container>\n          </select>\n        </div>\n      </div>\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">标签(用逗号或空格分隔)</h3>\n        </div>\n        <div class=\"panel-body\">\n          <input [(ngModel)]=\"post.tags\" type=\"text\" id=\"tags\" name=\"tags\" class=\"form-control\"\n            placeholder=\"添加相关标签，逗号分隔 (最多4个)\">\n        </div>\n      </div>\n      <div class=\"col-xs-12 col-md-12\">\n        <div class=\"form-group\">\n          <div class=\"text-center\">\n            <button type=\"button\" data-status=\"0\" class=\"btn btn-primary\" event=\"post_submit\"\n              style=\"padding-left: 30px; padding-right: 30px;\" (click)=\"postSubmit()\">发布</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</form>"
+module.exports = "<form id=\"submitForm\" class=\"form\" action=\"{{base}}/post/submit\" method=\"post\" enctype=\"multipart/form-data\">\n  <input type=\"hidden\" name=\"status\" [(ngModel)]=\"post.status\" />\n  <input type=\"hidden\" name=\"editor\" [(ngModel)]=\"post.editor\" />\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 side-left\">\n      <div id=\"message\"></div>\n      <ng-container *ngIf=\"!(editingOut && editingOut.view)\">\n        <input type=\"hidden\" [(ngModel)]=\"post.id\" name=\"id\" />\n        <input type=\"hidden\" [(ngModel)]=\"post.authorId\" name=\"authorId\" />\n      </ng-container>\n      <input type=\"hidden\" [(ngModel)]=\"post.thumbnail\" id=\"thumbnail\" name=\"thumbnail\" />\n\n      <div class=\"form-group\">\n        <input type=\"text\" [(ngModel)]=\"post.title\" class=\"form-control\" name=\"title\" maxlength=\"128\"\n          placeholder=\"请输入标题\" required>\n      </div>\n      <div class=\"form-group\">\n        <app-vditor></app-vditor>\n        <!-- <div id=\"md\" appEditor [editormdConfig]=\"conf\" (onEditorChange)=\"syncModel($event)\">\n          <textarea style=\"display: block;\" [(ngModel)]=\"post.content\"></textarea>\n        </div> -->\n        <!-- <app-markdown name=\"content\" [(ngModel)]=\"post.content\"></app-markdown> -->\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-md-4 side-right\">\n      <div class=\"panel panel-default\">\n        <div class=\"thumbnail-box\">\n          <!-- <div class=\"convent_choice\" id=\"thumbnail_image\" style=\"background: url(<@resource src=view.thumbnail/>);\">\n            <div class=\"upload-btn\">\n              <label>\n                <span>点击选择一张图片</span>\n                <input [(ngModel)]=\"post.file\" id=\"upload_btn\" type=\"file\" name=\"file\" accept=\"image/*\" title=\"点击添加图片\">\n              </label>\n            </div>\n          </div> -->\n          <app-upload (changePath)=\"changePath($event)\"></app-upload>\n        </div>\n      </div>\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">发布到</h3>\n        </div>\n        <div class=\"panel-body\">\n          <select [(ngModel)]=\"post.channelId\" class=\"form-control\" name=\"channelId\" required>\n            <option value=\"\">请选择栏目</option>\n            <ng-container *ngFor=\"let item of editingOut.channels\">\n              <option value=\"{{item.id}}\" *ngIf=\"item.id == post.channelId\" selected>{{item.name}}</option>\n              <option value=\"{{item.id}}\" *ngIf=\"!(item.id == post.channelId)\">{{item.name}}</option>\n            </ng-container>\n          </select>\n        </div>\n      </div>\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">标签(用逗号或空格分隔)</h3>\n        </div>\n        <div class=\"panel-body\">\n          <input [(ngModel)]=\"post.tags\" type=\"text\" id=\"tags\" name=\"tags\" class=\"form-control\"\n            placeholder=\"添加相关标签，逗号分隔 (最多4个)\">\n        </div>\n      </div>\n      <div class=\"col-xs-12 col-md-12\">\n        <div class=\"form-group\">\n          <div class=\"text-center\">\n            <button type=\"button\" data-status=\"0\" class=\"btn btn-primary\" event=\"post_submit\"\n              style=\"padding-left: 30px; padding-right: 30px;\" (click)=\"postSubmit()\">发布</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -3435,6 +4126,9 @@ var EditingComponent = /** @class */ (function () {
     };
     EditingComponent.prototype.ngOnInit = function () {
         this.getEditingInit();
+    };
+    EditingComponent.prototype.changePath = function (path) {
+        this.post.thumbnail = path;
     };
     EditingComponent.prototype.getEditingInit = function () {
         var _this = this;
@@ -3664,6 +4358,7 @@ var LoginComponent = /** @class */ (function () {
             .then(function (authData) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 if (authData) {
+                    authData.avatar = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl + authData.avatar;
                     this.rootWebDto.accountProfile = authData;
                     this.localstorage.set("authToken", authData.authToken);
                     this.router.navigate(['/']);
@@ -3897,6 +4592,105 @@ var TagsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/site/userhome/userhome.component.html":
+/*!*******************************************************!*\
+  !*** ./src/app/site/userhome/userhome.component.html ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row users-show\">\n  <div class=\"col-xs-12 col-md-3 side-left\">\n    <app-sidebar [userId]=\"userId\"></app-sidebar>\n  </div>\n  <div class=\"col-xs-12 col-md-9 side-right\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">发表的文章</div>\n        <div class=\"panel-body\">\n          <ul class=\"list-group\">\n            <ng-container *ngFor=\"let row of results.content\">\n              <li class=\"list-group-item\">\n              <!-- <li class=\"list-group-item\" el=\"loop-{{row.id}}\"> -->\n                <a href=\"/post/{{row.id}}\" class=\"remove-padding-left\">{{row.title}}</a>\n                <span class=\"meta\">\n                  {{row.favors}} 点赞\n                  <span> ⋅ </span>\n                  {{row.comments}} 回复\n                  <span> ⋅ </span>\n                  <span class=\"timeago\">{{row.created}}</span>\n                </span>\n\n                <div class=\"pull-right hidden-xs\">\n                  <ng-container *ngIf=\"owner\">\n                    <a class=\"act_edit\" href=\"javascript:void(0);\" data-evt=\"edit\" data-id=\"{{row.id}}\"\n                      data-toggle=\"tooltip\" title=\"编辑文章\">\n                      <i class=\"icon icon-note\"></i>\n                    </a>\n                    <a class=\"act_delete\" href=\"javascript:void(0);\" data-evt=\"trash\" data-id=\"{{row.id}}\"\n                      data-toggle=\"tooltip\" title=\"删除文章\">\n                      <i class=\"icon icon-close\"></i>\n                    </a>\n                  </ng-container>\n                </div>\n              </li>\n            </ng-container>\n\n            <ng-container *ngIf=\"!(results.content || results.content.size>0)\">\n              <li class=\"list-group-item \">\n                <div class=\"infos\">\n                  <div class=\"media-heading\">该目录下还没有内容!</div>\n                </div>\n              </li>\n            </ng-container>\n          </ul>\n        </div>\n        <div class=\"panel-footer\">\n          <app-pager [url]=\"\" [p]=\"results\" [spans]=\"5\"></app-pager>\n          <!-- <@utils.pager request.requestURI!'', results, 5 /> -->\n        </div>\n    </div>\n  </div>\n</div>\n<!-- /end -->"
+
+/***/ }),
+
+/***/ "./src/app/site/userhome/userhome.component.sass":
+/*!*******************************************************!*\
+  !*** ./src/app/site/userhome/userhome.component.sass ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpdGUvdXNlcmhvbWUvdXNlcmhvbWUuY29tcG9uZW50LnNhc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/site/userhome/userhome.component.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/site/userhome/userhome.component.ts ***!
+  \*****************************************************/
+/*! exports provided: UserhomeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserhomeComponent", function() { return UserhomeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_model_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/Page */ "./src/app/model/Page.ts");
+/* harmony import */ var src_app_model_RootWebDto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/model/RootWebDto */ "./src/app/model/RootWebDto.ts");
+/* harmony import */ var src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/httpclient/httpclient.service */ "./src/app/service/httpclient/httpclient.service.ts");
+/* harmony import */ var src_app_service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/localstorage/localstorage.service */ "./src/app/service/localstorage/localstorage.service.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+
+
+
+
+var UserhomeComponent = /** @class */ (function () {
+    function UserhomeComponent(http, localstorage, activatedRoute, rootWebDto, zone, router) {
+        this.http = http;
+        this.localstorage = localstorage;
+        this.activatedRoute = activatedRoute;
+        this.rootWebDto = rootWebDto;
+        this.zone = zone;
+        this.router = router;
+        this.results = new src_app_model_Page__WEBPACK_IMPORTED_MODULE_3__["Page"]();
+    }
+    ;
+    UserhomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = _this.activatedRoute.snapshot.params['userId'];
+            _this.getUserContents();
+        });
+    };
+    UserhomeComponent.prototype.getUserContents = function () {
+        var _this = this;
+        this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].baseUrl + 'user/contents', { userId: this.userId })
+            .then(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.results.copy(data);
+                return [2 /*return*/];
+            });
+        }); })
+            .catch(function () {
+            console.log("error");
+        });
+    };
+    UserhomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-userhome',
+            template: __webpack_require__(/*! ./userhome.component.html */ "./src/app/site/userhome/userhome.component.html"),
+            styles: [__webpack_require__(/*! ./userhome.component.sass */ "./src/app/site/userhome/userhome.component.sass")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_5__["HttpclientService"],
+            src_app_service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_6__["LocalstorageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            src_app_model_RootWebDto__WEBPACK_IMPORTED_MODULE_4__["RootWebDto"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], UserhomeComponent);
+    return UserhomeComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/site/view/view.component.html":
 /*!***********************************************!*\
   !*** ./src/app/site/view/view.component.html ***!
@@ -4109,7 +4903,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    baseUrl: 'https://zblog.ngrok2.xiaomiqiu.cn/',
+    baseUrl: 'http://192.168.0.105:1000/',
     basesocket: 'wss://moly.ngrok2.xiaomiqiu.cn/'
 };
 /*
