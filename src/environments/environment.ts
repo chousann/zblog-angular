@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://zblog.ngrok2.xiaomiqiu.cn/',
+  baseUrl: 'http://192.168.0.105:1000/',
   basesocket: 'wss://moly.ngrok2.xiaomiqiu.cn/'
 };
 

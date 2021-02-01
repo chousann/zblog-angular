@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import Vditor from 'vditor'
 
@@ -9,6 +9,7 @@ import Vditor from 'vditor'
 })
 export class VditorComponent implements OnInit {
   value = '# Title';
+  
   constructor() { }
 
   public vditor: Vditor; 
@@ -69,7 +70,6 @@ export class VditorComponent implements OnInit {
     console.log(this.vditor.getValue());
     console.log("============获取编辑器Html内容============");
     console.log(this.vditor.getHTML());
-
     return this.vditor.getValue();
   }
 
@@ -80,6 +80,7 @@ export class VditorComponent implements OnInit {
     console.log(this.vditor.getValue());
     console.log("============获取编辑器Html内容============");
     console.log(this.vditor.getHTML());
+    
   }
 
 }

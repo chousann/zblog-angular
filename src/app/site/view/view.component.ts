@@ -6,6 +6,7 @@ import { HttpclientService } from '../../service/httpclient/httpclient.service';
 import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
+import Vditor from 'vditor'
 
 @Component({
   selector: 'app-view',
@@ -15,6 +16,9 @@ import { RootWebDto } from '../../model/RootWebDto';
 export class ViewComponent implements OnInit, AfterViewInit  {
 
   // @ViewChild('content', { read: ViewContainerRef }) content: ViewContainerRef;
+
+  @ViewChild("vditorPreview")
+  public priview: ElementRef;
 
   @ViewChild('topic') topic: ElementRef;
 
@@ -51,8 +55,8 @@ export class ViewComponent implements OnInit, AfterViewInit  {
         this.view.author = data.author;
         this.view.views = data.views;
         // this.content.createComponent(this.create(data.content));
-        document.getElementsByClassName("markdown-body")[0].innerHTML = data.content;
-
+        // document.getElementsByClassName("markdown-body")[0].innerHTML = data.content;
+        Vditor.preview(this.priview.nativeElement, data.content);
         // this.content.element.nativeElement.innerHtml = data.content
         this.view.content = data.content;
         this.view.tags = data.tags;
