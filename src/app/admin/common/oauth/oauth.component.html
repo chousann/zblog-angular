@@ -1,0 +1,42 @@
+<form id="qForm" class="form-horizontal" method="post" action="update">
+  <div class="form-group">
+      <div class="col-md-12">
+          <div class="help-block">未配置的三方登录平台不会在登录页显示</div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="col-md-12">
+          <div class="help-block">AUTHWEB登录</div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">认证地址</label>
+    <div class="col-sm-6">
+        <input type="text" name="oauth_server_domain" class="form-control" [(ngModel)]="siteInfo.options['oauth_server_domain']" placeholder="示例: http://{domain}/oauth/callback/qq">
+    </div>
+  </div>
+  <div class="form-group">
+      <label class="col-sm-2 control-label">回调地址</label>
+      <div class="col-sm-6">
+          <input type="text" name="callback" class="form-control" [(ngModel)]="siteInfo.options['callback']" placeholder="示例: http://{domain}/oauth/callback/qq">
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="col-sm-2 control-label">APP ID</label>
+      <div class="col-sm-6">
+          <input type="text" name="app_id" class="form-control" [(ngModel)]="siteInfo.options['app_id']">
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="col-sm-2 control-label">APP KEY</label>
+      <div class="col-sm-6">
+          <input type="text" name="app_key" class="form-control" [(ngModel)]="siteInfo.options['app_key']">
+      </div>
+  </div>
+
+  <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" (click)="submit()">提交</button>
+      </div>
+  </div>
+</form>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -7,6 +7,8 @@ import { Title, Meta } from '@angular/platform-browser';
 import { SiteInfo } from './model/SiteInfo';
 import { Channel } from './model/Channel';
 import { HttpclientService } from './service/httpclient/httpclient.service';
+import { AccountProfile } from './model/AccountProfile';
+import { RootWebDto } from './model/RootWebDto';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,11 +25,13 @@ export class AppComponent {
     private mtitle: Title,
     private meta: Meta,
     private elementRef: ElementRef,
-    private siteInfo: SiteInfo
+    private siteInfo: SiteInfo,
+    public rootWebDto: RootWebDto
   ) {
     this.mtitle.setTitle(this.title);
     this.init();
     this.getInitInfo();
+    this.initauth();
   }
 
   click(){
@@ -63,5 +67,44 @@ export class AppComponent {
     .catch(async (e: any) => {
       this.router.navigate(['/']);
     });
+  }
+
+  initauth() {
+    var arr = window.location.href.split("?");
+    if (arr != null && arr.length >= 2 && arr[1] != null) {
+      var token = arr[1].split("=");
+      if (token != null && token.length >= 2 && token[1] != null) {
+        this.login(token[1]);
+  
+
+      } else {
+        this.router.navigate(['/']);
+      }
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
+
+  login(token: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+
+    return this.http.post(environment.baseUrl + 'authInfo?AuthToken='+token, {})
+      .then(async (authData: AccountProfile) => {
+        if (authData) {
+          authData.avatar = environment.baseUrl + authData.avatar;
+          this.rootWebDto.accountProfile = authData;
+          this.localstorage.set("authToken", authData.authToken);
+          this.router.navigate(['/']);
+        }
+        this.router.navigate(['/']);
+        return null;
+      })
+      .catch(async () => {
+        this.router.navigate(['/']);
+      });
   }
 }

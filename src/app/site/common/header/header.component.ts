@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
 import { environment } from 'src/environments/environment';
 import { AccountProfile } from '../../../model/AccountProfile';
@@ -36,9 +37,12 @@ export class HeaderComponent implements OnInit {
   PostListOut: PostListOut = new PostListOut();
   PostVO: PostVO = new PostVO();
 
+  public queryString: string;
+
   channelOut: ChannelOut;
   constructor(public rootWebDto: RootWebDto,
     public siteInfo: SiteInfo,
+    private router: Router,
     private http: HttpclientService) { }
 
   ngOnInit() {
@@ -63,6 +67,20 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.http.logout();
+  }
+
+  search1() {
+    this.http.post(environment.baseUrl + 'search/init', {})
+      .then((data: any) => {
+        console.log(data);
+      })
+      .catch(() => {
+        console.log("error");
+      });
+  }
+
+  search() {
+    this.router.navigate(['/search', { queryString: this.queryString}]);
   }
 
 }

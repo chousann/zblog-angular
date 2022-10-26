@@ -55,8 +55,8 @@ export class ViewComponent implements OnInit, AfterViewInit  {
         this.view.author = data.author;
         this.view.views = data.views;
         // this.content.createComponent(this.create(data.content));
-        // document.getElementsByClassName("markdown-body")[0].innerHTML = data.content;
-        Vditor.preview(this.priview.nativeElement, data.content);
+         document.getElementsByClassName("markdown-body")[0].innerHTML = data.content;
+        //Vditor.preview(this.priview.nativeElement, data.content);
         // this.content.element.nativeElement.innerHtml = data.content
         this.view.content = data.content;
         this.view.tags = data.tags;

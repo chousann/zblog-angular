@@ -39,6 +39,8 @@ import { PagerComponent } from './site/common/pager/pager.component';
 import { PagelinkComponent } from './site/common/pagelink/pagelink.component';
 import { AvatarsettingComponent } from './site/avatarsetting/avatarsetting.component';
 import { UploadComponent } from './common/upload/upload.component';
+import { OauthComponent } from './admin/common/oauth/oauth.component';
+import { SearchComponent } from './site/search/search.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { UploadComponent } from './common/upload/upload.component';
     PagerComponent,
     PagelinkComponent,
     AvatarsettingComponent,
-    UploadComponent
+    UploadComponent,
+    OauthComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

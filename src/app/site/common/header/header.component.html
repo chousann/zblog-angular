@@ -104,9 +104,9 @@
                     <li view="search" class="hidden-xs hidden-sm">
                         <form method="GET" action="base/search" accept-charset="UTF-8" class="navbar-form navbar-left">
                             <div class="form-group">
-                                <input class="form-control search-input mac-style" placeholder="搜索" name="kw"
-                                    type="text" value="{{kw}}">
-                                <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+                                <input class="form-control search-input mac-style" placeholder="搜索" name="queryString" [(ngModel)]="queryString"
+                                    type="text" value="{{queryString}}">
+                                <button class="search-btn" type="submit" (click)="search()"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
                     </li>
@@ -137,6 +137,7 @@
                         </li>
                     </ng-container>
                     <ng-container *ngIf="!(rootWebDto.accountProfile)">
+                        <li><a href="{{siteInfo.options['oauth_server_domain']}}{{siteInfo.options['oauth_server_authorize_uri']}}?client_id={{siteInfo.options['app_id']}}&response_type=code&scope=super&&status=1&redirect_uri={{siteInfo.options['callback']}}" class="btn btn-default btn-sm signup">第三方</a></li>
                         <li><a [routerLink]="['/login']" class="btn btn-default btn-sm signup">登录</a></li>
                         <!-- <@controls name="register"> -->
                         <li><a [routerLink]="['/frame', {src: 'https://material.angular.cn/'}]" href="base/register" class="btn btn-primary btn-sm signup">注册</a></li>

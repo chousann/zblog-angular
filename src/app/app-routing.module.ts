@@ -20,6 +20,7 @@ import { ViewComponent } from './site/view/view.component';
 import { FrameComponent } from './site/common/frame/frame.component';
 import { UserhomeComponent } from './site/userhome/userhome.component';
 import { AvatarsettingComponent } from './site/avatarsetting/avatarsetting.component';
+import { SearchComponent } from './site/search/search.component';
 
 const routes: Routes = [
   {
@@ -103,6 +104,23 @@ const routes: Routes = [
       {
         path: '', outlet: 'content',
         component: IndexComponent
+      },
+      {
+        path: '', outlet: 'footer',
+        component: FooterComponent
+      }
+    ]
+  },
+  {
+    path: 'search', component: LayoutComponent,
+    children: [
+      {
+        path: '', outlet: 'header',
+        component: HeaderComponent
+      },
+      {
+        path: '', outlet: 'content',
+        component: SearchComponent
       },
       {
         path: '', outlet: 'footer',
