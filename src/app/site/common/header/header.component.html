@@ -137,7 +137,7 @@
                         </li>
                     </ng-container>
                     <ng-container *ngIf="!(rootWebDto.accountProfile)">
-                        <li><a href="{{siteInfo.options['oauth_server_domain']}}{{siteInfo.options['oauth_server_authorize_uri']}}?client_id={{siteInfo.options['app_id']}}&response_type=code&scope=super&&status=1&redirect_uri={{siteInfo.options['callback']}}" class="btn btn-default btn-sm signup">第三方</a></li>
+                        <li><a href="{{siteInfo.options['oauth_server_domain_front']}}{{siteInfo.options['oauth_server_authorize_uri']}}?client_id={{siteInfo.options['app_id']}}&response_type=code&scope=super&&state=1234&redirect_uri={{siteInfo.options['callback']}}" class="btn btn-default btn-sm signup">第三方</a></li>
                         <li><a [routerLink]="['/login']" class="btn btn-default btn-sm signup">登录</a></li>
                         <!-- <@controls name="register"> -->
                         <li><a [routerLink]="['/frame', {src: 'https://material.angular.cn/'}]" href="base/register" class="btn btn-primary btn-sm signup">注册</a></li>

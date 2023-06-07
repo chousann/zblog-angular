@@ -29,8 +29,8 @@
             "styles": [
               "src/assets/dist/vendors/bootstrap/css/bootstrap.min.css",
               "src/assets/editor.md/css/editormd.css",
-              "node_modules/vditor/dist/index.css",
-              "src/styles.scss"
+              "node_modules/vditor/dist/index.css"
+              //"src/styles.scss"
             ],
             "scripts": [
               "src/assets/dist/js/jquery.min.js",
@@ -70,7 +70,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "zblog:build"
+            "browserTarget": "zblog:build",
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {

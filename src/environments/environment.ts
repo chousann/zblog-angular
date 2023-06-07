@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // baseUrl: 'http://192.168.0.105:1000/',
   // basesocket: 'wss://moly.ngrok2.xiaomiqiu.cn/'
-  baseUrl: 'http://localhost:81/zblog/',
+  baseUrl: 'http://localhost:1002/zblog/',
   basesocket: 'wss://moly.ngrok2.xiaomiqiu.cn/'
 };
 
