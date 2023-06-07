@@ -5235,7 +5235,7 @@ var environment = {
     production: false,
     // baseUrl: 'http://192.168.0.105:1000/',
     // basesocket: 'wss://moly.ngrok2.xiaomiqiu.cn/'
-    baseUrl: 'http://localhost:1002/zblog/',
+    baseUrl: 'https://zblog.cnss.eu.org/zblog/',
     basesocket: 'wss://moly.ngrok2.xiaomiqiu.cn/'
 };
 /*
