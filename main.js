@@ -1074,6 +1074,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _site_userhome_userhome_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./site/userhome/userhome.component */ "./src/app/site/userhome/userhome.component.ts");
 /* harmony import */ var _site_avatarsetting_avatarsetting_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./site/avatarsetting/avatarsetting.component */ "./src/app/site/avatarsetting/avatarsetting.component.ts");
 /* harmony import */ var _site_search_search_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./site/search/search.component */ "./src/app/site/search/search.component.ts");
+/* harmony import */ var _site_authorizecode_authorizecode_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./site/authorizecode/authorizecode.component */ "./src/app/site/authorizecode/authorizecode.component.ts");
+
 
 
 
@@ -1325,6 +1327,23 @@ var routes = [
                 component: _site_common_footer_footer_component__WEBPACK_IMPORTED_MODULE_10__["FooterComponent"]
             }
         ]
+    },
+    {
+        path: 'authorizecode', component: _site_common_layout_layout_component__WEBPACK_IMPORTED_MODULE_13__["LayoutComponent"],
+        children: [
+            {
+                path: '', outlet: 'header',
+                component: _site_common_header_header_component__WEBPACK_IMPORTED_MODULE_11__["HeaderComponent"]
+            },
+            {
+                path: '', outlet: 'content',
+                component: _site_authorizecode_authorizecode_component__WEBPACK_IMPORTED_MODULE_24__["AuthorizecodeComponent"]
+            },
+            {
+                path: '', outlet: 'footer',
+                component: _site_common_footer_footer_component__WEBPACK_IMPORTED_MODULE_10__["FooterComponent"]
+            }
+        ]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -1396,7 +1415,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(http, router, localstorage, mtitle, meta, elementRef, siteInfo, rootWebDto) {
+    function AppComponent(http, router, localstorage, mtitle, meta, elementRef, siteInfo, rootWebDto, route) {
         this.http = http;
         this.router = router;
         this.localstorage = localstorage;
@@ -1405,16 +1424,23 @@ var AppComponent = /** @class */ (function () {
         this.elementRef = elementRef;
         this.siteInfo = siteInfo;
         this.rootWebDto = rootWebDto;
+        this.route = route;
         this.title = 'zblog';
+    }
+    AppComponent.prototype.ngOnInit = function () {
         this.mtitle.setTitle(this.title);
         this.init();
         this.getInitInfo();
-        this.initauth();
-    }
+        if (this.localstorage.get("authToken")) {
+            this.AUTHTOKEN = this.localstorage.get("authToken");
+            this.initauth();
+        }
+    };
     AppComponent.prototype.click = function () {
         console.log(this.test);
     };
     AppComponent.prototype.init = function () {
+        var _this = this;
         // return this.http.post(environment.baseUrl + 'getInitInfo', null).toPromise()
         // // return this.http.get(environment.baseUrl + 'login', {params}).toPromise()
         //   .then(async (authData: AccountProfile) => {
@@ -1431,6 +1457,21 @@ var AppComponent = /** @class */ (function () {
         //   .catch(async () => {
         //     this.router.navigate(['/']);
         //   });
+        if (this.localstorage.get("state") == null || this.localstorage.get("state") === "") {
+            this.localstorage.set("state", this.randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'));
+        }
+        this.route.queryParams.subscribe(function (params) {
+            console.log("params");
+            console.log("AUTHTOKEN: " + params["AUTHTOKEN"]);
+            _this.AUTHTOKEN = params["AUTHTOKEN"];
+            _this.initauth();
+        });
+    };
+    AppComponent.prototype.randomString = function (length, chars) {
+        var result = '';
+        for (var i = length; i > 0; --i)
+            result += chars[Math.floor(Math.random() * chars.length)];
+        return result;
     };
     AppComponent.prototype.getInitInfo = function () {
         var _this = this;
@@ -1439,6 +1480,7 @@ var AppComponent = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 if (data) {
                     this.siteInfo.copy(data);
+                    this.siteInfo.options["state"] = this.localstorage.get("state");
                 }
                 return [2 /*return*/];
             });
@@ -1451,18 +1493,15 @@ var AppComponent = /** @class */ (function () {
         }); });
     };
     AppComponent.prototype.initauth = function () {
-        var arr = window.location.href.split("?");
-        if (arr != null && arr.length >= 2 && arr[1] != null) {
-            var token = arr[1].split("=");
-            if (token != null && token.length >= 2 && token[1] != null) {
-                this.login(token[1]);
-            }
-            else {
-                this.router.navigate(['/']);
-            }
-        }
-        else {
-            this.router.navigate(['/']);
+        // var arr = window.location.href.split("?");
+        // if (arr != null && arr.length >= 2 && arr[1] != null) {
+        //   var token = arr[1].split("=");
+        //   if (token != null && token.length >= 2 && token[1] != null) {
+        //     this.login(token[1]);
+        //   }
+        // }
+        if (this.AUTHTOKEN != null) {
+            this.login(this.AUTHTOKEN);
         }
     };
     AppComponent.prototype.login = function (token) {
@@ -1479,9 +1518,9 @@ var AppComponent = /** @class */ (function () {
                     authData.avatar = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl + authData.avatar;
                     this.rootWebDto.accountProfile = authData;
                     this.localstorage.set("authToken", authData.authToken);
-                    this.router.navigate(['/']);
+                    //this.router.navigate(['/']);
                 }
-                this.router.navigate(['/']);
+                //this.router.navigate(['/']);
                 return [2 /*return*/, null];
             });
         }); })
@@ -1505,7 +1544,8 @@ var AppComponent = /** @class */ (function () {
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["Meta"],
             _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"],
             _model_SiteInfo__WEBPACK_IMPORTED_MODULE_7__["SiteInfo"],
-            _model_RootWebDto__WEBPACK_IMPORTED_MODULE_9__["RootWebDto"]])
+            _model_RootWebDto__WEBPACK_IMPORTED_MODULE_9__["RootWebDto"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -1566,6 +1606,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_upload_upload_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./common/upload/upload.component */ "./src/app/common/upload/upload.component.ts");
 /* harmony import */ var _admin_common_oauth_oauth_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./admin/common/oauth/oauth.component */ "./src/app/admin/common/oauth/oauth.component.ts");
 /* harmony import */ var _site_search_search_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./site/search/search.component */ "./src/app/site/search/search.component.ts");
+/* harmony import */ var _site_authorizecode_authorizecode_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./site/authorizecode/authorizecode.component */ "./src/app/site/authorizecode/authorizecode.component.ts");
+
 
 
 
@@ -1648,7 +1690,8 @@ var AppModule = /** @class */ (function () {
                 _site_avatarsetting_avatarsetting_component__WEBPACK_IMPORTED_MODULE_38__["AvatarsettingComponent"],
                 _common_upload_upload_component__WEBPACK_IMPORTED_MODULE_39__["UploadComponent"],
                 _admin_common_oauth_oauth_component__WEBPACK_IMPORTED_MODULE_40__["OauthComponent"],
-                _site_search_search_component__WEBPACK_IMPORTED_MODULE_41__["SearchComponent"]
+                _site_search_search_component__WEBPACK_IMPORTED_MODULE_41__["SearchComponent"],
+                _site_authorizecode_authorizecode_component__WEBPACK_IMPORTED_MODULE_42__["AuthorizecodeComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -3138,6 +3181,146 @@ var LocalstorageService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/site/authorizecode/authorizecode.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/site/authorizecode/authorizecode.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n    <p>稍等片刻，自动跳转</p>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/site/authorizecode/authorizecode.component.sass":
+/*!*****************************************************************!*\
+  !*** ./src/app/site/authorizecode/authorizecode.component.sass ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpdGUvYXV0aG9yaXplY29kZS9hdXRob3JpemVjb2RlLmNvbXBvbmVudC5zYXNzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/site/authorizecode/authorizecode.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/site/authorizecode/authorizecode.component.ts ***!
+  \***************************************************************/
+/*! exports provided: AuthorizecodeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthorizecodeComponent", function() { return AuthorizecodeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _model_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/user */ "./src/app/model/user.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/localstorage/localstorage.service */ "./src/app/service/localstorage/localstorage.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _model_RootWebDto__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../model/RootWebDto */ "./src/app/model/RootWebDto.ts");
+/* harmony import */ var src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/service/httpclient/httpclient.service */ "./src/app/service/httpclient/httpclient.service.ts");
+
+
+
+
+
+
+
+
+
+var AuthorizecodeComponent = /** @class */ (function () {
+    function AuthorizecodeComponent(http, localstorage, router, route, rootWebDto) {
+        this.http = http;
+        this.localstorage = localstorage;
+        this.router = router;
+        this.route = route;
+        this.rootWebDto = rootWebDto;
+        this.user = new _model_user__WEBPACK_IMPORTED_MODULE_3__["User"]();
+    }
+    AuthorizecodeComponent.prototype.ngOnInit = function () {
+        this.route.queryParams.subscribe(function (params) {
+            console.log("params");
+            console.log("AUTHTOKEN: " + params["AUTHTOKEN"]);
+        });
+        var arr = window.location.href.split("?");
+        if (arr != null && arr.length >= 2 && arr[1] != null) {
+            this.authorizecode(arr[1]);
+        }
+    };
+    AuthorizecodeComponent.prototype.authorizecode = function (querystring) {
+        var _this = this;
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        };
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl + 'authorizeCode?' + querystring, {})
+            .then(function (authData) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                console.log(authData);
+                if (authData != null && authData["AUTHTOKEN"] != null) {
+                    this.login(authData["AUTHTOKEN"]);
+                }
+                this.router.navigate(['/']);
+                return [2 /*return*/];
+            });
+        }); })
+            .catch(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.router.navigate(['/']);
+                return [2 /*return*/];
+            });
+        }); });
+    };
+    AuthorizecodeComponent.prototype.login = function (token) {
+        var _this = this;
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        };
+        return this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl + 'authInfo?AuthToken=' + token, {})
+            .then(function (authData) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                if (authData) {
+                    authData.avatar = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl + authData.avatar;
+                    this.rootWebDto.accountProfile = authData;
+                    this.localstorage.set("authToken", authData.authToken);
+                    this.router.navigate(['/']);
+                }
+                //this.router.navigate(['/']);
+                return [2 /*return*/, null];
+            });
+        }); })
+            .catch(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.router.navigate(['/']);
+                return [2 /*return*/];
+            });
+        }); });
+    };
+    AuthorizecodeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'authorize-code',
+            template: __webpack_require__(/*! ./authorizecode.component.html */ "./src/app/site/authorizecode/authorizecode.component.html"),
+            styles: [__webpack_require__(/*! ./authorizecode.component.sass */ "./src/app/site/authorizecode/authorizecode.component.sass")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_httpclient_httpclient_service__WEBPACK_IMPORTED_MODULE_8__["HttpclientService"],
+            _service_localstorage_localstorage_service__WEBPACK_IMPORTED_MODULE_5__["LocalstorageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"],
+            _model_RootWebDto__WEBPACK_IMPORTED_MODULE_7__["RootWebDto"]])
+    ], AuthorizecodeComponent);
+    return AuthorizecodeComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/site/avatarsetting/avatarsetting.component.html":
 /*!*****************************************************************!*\
   !*** ./src/app/site/avatarsetting/avatarsetting.component.html ***!
@@ -3526,7 +3709,7 @@ var FrameComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Login dialog BEGIN -->\r\n<div id=\"login_alert\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\" style=\"width: 400px;\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span\r\n                        aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title\">请登录</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <form method=\"POST\" action=\"/login\" accept-charset=\"UTF-8\">\r\n                    <div class=\"form-group\">\r\n                        <label class=\"control-label\" for=\"username\">账号</label>\r\n                        <input class=\"form-control\" id=\"ajax_login_username\" name=\"username\" type=\"text\" required>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label class=\"control-label\" for=\"password\">密码</label>\r\n                        <input class=\"form-control\" id=\"ajax_login_password\" name=\"password\" type=\"password\" required>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <button id=\"ajax_login_submit\" class=\"btn btn-primary btn-block btn-sm\" type=\"button\">\r\n                            登录 Use it\r\n                        </button>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <div id=\"ajax_login_message\" class=\"text-danger\"></div>\r\n                    </div>\r\n                    <!-- <@controls name=\"register\"> -->\r\n                    <fieldset class=\"form-group\">\r\n                        <!-- <#if site.hasValue(\"weibo_client_id\")> -->\r\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_weibo\">\r\n                            <i class=\"fa fa-weibo\"></i> 微博帐号登录\r\n                        </a>\r\n                        <!-- </#if>\r\n                          <#if site.hasValue(\"qq_app_id\")> -->\r\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_qq\">\r\n                            <i class=\"fa fa-qq\"></i> QQ帐号登录\r\n                        </a>\r\n                        <!-- </#if>\r\n                          <#if site.hasValue(\"github_client_id\")> -->\r\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_github\">\r\n                            <i class=\"fa fa-github\"></i> Github帐号登录\r\n                        </a>\r\n                        <!-- </#if> -->\r\n                    </fieldset>\r\n                    <!-- </@controls> -->\r\n                </form>\r\n            </div>\r\n        </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n<!-- Login dialog END -->\r\n\r\n<!--[if lt IE 9]>\r\n<div class=\"alert alert-danger alert-dismissible fade in\" role=\"alert\" style=\"margin-bottom:0\">\r\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">×</span><span class=\"sr-only\">Close</span></button>\r\n<strong>您正在使用低版本浏览器，</strong> 在本页面的显示效果可能有差异。\r\n建议您升级到\r\n<a href=\"http://www.google.cn/intl/zh-CN/chrome/\" target=\"_blank\">Chrome</a>\r\n或以下浏览器：\r\n<a href=\"www.mozilla.org/en-US/firefox/‎\" target=\"_blank\">Firefox</a> /\r\n<a href=\"http://www.apple.com.cn/safari/\" target=\"_blank\">Safari</a> /\r\n<a href=\"http://www.opera.com/\" target=\"_blank\">Opera</a> /\r\n<a href=\"http://windows.microsoft.com/en-us/internet-explorer/download-ie\" target=\"_blank\">Internet Explorer 9+</a>\r\n</div>\r\n<![endif]-->\r\n\r\n<!-- Fixed navbar -->\r\n<header class=\"site-header headroom\">\r\n    <div class=\"container\">\r\n        <nav class=\"navbar\" role=\"navigation\">\r\n            <div class=\"navbar-header\">\r\n                <button class=\"navbar-toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n                    <span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span>\r\n                </button>\r\n                <a class=\"navbar-brand\" [routerLink]=\"['/']\">\r\n                    <img src=\"{{siteInfo.options.site_logo}}\" />\r\n                </a>\r\n            </div>\r\n            <div class=\"collapse navbar-collapse\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li data=\"user\" *ngIf=\"rootWebDto.accountProfile\">\r\n                        <a [routerLink]=\"['/userhome', {userId:rootWebDto.accountProfile.id}]\" nav=\"user\">我的主页</a>\r\n                    </li>\r\n                    <!-- </#if>\r\n        <#list channels as row> -->\r\n                    <ng-container *ngFor=\"let row of siteInfo.list\">\r\n                        <li *ngIf=\"row.type == 1\">\r\n                            <a [routerLink]=\"['/channel', {id:row.id}]\">{{row.name}}</a>\r\n                        </li>\r\n                        <li *ngIf=\"row.type == 2\">\r\n                            <a [routerLink]=\"['/frame', {src:row.key}]\">{{row.name}}</a>\r\n                        </li>\r\n                        <li *ngIf=\"row.type == 3\">\r\n                            <a [href]=\"row.key\" target=\"_blank\">{{row.name}}</a>\r\n                        </li>\r\n                    </ng-container>\r\n                    <!-- </#list> -->\r\n                    <li>\r\n                        <a [routerLink]=\"['/tags']\" nav=\"tags\">标签</a>\r\n                    </li>\r\n                </ul>\r\n                <ul class=\"navbar-button list-inline\" id=\"header_user\">\r\n                    <li view=\"search\" class=\"hidden-xs hidden-sm\">\r\n                        <form method=\"GET\" action=\"base/search\" accept-charset=\"UTF-8\" class=\"navbar-form navbar-left\">\r\n                            <div class=\"form-group\">\r\n                                <input class=\"form-control search-input mac-style\" placeholder=\"搜索\" name=\"queryString\" [(ngModel)]=\"queryString\"\r\n                                    type=\"text\" value=\"{{queryString}}\">\r\n                                <button class=\"search-btn\" type=\"submit\" (click)=\"search()\"><i class=\"fa fa-search\"></i></button>\r\n                            </div>\r\n                        </form>\r\n                    </li>\r\n                    <ng-container *ngIf=\"rootWebDto.accountProfile\">\r\n                        <!-- <#if profile??>\r\n                  <@controls name=\"post\"> -->\r\n                        <li>\r\n                            <a [routerLink]=\"['/editing']\" class=\"plus color-setting\"><i class=\"icon icon-note\"></i> 写文章</a>\r\n                        </li>\r\n                        <!-- </@controls> -->\r\n                        <li class=\"dropdown\">\r\n                            <a class=\"user dropdown-toggle color-setting\" data-toggle=\"dropdown\">\r\n                                <img class=\"img-circle\" src=\"{{rootWebDto.accountProfile.avatar}}\">\r\n                                <span>{{rootWebDto.accountProfile.name}}</span>\r\n                            </a>\r\n                            <ul class=\"dropdown-menu\" role=\"menu\">\r\n                                <li>\r\n                                    <a [routerLink]=\"['/userhome', {userId:rootWebDto.accountProfile.id}]\">我的主页</a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"base/settings/profile\">编辑资料</a>\r\n                                </li>\r\n                                <!-- <@shiro.hasPermission name=\"admin\"> -->\r\n                                <li><a [routerLink]=\"['/admin']\">后台管理</a></li>\r\n                                <!-- </@shiro.hasPermission> -->\r\n                                <li><a (click)=\"logout()\">退出</a></li>\r\n                            </ul>\r\n                        </li>\r\n                    </ng-container>\r\n                    <ng-container *ngIf=\"!(rootWebDto.accountProfile)\">\r\n                        <li><a href=\"{{siteInfo.options['oauth_server_domain_front']}}{{siteInfo.options['oauth_server_authorize_uri']}}?client_id={{siteInfo.options['app_id']}}&response_type=code&scope=super&&state=1234&redirect_uri={{siteInfo.options['callback']}}\" class=\"btn btn-default btn-sm signup\">第三方</a></li>\r\n                        <li><a [routerLink]=\"['/login']\" class=\"btn btn-default btn-sm signup\">登录</a></li>\r\n                        <!-- <@controls name=\"register\"> -->\r\n                        <li><a [routerLink]=\"['/frame', {src: 'https://material.angular.cn/'}]\" href=\"base/register\" class=\"btn btn-primary btn-sm signup\">注册</a></li>\r\n                        <!-- </@controls>\r\n      </#if> -->\r\n                    </ng-container>\r\n                </ul>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n</header>\r\n\r\n<!-- Header END -->"
+module.exports = "<!-- Login dialog BEGIN -->\r\n<div id=\"login_alert\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\" style=\"width: 400px;\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span\r\n                        aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title\">请登录</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <form method=\"POST\" action=\"/login\" accept-charset=\"UTF-8\">\r\n                    <div class=\"form-group\">\r\n                        <label class=\"control-label\" for=\"username\">账号</label>\r\n                        <input class=\"form-control\" id=\"ajax_login_username\" name=\"username\" type=\"text\" required>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label class=\"control-label\" for=\"password\">密码</label>\r\n                        <input class=\"form-control\" id=\"ajax_login_password\" name=\"password\" type=\"password\" required>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <button id=\"ajax_login_submit\" class=\"btn btn-primary btn-block btn-sm\" type=\"button\">\r\n                            登录 Use it\r\n                        </button>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <div id=\"ajax_login_message\" class=\"text-danger\"></div>\r\n                    </div>\r\n                    <!-- <@controls name=\"register\"> -->\r\n                    <fieldset class=\"form-group\">\r\n                        <!-- <#if site.hasValue(\"weibo_client_id\")> -->\r\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_weibo\">\r\n                            <i class=\"fa fa-weibo\"></i> 微博帐号登录\r\n                        </a>\r\n                        <!-- </#if>\r\n                          <#if site.hasValue(\"qq_app_id\")> -->\r\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_qq\">\r\n                            <i class=\"fa fa-qq\"></i> QQ帐号登录\r\n                        </a>\r\n                        <!-- </#if>\r\n                          <#if site.hasValue(\"github_client_id\")> -->\r\n                        <a class=\"btn btn-default btn-block\" href=\"/oauth/callback/call_github\">\r\n                            <i class=\"fa fa-github\"></i> Github帐号登录\r\n                        </a>\r\n                        <!-- </#if> -->\r\n                    </fieldset>\r\n                    <!-- </@controls> -->\r\n                </form>\r\n            </div>\r\n        </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n<!-- Login dialog END -->\r\n\r\n<!--[if lt IE 9]>\r\n<div class=\"alert alert-danger alert-dismissible fade in\" role=\"alert\" style=\"margin-bottom:0\">\r\n<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">×</span><span class=\"sr-only\">Close</span></button>\r\n<strong>您正在使用低版本浏览器，</strong> 在本页面的显示效果可能有差异。\r\n建议您升级到\r\n<a href=\"http://www.google.cn/intl/zh-CN/chrome/\" target=\"_blank\">Chrome</a>\r\n或以下浏览器：\r\n<a href=\"www.mozilla.org/en-US/firefox/‎\" target=\"_blank\">Firefox</a> /\r\n<a href=\"http://www.apple.com.cn/safari/\" target=\"_blank\">Safari</a> /\r\n<a href=\"http://www.opera.com/\" target=\"_blank\">Opera</a> /\r\n<a href=\"http://windows.microsoft.com/en-us/internet-explorer/download-ie\" target=\"_blank\">Internet Explorer 9+</a>\r\n</div>\r\n<![endif]-->\r\n\r\n<!-- Fixed navbar -->\r\n<header class=\"site-header headroom\">\r\n    <div class=\"container\">\r\n        <nav class=\"navbar\" role=\"navigation\">\r\n            <div class=\"navbar-header\">\r\n                <button class=\"navbar-toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n                    <span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span>\r\n                </button>\r\n                <a class=\"navbar-brand\" [routerLink]=\"['/']\">\r\n                    <img src=\"{{siteInfo.options.site_logo}}\" />\r\n                </a>\r\n            </div>\r\n            <div class=\"collapse navbar-collapse\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li data=\"user\" *ngIf=\"rootWebDto.accountProfile\">\r\n                        <a [routerLink]=\"['/userhome', {userId:rootWebDto.accountProfile.id}]\" nav=\"user\">我的主页</a>\r\n                    </li>\r\n                    <!-- </#if>\r\n        <#list channels as row> -->\r\n                    <ng-container *ngFor=\"let row of siteInfo.list\">\r\n                        <li *ngIf=\"row.type == 1\">\r\n                            <a [routerLink]=\"['/channel', {id:row.id}]\">{{row.name}}</a>\r\n                        </li>\r\n                        <li *ngIf=\"row.type == 2\">\r\n                            <a [routerLink]=\"['/frame', {src:row.key}]\">{{row.name}}</a>\r\n                        </li>\r\n                        <li *ngIf=\"row.type == 3\">\r\n                            <a [href]=\"row.key\" target=\"_blank\">{{row.name}}</a>\r\n                        </li>\r\n                    </ng-container>\r\n                    <!-- </#list> -->\r\n                    <li>\r\n                        <a [routerLink]=\"['/tags']\" nav=\"tags\">标签</a>\r\n                    </li>\r\n                </ul>\r\n                <ul class=\"navbar-button list-inline\" id=\"header_user\">\r\n                    <li view=\"search\" class=\"hidden-xs hidden-sm\">\r\n                        <form method=\"GET\" action=\"base/search\" accept-charset=\"UTF-8\" class=\"navbar-form navbar-left\">\r\n                            <div class=\"form-group\">\r\n                                <input class=\"form-control search-input mac-style\" placeholder=\"搜索\" name=\"queryString\" [(ngModel)]=\"queryString\"\r\n                                    type=\"text\" value=\"{{queryString}}\">\r\n                                <button class=\"search-btn\" type=\"submit\" (click)=\"search()\"><i class=\"fa fa-search\"></i></button>\r\n                            </div>\r\n                        </form>\r\n                    </li>\r\n                    <ng-container *ngIf=\"rootWebDto.accountProfile\">\r\n                        <!-- <#if profile??>\r\n                  <@controls name=\"post\"> -->\r\n                        <li>\r\n                            <a [routerLink]=\"['/editing']\" class=\"plus color-setting\"><i class=\"icon icon-note\"></i> 写文章</a>\r\n                        </li>\r\n                        <!-- </@controls> -->\r\n                        <li class=\"dropdown\">\r\n                            <a class=\"user dropdown-toggle color-setting\" data-toggle=\"dropdown\">\r\n                                <img class=\"img-circle\" src=\"{{rootWebDto.accountProfile.avatar}}\">\r\n                                <span>{{rootWebDto.accountProfile.name}}</span>\r\n                            </a>\r\n                            <ul class=\"dropdown-menu\" role=\"menu\">\r\n                                <li>\r\n                                    <a [routerLink]=\"['/userhome', {userId:rootWebDto.accountProfile.id}]\">我的主页</a>\r\n                                </li>\r\n                                <li>\r\n                                    <a href=\"base/settings/profile\">编辑资料</a>\r\n                                </li>\r\n                                <!-- <@shiro.hasPermission name=\"admin\"> -->\r\n                                <li><a [routerLink]=\"['/admin']\">后台管理</a></li>\r\n                                <!-- </@shiro.hasPermission> -->\r\n                                <li><a (click)=\"logout()\">退出</a></li>\r\n                            </ul>\r\n                        </li>\r\n                    </ng-container>\r\n                    <ng-container *ngIf=\"!(rootWebDto.accountProfile)\">\r\n                        <li><a href=\"{{baseurl}}\" class=\"btn btn-default btn-sm signup\">第三方</a></li>\r\n                        <li><a [routerLink]=\"['/login']\" class=\"btn btn-default btn-sm signup\">登录</a></li>\r\n                        <!-- <@controls name=\"register\"> -->\r\n                        <li><a [routerLink]=\"['/frame', {src: 'https://material.angular.cn/'}]\" href=\"base/register\" class=\"btn btn-primary btn-sm signup\">注册</a></li>\r\n                        <!-- </@controls>\r\n      </#if> -->\r\n                    </ng-container>\r\n                </ul>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n</header>\r\n\r\n<!-- Header END -->"
 
 /***/ }),
 
@@ -3603,6 +3786,7 @@ var HeaderComponent = /** @class */ (function () {
         this.PostAttribute = new _model_PostAttribute__WEBPACK_IMPORTED_MODULE_13__["PostAttribute"]();
         this.PostListOut = new _model_PostListOut__WEBPACK_IMPORTED_MODULE_14__["PostListOut"]();
         this.PostVO = new _model_PostVO__WEBPACK_IMPORTED_MODULE_15__["PostVO"]();
+        this.baseurl = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl + "redirectoauth";
     }
     HeaderComponent.prototype.ngOnInit = function () {
         console.log(111);
