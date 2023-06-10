@@ -41,6 +41,7 @@ import { AvatarsettingComponent } from './site/avatarsetting/avatarsetting.compo
 import { UploadComponent } from './common/upload/upload.component';
 import { OauthComponent } from './admin/common/oauth/oauth.component';
 import { SearchComponent } from './site/search/search.component';
+import { AuthorizecodeComponent } from './site/authorizecode/authorizecode.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { SearchComponent } from './site/search/search.component';
     AvatarsettingComponent,
     UploadComponent,
     OauthComponent,
-    SearchComponent
+    SearchComponent,
+    AuthorizecodeComponent
   ],
   imports: [
     BrowserModule,

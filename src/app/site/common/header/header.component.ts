@@ -39,11 +39,15 @@ export class HeaderComponent implements OnInit {
 
   public queryString: string;
 
+  public baseurl: string;
+
   channelOut: ChannelOut;
   constructor(public rootWebDto: RootWebDto,
     public siteInfo: SiteInfo,
     private router: Router,
-    private http: HttpclientService) { }
+    private http: HttpclientService) {
+      this.baseurl = environment.baseUrl + "redirectoauth";
+     }
 
   ngOnInit() {
     console.log(111);

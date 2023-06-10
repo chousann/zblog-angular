@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LocalstorageService } from './service/localstorage/localstorage.service';
 import { Title, Meta } from '@angular/platform-browser';
@@ -14,9 +14,10 @@ import { RootWebDto } from './model/RootWebDto';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'zblog';
   test: string;
+  AUTHTOKEN: string;
 
   constructor(
     private http: HttpclientService,
@@ -26,12 +27,21 @@ export class AppComponent {
     private meta: Meta,
     private elementRef: ElementRef,
     private siteInfo: SiteInfo,
-    public rootWebDto: RootWebDto
+    public rootWebDto: RootWebDto,
+    private route: ActivatedRoute
   ) {
+
+  }
+
+  ngOnInit() {
     this.mtitle.setTitle(this.title);
     this.init();
     this.getInitInfo();
-    this.initauth();
+
+    if(this.localstorage.get("authToken")) {
+      this.AUTHTOKEN = this.localstorage.get("authToken");
+      this.initauth();
+    }
   }
 
   click(){
@@ -55,13 +65,32 @@ export class AppComponent {
     //   .catch(async () => {
     //     this.router.navigate(['/']);
     //   });
+    if (this.localstorage.get("state") == null || this.localstorage.get("state") === "") {
+    this.localstorage.set("state", this.randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'));
+    }
+
+    this.route.queryParams.subscribe((params: Params) => {
+      console.log("params");
+      console.log("AUTHTOKEN: " + params["AUTHTOKEN"]);
+      this.AUTHTOKEN = params["AUTHTOKEN"];
+      this.initauth();
+    });
   }
+
+  randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+  }
+
+
 
   getInitInfo() {
     return this.http.post(environment.baseUrl + 'initInfo', {})
     .then(async (data: SiteInfo) => {
       if (data) {
         this.siteInfo.copy(data);
+        this.siteInfo.options["state"] = this.localstorage.get("state");
       }
     })
     .catch(async (e: any) => {
@@ -70,18 +99,19 @@ export class AppComponent {
   }
 
   initauth() {
-    var arr = window.location.href.split("?");
-    if (arr != null && arr.length >= 2 && arr[1] != null) {
-      var token = arr[1].split("=");
-      if (token != null && token.length >= 2 && token[1] != null) {
-        this.login(token[1]);
+    
+    // var arr = window.location.href.split("?");
+    // if (arr != null && arr.length >= 2 && arr[1] != null) {
+    //   var token = arr[1].split("=");
+    //   if (token != null && token.length >= 2 && token[1] != null) {
+    //     this.login(token[1]);
   
 
-      } else {
-        this.router.navigate(['/']);
-      }
-    } else {
-      this.router.navigate(['/']);
+    //   }
+    // }
+
+    if (this.AUTHTOKEN != null) {
+      this.login(this.AUTHTOKEN);
     }
   }
 
@@ -98,9 +128,9 @@ export class AppComponent {
           authData.avatar = environment.baseUrl + authData.avatar;
           this.rootWebDto.accountProfile = authData;
           this.localstorage.set("authToken", authData.authToken);
-          this.router.navigate(['/']);
+          //this.router.navigate(['/']);
         }
-        this.router.navigate(['/']);
+        //this.router.navigate(['/']);
         return null;
       })
       .catch(async () => {

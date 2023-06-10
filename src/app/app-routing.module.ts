@@ -21,6 +21,7 @@ import { FrameComponent } from './site/common/frame/frame.component';
 import { UserhomeComponent } from './site/userhome/userhome.component';
 import { AvatarsettingComponent } from './site/avatarsetting/avatarsetting.component';
 import { SearchComponent } from './site/search/search.component';
+import { AuthorizecodeComponent } from './site/authorizecode/authorizecode.component';
 
 const routes: Routes = [
   {
@@ -243,6 +244,23 @@ const routes: Routes = [
       {
         path: '', outlet: 'content',
         component: AvatarsettingComponent
+      },
+      {
+        path: '', outlet: 'footer',
+        component: FooterComponent
+      }
+    ]
+  },
+  {
+    path: 'authorizecode', component: LayoutComponent,
+    children: [
+      {
+        path: '', outlet: 'header',
+        component: HeaderComponent
+      },
+      {
+        path: '', outlet: 'content',
+        component: AuthorizecodeComponent
       },
       {
         path: '', outlet: 'footer',
