@@ -1526,6 +1526,7 @@ var AppComponent = /** @class */ (function () {
         }); })
             .catch(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.localstorage.remove("authToken");
                 this.router.navigate(['/']);
                 return [2 /*return*/];
             });
@@ -2095,6 +2096,9 @@ var VditorComponent = /** @class */ (function () {
             height: "auto",
             /** 编辑器最小高度 */
             minHeight: 200,
+            fullscreen: {
+                index: 10000
+            },
             toolbarConfig: {
                 pin: true,
             },
@@ -3090,7 +3094,7 @@ var HttpclientService = /** @class */ (function () {
             });
         }); }).catch(function (e) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                window.alert("error!!!");
+                console.log("error!!!");
                 throw e;
             });
         }); });
@@ -4470,7 +4474,7 @@ var SidebarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form id=\"submitForm\" class=\"form\" action=\"{{base}}/post/submit\" method=\"post\" enctype=\"multipart/form-data\">\r\n  <input type=\"hidden\" name=\"status\" [(ngModel)]=\"post.status\" />\r\n  <input type=\"hidden\" name=\"editor\" [(ngModel)]=\"post.editor\" />\r\n  <div class=\"row\">\r\n    <div class=\"col-xs-12 col-md-8 side-left\">\r\n      <div id=\"message\"></div>\r\n      <ng-container *ngIf=\"!(editingOut && editingOut.view)\">\r\n        <input type=\"hidden\" [(ngModel)]=\"post.id\" name=\"id\" />\r\n        <input type=\"hidden\" [(ngModel)]=\"post.authorId\" name=\"authorId\" />\r\n      </ng-container>\r\n      <input type=\"hidden\" [(ngModel)]=\"post.thumbnail\" id=\"thumbnail\" name=\"thumbnail\" />\r\n\r\n      <div class=\"form-group\">\r\n        <input type=\"text\" [(ngModel)]=\"post.title\" class=\"form-control\" name=\"title\" maxlength=\"128\"\r\n          placeholder=\"请输入标题\" required>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <!-- <app-vditor></app-vditor> -->\r\n        <div id=\"md\" appEditor [editormdConfig]=\"conf\" (onEditorChange)=\"syncModel($event)\">\r\n          <textarea style=\"display: block;\" [(ngModel)]=\"post.content\" name=\"content\"></textarea>\r\n        </div>\r\n        <!-- <app-markdown name=\"content\" [(ngModel)]=\"post.content\"></app-markdown> -->\r\n      </div>\r\n    </div>\r\n    <div class=\"col-xs-12 col-md-4 side-right\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"thumbnail-box\">\r\n          <!-- <div class=\"convent_choice\" id=\"thumbnail_image\" style=\"background: url(<@resource src=view.thumbnail/>);\">\r\n            <div class=\"upload-btn\">\r\n              <label>\r\n                <span>点击选择一张图片</span>\r\n                <input [(ngModel)]=\"post.file\" id=\"upload_btn\" type=\"file\" name=\"file\" accept=\"image/*\" title=\"点击添加图片\">\r\n              </label>\r\n            </div>\r\n          </div> -->\r\n          <app-upload (changePath)=\"changePath($event)\"></app-upload>\r\n        </div>\r\n      </div>\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          <h3 class=\"panel-title\">发布到</h3>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <select [(ngModel)]=\"post.channelId\" class=\"form-control\" name=\"channelId\" required>\r\n            <option value=\"\">请选择栏目</option>\r\n            <ng-container *ngFor=\"let item of editingOut.channels\">\r\n              <option value=\"{{item.id}}\" *ngIf=\"item.id == post.channelId\" selected>{{item.name}}</option>\r\n              <option value=\"{{item.id}}\" *ngIf=\"!(item.id == post.channelId)\">{{item.name}}</option>\r\n            </ng-container>\r\n          </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          <h3 class=\"panel-title\">标签(用逗号或空格分隔)</h3>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <input [(ngModel)]=\"post.tags\" type=\"text\" id=\"tags\" name=\"tags\" class=\"form-control\"\r\n            placeholder=\"添加相关标签，逗号分隔 (最多4个)\">\r\n        </div>\r\n      </div>\r\n      <div class=\"col-xs-12 col-md-12\">\r\n        <div class=\"form-group\">\r\n          <div class=\"text-center\">\r\n            <button type=\"button\" data-status=\"0\" class=\"btn btn-primary\" event=\"post_submit\"\r\n              style=\"padding-left: 30px; padding-right: 30px;\" (click)=\"postSubmit()\">发布</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</form>"
+module.exports = "<form id=\"submitForm\" class=\"form\" action=\"{{base}}/post/submit\" method=\"post\" enctype=\"multipart/form-data\">\r\n  <input type=\"hidden\" name=\"status\" [(ngModel)]=\"post.status\" />\r\n  <input type=\"hidden\" name=\"editor\" [(ngModel)]=\"post.editor\" />\r\n  <div class=\"row\">\r\n    <div class=\"col-xs-12 col-md-8 side-left\">\r\n      <div id=\"message\"></div>\r\n      <ng-container *ngIf=\"!(editingOut && editingOut.view)\">\r\n        <input type=\"hidden\" [(ngModel)]=\"post.id\" name=\"id\" />\r\n        <input type=\"hidden\" [(ngModel)]=\"post.authorId\" name=\"authorId\" />\r\n      </ng-container>\r\n      <input type=\"hidden\" [(ngModel)]=\"post.thumbnail\" id=\"thumbnail\" name=\"thumbnail\" />\r\n\r\n      <div class=\"form-group\">\r\n        <input type=\"text\" [(ngModel)]=\"post.title\" class=\"form-control\" name=\"title\" maxlength=\"128\"\r\n          placeholder=\"请输入标题\" required>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <app-vditor></app-vditor>\r\n        <!-- <div id=\"md\" appEditor [editormdConfig]=\"conf\" (onEditorChange)=\"syncModel($event)\">\r\n          <textarea style=\"display: block;\" [(ngModel)]=\"post.content\" name=\"content\"></textarea>\r\n        </div> -->\r\n        <!-- <app-markdown name=\"content\" [(ngModel)]=\"post.content\"></app-markdown> -->\r\n      </div>\r\n    </div>\r\n    <div class=\"col-xs-12 col-md-4 side-right\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"thumbnail-box\">\r\n          <!-- <div class=\"convent_choice\" id=\"thumbnail_image\" style=\"background: url(<@resource src=view.thumbnail/>);\">\r\n            <div class=\"upload-btn\">\r\n              <label>\r\n                <span>点击选择一张图片</span>\r\n                <input [(ngModel)]=\"post.file\" id=\"upload_btn\" type=\"file\" name=\"file\" accept=\"image/*\" title=\"点击添加图片\">\r\n              </label>\r\n            </div>\r\n          </div> -->\r\n          <app-upload (changePath)=\"changePath($event)\"></app-upload>\r\n        </div>\r\n      </div>\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          <h3 class=\"panel-title\">发布到</h3>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <select [(ngModel)]=\"post.channelId\" class=\"form-control\" name=\"channelId\" required>\r\n            <option value=\"\">请选择栏目</option>\r\n            <ng-container *ngFor=\"let item of editingOut.channels\">\r\n              <option value=\"{{item.id}}\" *ngIf=\"item.id == post.channelId\" selected>{{item.name}}</option>\r\n              <option value=\"{{item.id}}\" *ngIf=\"!(item.id == post.channelId)\">{{item.name}}</option>\r\n            </ng-container>\r\n          </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          <h3 class=\"panel-title\">标签(用逗号或空格分隔)</h3>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <input [(ngModel)]=\"post.tags\" type=\"text\" id=\"tags\" name=\"tags\" class=\"form-control\"\r\n            placeholder=\"添加相关标签，逗号分隔 (最多4个)\">\r\n        </div>\r\n      </div>\r\n      <div class=\"col-xs-12 col-md-12\">\r\n        <div class=\"form-group\">\r\n          <div class=\"text-center\">\r\n            <button type=\"button\" data-status=\"0\" class=\"btn btn-primary\" event=\"post_submit\"\r\n              style=\"padding-left: 30px; padding-right: 30px;\" (click)=\"postSubmit()\">发布</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</form>"
 
 /***/ }),
 
@@ -4562,7 +4566,7 @@ var EditingComponent = /** @class */ (function () {
     };
     EditingComponent.prototype.postSubmit = function () {
         var _this = this;
-        //this.post.content = this.vditorComponent.getEditorValue();
+        this.post.content = this.vditorComponent.getEditorValue();
         this.http.post(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl + 'post/submit?AuthToken=' + this.rootWebDto.accountProfile.authToken, this.post)
             .then(function (data) {
             _this.router.navigate(['/view', { id: data }]);
@@ -5393,7 +5397,7 @@ var EditorConfig = /** @class */ (function () {
         this.sequenceDiagram = true;
         this.imageUpload = true;
         this.imageFormats = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'];
-        this.imageUploadURL = '';
+        this.imageUploadURL = 'http://localhost:1002/zblog/post/upload';
     }
     return EditorConfig;
 }());
