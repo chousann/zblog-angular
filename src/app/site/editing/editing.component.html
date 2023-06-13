@@ -15,10 +15,10 @@
           placeholder="请输入标题" required>
       </div>
       <div class="form-group">
-        <!-- <app-vditor></app-vditor> -->
-        <div id="md" appEditor [editormdConfig]="conf" (onEditorChange)="syncModel($event)">
+        <app-vditor></app-vditor>
+        <!-- <div id="md" appEditor [editormdConfig]="conf" (onEditorChange)="syncModel($event)">
           <textarea style="display: block;" [(ngModel)]="post.content" name="content"></textarea>
-        </div>
+        </div> -->
         <!-- <app-markdown name="content" [(ngModel)]="post.content"></app-markdown> -->
       </div>
     </div>

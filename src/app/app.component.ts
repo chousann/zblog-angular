@@ -134,6 +134,7 @@ export class AppComponent implements OnInit {
         return null;
       })
       .catch(async () => {
+        this.localstorage.remove("authToken");
         this.router.navigate(['/']);
       });
   }

@@ -70,7 +70,7 @@ export class EditingComponent implements OnInit {
   }
 
   postSubmit() {
-    //this.post.content = this.vditorComponent.getEditorValue();
+    this.post.content = this.vditorComponent.getEditorValue();
     this.http.post(environment.baseUrl + 'post/submit?AuthToken='+this.rootWebDto.accountProfile.authToken, this.post)
       .then((data: any) => {
         this.router.navigate(['/view', { id: data}]);

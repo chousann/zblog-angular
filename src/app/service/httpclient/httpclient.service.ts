@@ -31,7 +31,7 @@ export class HttpclientService {
     .then(async (data: any) => {
       return data;
     }).catch(async(e: any) => {
-      window.alert("error!!!");
+      console.log("error!!!");
       throw e;
     });
   }
