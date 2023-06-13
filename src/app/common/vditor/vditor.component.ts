@@ -19,6 +19,9 @@ export class VditorComponent implements OnInit {
       height: "auto",
       /** 编辑器最小高度 */
       minHeight: 200,
+      fullscreen: {
+        index: 10000
+      },
       toolbarConfig: {
         pin: true,
       },

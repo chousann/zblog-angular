@@ -19,7 +19,8 @@ export class EditorConfig {
   public sequenceDiagram = true;
   public imageUpload = true;
   public imageFormats = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'];
-  public imageUploadURL = '';
+  public imageUploadURL = 'http://localhost:1002/zblog/post/upload';
+  public crossDomainUpload : true;
 
   constructor() {
   }
