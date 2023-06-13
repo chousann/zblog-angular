@@ -16,7 +16,7 @@ import Vditor from 'vditor'
 export class ViewComponent implements OnInit, AfterViewInit  {
 
   // @ViewChild('content', { read: ViewContainerRef }) content: ViewContainerRef;
-
+  public baseUrl: string = environment.baseUrl;
   @ViewChild("vditorPreview")
   public priview: ElementRef;
 

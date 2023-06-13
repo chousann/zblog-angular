@@ -267,7 +267,24 @@ const routes: Routes = [
         component: FooterComponent
       }
     ]
-  }
+  },
+  {
+    path: 'edit', component: LayoutComponent,
+    children: [
+      {
+        path: '', outlet: 'header',
+        component: HeaderComponent
+      },
+      {
+        path: '', outlet: 'content',
+        component: AdmineditComponent
+      },
+      {
+        path: '', outlet: 'footer',
+        component: FooterComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({

@@ -20,15 +20,15 @@
                 </span>
 
                 <div class="pull-right hidden-xs">
-                  <ng-container *ngIf="owner">
-                    <a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="{{row.id}}"
+                  <ng-container *ngIf="row.author.id === rootWebDto.accountProfile.id">
+                    <a class="act_edit" [routerLink]="['/edit', {id:row.id}]" data-evt="edit" data-id="{{row.id}}"
                       data-toggle="tooltip" title="编辑文章">
                       <i class="icon icon-note"></i>
                     </a>
-                    <a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="{{row.id}}"
+                    <!-- <a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="{{row.id}}"
                       data-toggle="tooltip" title="删除文章">
                       <i class="icon icon-close"></i>
-                    </a>
+                    </a> -->
                   </ng-container>
                 </div>
               </li>
