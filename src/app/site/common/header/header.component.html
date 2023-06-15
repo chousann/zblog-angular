@@ -140,7 +140,7 @@
                         <li><a href="{{baseurl}}" class="btn btn-default btn-sm signup">登录</a></li>
                         <!-- <li><a [routerLink]="['/login']" class="btn btn-default btn-sm signup">登录</a></li> -->
                         <!-- <@controls name="register"> -->
-                        <!-- <li><a [routerLink]="['/frame', {src: 'https://material.angular.cn/'}]" href="base/register" class="btn btn-primary btn-sm signup">注册</a></li> -->
+                        <li><a [href]="siteInfo.options['oauth_server_domain'] + 'oauth/account/registerByMailPage'" class="btn btn-default btn-sm signup">注册</a></li>
                         <!-- </@controls>
       </#if> -->
                     </ng-container>
