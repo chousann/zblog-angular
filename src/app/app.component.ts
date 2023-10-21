@@ -69,12 +69,29 @@ export class AppComponent implements OnInit {
     this.localstorage.set("state", this.randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'));
     }
 
-    this.route.queryParams.subscribe((params: Params) => {
-      console.log("params");
-      console.log("AUTHTOKEN: " + params["AUTHTOKEN"]);
-      this.AUTHTOKEN = params["AUTHTOKEN"];
-      this.initauth();
+    const queryParamsString = window.location.search.substr(1);
+    const queryParams = {};
+
+    queryParamsString.split('&').forEach(param => {
+      const keyValue = param.split('=');
+      const key = decodeURIComponent(keyValue[0]);
+      const value = decodeURIComponent(keyValue[1] || '');
+      queryParams[key] = value;
     });
+
+    console.log("params");
+    console.log("AUTHTOKEN: " + queryParams["AUTHTOKEN"]);
+    if (queryParams["AUTHTOKEN"] !== null) {
+      this.AUTHTOKEN = queryParams["AUTHTOKEN"];
+      this.initauth();
+    }
+
+    // this.route.queryParams.subscribe((params: Params) => {
+    //   console.log("params");
+    //   console.log("AUTHTOKEN: " + params["AUTHTOKEN"]);
+    //   this.AUTHTOKEN = params["AUTHTOKEN"];
+    //   this.initauth();
+    // });
   }
 
   randomString(length, chars) {
