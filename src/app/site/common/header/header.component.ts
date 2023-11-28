@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
     public siteInfo: SiteInfo,
     private router: Router,
     private http: HttpclientService) {
-      this.baseurl = environment.baseUrl + "redirectoauth";
+      this.baseurl = environment.baseUrl + "oauth2/authorization/client1";
      }
 
   ngOnInit() {

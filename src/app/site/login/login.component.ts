@@ -15,11 +15,14 @@ import { HttpclientService } from 'src/app/service/httpclient/httpclient.service
 })
 export class LoginComponent implements OnInit {
 
+  public baseurl: string;
   user: User = new User();
   constructor(private http: HttpclientService,
     private localstorage: LocalstorageService,
     private router: Router,
-    public rootWebDto: RootWebDto) { }
+    public rootWebDto: RootWebDto) {
+      this.baseurl = environment.baseUrl;
+     }
 
   ngOnInit() {
   }

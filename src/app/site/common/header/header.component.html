@@ -137,7 +137,7 @@
                         </li>
                     </ng-container>
                     <ng-container *ngIf="!(rootWebDto.accountProfile)">
-                        <li><a href="{{baseurl}}" class="btn btn-default btn-sm signup">登录</a></li>
+                        <li><a [routerLink]="['/login']" class="btn btn-default btn-sm signup">登录</a></li>
                         <!-- <li><a [routerLink]="['/login']" class="btn btn-default btn-sm signup">登录</a></li> -->
                         <!-- <@controls name="register"> -->
                         <li><a [href]="siteInfo.options['oauth_server_domain'] + 'oauth/account/registerByMailPage'" class="btn btn-default btn-sm signup">注册</a></li>

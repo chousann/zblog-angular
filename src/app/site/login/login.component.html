@@ -9,7 +9,7 @@
                     <!-- <@layout.extends name="/inc/action_message.ftl" /> -->
                 </div>
                 <!-- <form method="POST" action="login" accept-charset="UTF-8"> -->
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="control-label" for="username">账号</label>
                     <input class="form-control" [(ngModel)]="user.userName" name="username" type="text" required>
                 </div>
@@ -29,26 +29,15 @@
                     <button class="btn btn-primary btn-block" (click)="login()">
                         登录 Use it
                     </button>
-                </div>
-                <!-- <@controls name="register">
-                      <fieldset class="form-group">
-                          <#if site.hasValue("weibo_client_id")>
-                          <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_weibo">
-                              <i class="fa fa-weibo"></i> 微博帐号登录
-                          </a>
-                          </#if>
-                          <#if site.hasValue("qq_app_id")>
-                          <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_qq">
-                              <i class="fa fa-qq"></i> QQ帐号登录
-                          </a>
-                          </#if>
-                          <#if site.hasValue("github_client_id")>
-                          <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_github">
-                              <i class="fa fa-github"></i> Github帐号登录
-                          </a>
-                          </#if>
-                      </fieldset>
-                  </@controls> -->
+                </div> -->
+                <fieldset class="form-group">
+                    <a class="btn btn-default btn-block" href="{{baseurl}}oauth2/authorization/client1">
+                        <i class="fa"></i> OAuth帐号登录
+                    </a>
+                    <a class="btn btn-default btn-block" href="{{baseurl}}oauth2/authorization/github">
+                        <i class="fa fa-github"></i> Github帐号登录
+                    </a>
+                </fieldset>
                 <!-- </form> -->
             </div>
         </div>

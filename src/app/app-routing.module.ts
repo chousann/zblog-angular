@@ -82,16 +82,8 @@ const routes: Routes = [
     path: 'login', component: LayoutComponent,
     children: [
       {
-        path: '', outlet: 'header',
-        component: HeaderComponent
-      },
-      {
         path: '', outlet: 'content',
         component: LoginComponent
-      },
-      {
-        path: '', outlet: 'footer',
-        component: FooterComponent
       }
     ]
   },
