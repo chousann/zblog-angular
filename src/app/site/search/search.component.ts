@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Page } from 'src/app/model/Page';
 import { PostVO } from 'src/app/model/PostVO';
@@ -16,11 +17,13 @@ import { environment } from 'src/environments/environment';
 export class SearchComponent  implements OnInit, OnChanges {
   queryString: string;
   public searchRes: SearchResqponseOut = new SearchResqponseOut();
+  public baseUrl: string = environment.baseUrl;
   constructor(private http: HttpclientService,
     private localstorage: LocalstorageService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public rootWebDto: RootWebDto) { }
+    public rootWebDto: RootWebDto,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => { 
@@ -45,4 +48,8 @@ export class SearchComponent  implements OnInit, OnChanges {
       });
   }
 
+  public sanitizeHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+  
 }
