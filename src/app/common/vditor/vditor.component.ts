@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { RootWebDto } from 'src/app/model/RootWebDto';
 import { environment } from 'src/environments/environment';
 import Vditor from 'vditor'
 
@@ -10,7 +11,7 @@ import Vditor from 'vditor'
 export class VditorComponent implements OnInit {
   value = '# Title';
   
-  constructor() { }
+  constructor(public rootWebDto: RootWebDto) { }
 
   public vditor: Vditor; 
   // File:[];
@@ -34,7 +35,7 @@ export class VditorComponent implements OnInit {
       },
       //toolbar:[],
       upload:{
-        url:environment.baseUrl + "post/upload",
+        url:environment.baseUrl + "post/upload" + "?AuthToken="+this.rootWebDto.accountProfile.authToken,
         linkToImgUrl:environment.baseUrl + "post/upload",
         fieldName:"file",
         max:1048576,
@@ -44,7 +45,7 @@ export class VditorComponent implements OnInit {
           let dealData=JSON.parse(msg);
           for(let i=0;i<File.length;i++){
             // console.log(File[i]['name']);
-            customObj[File[i]['name']]=environment.baseUrl + dealData[i]['path'];
+            customObj[File[i]['name']]=dealData[i]['path'];
           }
           let cusObj={  
             "msg": "",  
@@ -63,6 +64,11 @@ export class VditorComponent implements OnInit {
         linkToImgCallback:(responseText)=>{
           console.log("============图片地址上传的回调数据============");
           console.log(responseText);
+        }
+      },
+      preview: {
+        markdown: {
+          linkPrefix: environment.baseUrl + "store/storage/md/" + this.rootWebDto.accountProfile.username + "/",
         }
       }
     });
