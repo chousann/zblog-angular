@@ -47,7 +47,7 @@ export class ViewComponent implements OnInit, AfterViewInit  {
   }
 
   getPostDetail() {
-    this.clientService.post(environment.baseUrl + 'post', {id: this.id})
+    this.clientService.post(environment.baseUrl + 'view', {id: this.id})
     .then(async (data: PostVO) => {
         console.log(data);
         this.view.copy(data);
