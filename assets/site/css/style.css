@@ -48,6 +48,10 @@ abbr[data-original-title], abbr[title] {
     border-bottom: none;
 }
 
+.highlight {
+    background-color: yellow;
+}
+
 .error {
     color: #a94442;
 }
