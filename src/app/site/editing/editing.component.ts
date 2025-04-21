@@ -16,7 +16,7 @@ import { HttpclientService } from 'src/app/service/httpclient/httpclient.service
   styleUrls: ['./editing.component.sass']
 })
 export class EditingComponent implements OnInit {
-
+  public baseurl: string;
   status: string;
   public post: PostVO = new PostVO();
   user: User = new User();
@@ -27,7 +27,9 @@ export class EditingComponent implements OnInit {
 
   constructor(private router: Router,
     public rootWebDto: RootWebDto,
-    private http: HttpclientService) { }
+    private http: HttpclientService) {
+      this.baseurl = environment.baseUrl;
+     }
 
     conf = new EditorConfig();
     markdown = '测试语句';
