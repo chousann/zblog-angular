@@ -81,7 +81,7 @@ export class UploadComponent implements OnInit, ControlValueAccessor {
     // 上传至服务器
     this.http.post(environment.baseUrl + "post/upload?AuthToken=" + this.rootWebDto.accountProfile.authToken, formData)
       .then((data: UploadResult[]) => {
-        this.path = this.baseUrl + data[0].path;
+        this.path = this.baseUrl + "store/storage/md/" + this.rootWebDto.accountProfile.username + "/" + data[0].path;
         this.paths.setValue(data[0].path);
         this.OnChange(data[0].path);
         this.changePath.emit(data[0].path);
