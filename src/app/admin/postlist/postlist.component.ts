@@ -18,6 +18,7 @@ export class PostlistComponent implements OnInit {
 
   public postList: PostListOut = new PostListOut();
   public checkMap = new Map();
+  public baseUrl: string = environment.baseUrl;
 
   constructor(private http: HttpclientService,
     private localstorage: LocalstorageService,

@@ -1,7 +1,7 @@
 <section class="content-header">
     <h1>文章管理</h1>
     <ol class="breadcrumb">
-        <li><a href="/admin">首页</a></li>
+        <li><a [routerLink]="['/admin']">首页</a></li>
         <li class="active">文章管理</li>
     </ol>
 </section>
@@ -55,7 +55,7 @@
                                             <input type="checkbox" name="id" value="{{row.id}}" (change)="change($event, row.id)">
                                         </td>
                                         <td>
-                                            <img [src]="row.thumbnail? row.thumbnail: ''" style="width: 80px;">
+                                            <img [src]="baseUrl + 'store/storage/md/' + row.author.username + '/' + row.thumbnail" style="width: 80px;">
                                         </td>
                                         <td>
                                             <a [routerLink]="['/view', {id:row.id}]">{{row.title}}</a>

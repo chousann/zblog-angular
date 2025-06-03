@@ -10,7 +10,7 @@
             <ng-container *ngFor="let row of results.content">
               <li class="list-group-item">
               <!-- <li class="list-group-item" el="loop-{{row.id}}"> -->
-                <a href="/post/{{row.id}}" class="remove-padding-left">{{row.title}}</a>
+                <a [routerLink]="['/view', {id:row.id}]" class="remove-padding-left">{{row.title}}</a>
                 <span class="meta">
                   {{row.favors}} 点赞
                   <span> ⋅ </span>
@@ -19,7 +19,7 @@
                   <span class="timeago">{{row.created}}</span>
                 </span>
 
-                <div class="pull-right hidden-xs">
+                <div class="pull-right"><!--  hidden-xs -->
                   <ng-container *ngIf="row.author.id === rootWebDto.accountProfile.id">
                     <a class="act_edit" [routerLink]="['/edit', {id:row.id}]" data-evt="edit" data-id="{{row.id}}"
                       data-toggle="tooltip" title="编辑文章">
