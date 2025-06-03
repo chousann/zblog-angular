@@ -4,7 +4,7 @@
       <ul class="posts-list">
         <li class="content">
           <div class="content-box posts-aside">
-            <div class="posts-item">标签: {{tagDetail.name}} 共 {{tagDetail.results.size}} 个结果.</div>
+            <div class="posts-item">标签: {{tagDetail.name}} 共 {{tagDetail.results.content.length}} 个结果.</div>
           </div>
         </li>
         <app-list [allposts]="tagDetail.results"></app-list>
