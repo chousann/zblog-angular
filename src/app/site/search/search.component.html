@@ -15,7 +15,7 @@
                                 <div class="posts-item-img">
                                   <a [routerLink]="['/view', {id:row.id}]" title="">
                                     <div class="overlay"></div>
-                                    <img class="lazy thumbnail" [src]="baseUrl + row.thumbnail" style="display: inline-block;">
+                                    <img class="lazy thumbnail" [src]="baseUrl + 'store/storage/md/' + row.author.username + '/' + row.thumbnail" style="display: inline-block;">
                                   </a>
                                 </div>
                                 <div class="posts-item posts-item-gallery">
