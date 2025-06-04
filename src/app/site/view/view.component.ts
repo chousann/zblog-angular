@@ -7,6 +7,7 @@ import { LocalstorageService } from '../../service/localstorage/localstorage.ser
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
 import Vditor from 'vditor'
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-view',
@@ -48,7 +49,8 @@ export class ViewComponent implements OnInit, AfterViewInit  {
 
   getPostDetail() {
     this.clientService.post(environment.baseUrl + 'view', {id: this.id})
-    .then(async (data: PostVO) => {
+    .then(async (res: ResponseDto<PostVO>) => {
+      var data = res.data;
         console.log(data);
         this.view.copy(data);
         this.view.title = data.title;

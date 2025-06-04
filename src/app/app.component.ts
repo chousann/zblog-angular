@@ -9,6 +9,7 @@ import { Channel } from './model/Channel';
 import { HttpclientService } from './service/httpclient/httpclient.service';
 import { AccountProfile } from './model/AccountProfile';
 import { RootWebDto } from './model/RootWebDto';
+import { ResponseDto } from './model/ResponseDto';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -104,7 +105,8 @@ export class AppComponent implements OnInit {
 
   getInitInfo() {
     return this.http.post(environment.baseUrl + 'initInfo', {})
-    .then(async (data: SiteInfo) => {
+    .then(async (res: ResponseDto<SiteInfo>) => {
+      var data = res.data;
       if (data) {
         this.siteInfo.copy(data);
         this.siteInfo.options["state"] = this.localstorage.get("state");
@@ -140,7 +142,8 @@ export class AppComponent implements OnInit {
     };
 
     return this.http.post(environment.baseUrl + 'authInfo?AuthToken='+token, {})
-      .then(async (authData: AccountProfile) => {
+      .then(async (responseDto:ResponseDto<AccountProfile>) => {
+        var authData = responseDto.data;
         if (authData) {
           authData.avatar = environment.baseUrl + authData.avatar;
           this.rootWebDto.accountProfile = authData;

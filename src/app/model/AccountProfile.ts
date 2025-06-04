@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BadgesCount } from './BadgesCount';
 import { Menu } from './Menu';
+import { ResponseData } from './ResponseData';
 
 @Injectable(
   {
     providedIn: 'root'
   }
 )
-export class AccountProfile {
-	constructor() { }
+export class AccountProfile extends ResponseData {
+	constructor() { 
+    super();
+  }
   public id: string;
   public username: string;
   public avatar: string;

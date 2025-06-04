@@ -9,6 +9,7 @@ import { Page } from '../../model/Page';
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-channel',
@@ -39,8 +40,8 @@ export class ChannelComponent implements OnInit {
     contentsIn.channelId = 1;
     contentsIn.size = 3;
     this.http.post(environment.baseUrl + 'channel', { id: this.id })
-      .then(async (data: ChannelDetailOut) => {
-        this.channelDetailOut.copy(data);
+      .then(async (res: ResponseDto<ChannelDetailOut>) => {
+        this.channelDetailOut.copy(res.data);
       })
       .catch(() => {
         console.log("error");

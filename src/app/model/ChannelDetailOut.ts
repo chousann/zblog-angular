@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Channel } from './Channel';
+import { ResponseData } from './ResponseData';
 
 @Injectable(
   {
     providedIn: 'root'
   }
 )
-export class ChannelDetailOut {
+export class ChannelDetailOut extends ResponseData{
 
 	constructor() {
+		super();
 		this.channel = new Channel();
 	 }
 	public channel: Channel;

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Channel } from './Channel';
 import { PostAttribute } from './PostAttribute';
 import { UserVO } from './UserVO';
+import { ResponseData } from './ResponseData';
 
 @Injectable(
   {
     providedIn: 'root'
   }
 )
-export class Post {
+export class Post extends ResponseData {
 
 	public id: string;
 

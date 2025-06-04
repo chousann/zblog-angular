@@ -9,6 +9,7 @@ import { RootWebDto } from '../../model/RootWebDto';
 import { User } from '../../model/user';
 import { VditorComponent } from '../../common/vditor/vditor.component';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-editing',
@@ -50,9 +51,9 @@ export class EditingComponent implements OnInit {
   getEditingInit() {
 
     this.http.post(environment.baseUrl + 'post/editing?AuthToken='+this.rootWebDto.accountProfile.authToken, {})
-      .then((data: EditingOut) => {
-        this.editingOut = data;
-        this.initPost(data);
+      .then((res: ResponseDto<EditingOut>) => {
+        this.editingOut = res.data;
+        this.initPost(res.data);
         console.log("success");
       })
       .catch(() => {

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Channel } from './Channel';
 import { Options } from './Options';
+import { ResponseData } from './ResponseData';
 
 @Injectable(
   {
     providedIn: 'root'
   }
 )
-export class SiteInfo {
+export class SiteInfo extends ResponseData {
 
   public options: Map<any, any> = new Map<any, any>();
   public list: Channel[];

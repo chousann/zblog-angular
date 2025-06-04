@@ -4,13 +4,14 @@ import { DocVo } from './DocVo';
 import { PostAttribute } from './PostAttribute';
 import { PostVO } from './PostVO';
 import { UserVO } from './UserVO';
+import { ResponseData } from './ResponseData';
 
 @Injectable(
   {
     providedIn: 'root'
   }
 )
-export class SearchResqponseOut {
+export class SearchResqponseOut extends ResponseData {
 
 	public docList: PostVO[];
 

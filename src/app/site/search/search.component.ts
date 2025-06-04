@@ -3,6 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Page } from 'src/app/model/Page';
 import { PostVO } from 'src/app/model/PostVO';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 import { RootWebDto } from 'src/app/model/RootWebDto';
 import { SearchResqponseOut } from 'src/app/model/SearchResqponseOut';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
@@ -38,7 +39,8 @@ export class SearchComponent  implements OnInit, OnChanges {
 
   search() {
     this.http.post(environment.baseUrl + 'search/init/' + this.queryString, {})
-      .then(async (data: SearchResqponseOut) => {
+      .then(async (res: ResponseDto<SearchResqponseOut>) => {
+        var data = res.data;
         if (data) {
           this.searchRes.copy(data);
         }
