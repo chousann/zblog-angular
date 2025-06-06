@@ -37,7 +37,8 @@ export class HttpclientService {
         }
       } else {
         alert(url + ": 改善中");
-        console.log(url + "： ResponseDto 未使用");
+        this.router.navigate(['/']);
+        return;
       }
       return data;
     }).catch(async(e: any) => {
