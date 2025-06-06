@@ -2,7 +2,9 @@ import { Component, ElementRef, EventEmitter, forwardRef, OnInit, Output, ViewCh
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 import { RootWebDto } from 'src/app/model/RootWebDto';
+import { UploadDto } from 'src/app/model/UploadDto';
 import { UploadResult } from 'src/app/model/UploadResult';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
 import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
@@ -80,7 +82,8 @@ export class UploadComponent implements OnInit, ControlValueAccessor {
 
     // 上传至服务器
     this.http.post(environment.baseUrl + "post/upload?AuthToken=" + this.rootWebDto.accountProfile.authToken, formData)
-      .then((data: UploadResult[]) => {
+      .then((res: ResponseDto<UploadDto>) => {
+        var data = res.data.uploadList;
         this.path = this.baseUrl + "store/storage/md/" + this.rootWebDto.accountProfile.username + "/" + data[0].path;
         this.paths.setValue(data[0].path);
         this.OnChange(data[0].path);

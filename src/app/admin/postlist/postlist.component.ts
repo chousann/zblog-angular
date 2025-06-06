@@ -36,7 +36,8 @@ export class PostlistComponent implements OnInit {
 
   getPostList() {
     return this.http.post(environment.baseUrl + 'admin/post/list?AuthToken='+this.rootWebDto.accountProfile.authToken, {})
-    .then(async (authData: any) => {
+    .then(async (res: any) => {
+      var authData = res.data;
       if (authData) {
         this.postList = new PostListOut();
         this.postList.copy(authData);

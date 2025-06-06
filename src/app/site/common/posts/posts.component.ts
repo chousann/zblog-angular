@@ -8,6 +8,8 @@ import { Page } from '../../../model/Page';
 import { PostVO } from '../../../model/PostVO';
 import { RootWebDto } from '../../../model/RootWebDto';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
+import { PostDto } from 'src/app/model/PostDto';
 
 @Component({
   selector: 'app-posts',
@@ -47,7 +49,8 @@ export class PostsComponent implements OnInit, OnChanges {
     contentsIn.channelId = this.channelId;
     contentsIn.order = this.order;
     return this.http.post(environment.baseUrl + 'contents', contentsIn)
-    .then(async (data: Page<PostVO>) => {
+    .then(async (res: ResponseDto<PostDto>) => {
+      var data = res.data.postList;
       if (data) {
         this.allposts.copy(data);
       }

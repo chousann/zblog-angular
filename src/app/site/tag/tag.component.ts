@@ -7,6 +7,7 @@ import { RootWebDto } from '../../model/RootWebDto';
 import { TagDetailIn } from '../../model/TagDetailIn';
 import { TagDetailOut } from '../../model/TagDetailOut';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-tag',
@@ -35,8 +36,8 @@ export class TagComponent implements OnInit {
     var tagIn: TagDetailIn = new TagDetailIn();
     tagIn.name = name;
     this.http.post(environment.baseUrl + 'tag', tagIn)
-    .then(async (data: TagDetailOut) => {
-      this.tagDetail.copy(data);
+    .then(async (res: ResponseDto<TagDetailOut>) => {
+      this.tagDetail.copy(res.data);
     })
     .catch(() => {
       console.log("error");

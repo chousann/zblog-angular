@@ -9,6 +9,8 @@ import { Page } from '../../model/Page';
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
+import { PostDto } from 'src/app/model/PostDto';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -34,11 +36,12 @@ export class IndexComponent implements OnInit {
     contentsIn.channelId = 1;
     contentsIn.size = 3;
     return this.http.post(environment.baseUrl + 'contents', contentsIn)
-    .then(async (data: Page<PostVO>) => {
-      if (data) {
-        this.posts.copy(data);
-      }
-    })
+        .then(async (res: ResponseDto<PostDto>) => {
+          var data = res.data.postList;
+          if (data) {
+            this.posts.copy(data);
+          }
+        })
     .catch(async (e: any) => {
       this.router.navigate(['/']);
     });

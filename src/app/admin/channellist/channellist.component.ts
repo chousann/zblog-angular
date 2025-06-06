@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ChannelOut } from '../../model/ChannelOut';
 import { RootWebDto } from '../../model/RootWebDto';
 import { SiteInfo } from '../../model/SiteInfo';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-channellist',
@@ -24,7 +25,8 @@ export class ChannellistComponent implements OnInit {
 
   getChannelList() {
     this.http.post(environment.baseUrl + 'admin/channel/list?AuthToken='+this.rootWebDto.accountProfile.authToken, {})
-      .then((data: ChannelOut) => {
+      .then((res: ResponseDto<ChannelOut>) => {
+        var data = res.data;
         this.channelOut = new ChannelOut();
         this.channelOut.copy(data);
         this.siteInfo.list = data.list;

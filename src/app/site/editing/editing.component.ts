@@ -10,6 +10,7 @@ import { User } from '../../model/user';
 import { VditorComponent } from '../../common/vditor/vditor.component';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
 import { ResponseDto } from 'src/app/model/ResponseDto';
+import { Post } from 'src/app/model/Post';
 
 @Component({
   selector: 'app-editing',
@@ -75,7 +76,8 @@ export class EditingComponent implements OnInit {
   postSubmit() {
     this.post.content = this.vditorComponent.getEditorValue();
     this.http.post(environment.baseUrl + 'post/submit?AuthToken='+this.rootWebDto.accountProfile.authToken, this.post)
-      .then((data: any) => {
+      .then((res: ResponseDto<Post>) => {
+        var data = res.data.id;
         this.router.navigate(['/view', { id: data}]);
         console.log("success");
       })

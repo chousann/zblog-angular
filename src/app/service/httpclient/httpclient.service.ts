@@ -29,6 +29,16 @@ export class HttpclientService {
   }): Promise<Object> {
     return this.http.post(url, body, options).toPromise()
     .then(async (data: any) => {
+      if (data != null && data.common != null) {
+        console.log(url + "： ResponseDto 使用");
+        if (data.common.statusCode != 200) {
+          alert(url + "： ResponseDto error");
+          return;
+        }
+      } else {
+        alert(url + ": 改善中");
+        console.log(url + "： ResponseDto 未使用");
+      }
       return data;
     }).catch(async(e: any) => {
       console.log("error!!!");

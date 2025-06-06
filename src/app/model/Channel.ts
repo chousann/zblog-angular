@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { UserVO } from './UserVO';
+import { ResponseData } from './ResponseData';
 
 @Injectable(
   {
     providedIn: 'root'
   }
 )
-export class Channel {
+export class Channel extends ResponseData {
 
 	public id: number;
 

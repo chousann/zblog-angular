@@ -1,5 +1,6 @@
 import { Component, Input, NgZone, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 import { RootWebDto } from 'src/app/model/RootWebDto';
 import { UserInfoOut } from 'src/app/model/UserInfoOut';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
@@ -34,8 +35,8 @@ export class SidebarComponent implements OnInit, OnChanges {
 
   getUserInfo() {
     this.http.post(environment.baseUrl + 'users/home?AuthToken='+this.rootWebDto.accountProfile.authToken, {userId: this.userId})
-    .then(async (data: UserInfoOut) => {
-      this.info.copy(data);
+    .then(async (res: ResponseDto<UserInfoOut>) => {
+      this.info.copy(res.data);
 
     })
     .catch(() => {

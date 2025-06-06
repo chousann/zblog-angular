@@ -1,7 +1,9 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Page } from 'src/app/model/Page';
+import { PostDto } from 'src/app/model/PostDto';
 import { PostVO } from 'src/app/model/PostVO';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 import { RootWebDto } from 'src/app/model/RootWebDto';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
 import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
@@ -32,9 +34,10 @@ export class UserhomeComponent implements OnInit {
 
   getUserContents() {
     this.http.post(environment.baseUrl + 'user/contents', {userId: this.userId})
-    .then(async (data: Page<PostVO>) => {
-      this.results.copy(data);
-    })
+            .then(async (res: ResponseDto<PostDto>) => {
+              var data = res.data.postList;
+              this.results.copy(data);
+            })
     .catch(() => {
       console.log("error");
     });

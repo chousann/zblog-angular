@@ -6,6 +6,7 @@ import { LocalstorageService } from '../../service/localstorage/localstorage.ser
 import { Channel } from '../../model/Channel';
 import { RootWebDto } from '../../model/RootWebDto';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-channelview',
@@ -38,7 +39,8 @@ export class ChannelviewComponent implements OnInit {
   
     getChannelInfo() {
       this.http.post(environment.baseUrl + 'admin/channel/view?AuthToken='+this.rootWebDto.accountProfile.authToken, {id: this.id})
-      .then(async (data: Channel) => {
+      .then(async (res: ResponseDto<Channel>) => {
+        var data = res.data;
         if(data) {
           console.log(data);
           this.view = new Channel();

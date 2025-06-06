@@ -42,7 +42,8 @@ export class VditorComponent implements OnInit {
         format:(File,msg)=>{
           // console.log("============格式化拿到的数据信息File============");
           let customObj={};
-          let dealData=JSON.parse(msg);
+          var res = JSON.parse(msg);
+          let dealData = res.data.uploadList;
           for(let i=0;i<File.length;i++){
             // console.log(File[i]['name']);
             customObj[File[i]['name']]=dealData[i]['path'];

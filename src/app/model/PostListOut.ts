@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { Channel } from './Channel';
 import { Page } from './Page';
 import { PostVO } from './PostVO';
+import { ResponseData } from './ResponseData';
 
 @Injectable(
   {
     providedIn: 'root'
   }
 )
-export class PostListOut {
+export class PostListOut extends ResponseData {
 
 	constructor() {
+		super();
 		this.page = new Page<PostVO>();
 	 }
 	public page: Page<PostVO>;

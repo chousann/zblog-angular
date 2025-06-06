@@ -7,6 +7,8 @@ import { Page } from '../../model/Page';
 import { RootWebDto } from '../../model/RootWebDto';
 import { TagVO } from '../../model/TagVO';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
+import { TagDto } from 'src/app/model/TagDto';
 
 @Component({
   selector: 'app-tags',
@@ -30,8 +32,8 @@ export class TagsComponent implements OnInit {
 
   getTags() {
     this.http.post(environment.baseUrl + 'tags', {})
-    .then(async (data: Page<TagVO>) => {
-        this.tags.copy(data);
+    .then(async (res: ResponseDto<TagDto>) => {
+        this.tags.copy(res.data.list);
     })
     .catch(() => {
       console.log("error");

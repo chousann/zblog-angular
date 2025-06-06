@@ -9,6 +9,7 @@ import { SiteInfo } from '../../model/SiteInfo';
 import { User } from '../../model/user';
 import { VditorComponent } from '../../common/vditor/vditor.component';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-adminedit',
@@ -41,7 +42,8 @@ export class AdmineditComponent implements OnInit {
   getPost() {
     
     this.http.post(environment.baseUrl + 'admin/post/view?AuthToken='+this.rootWebDto.accountProfile.authToken, {id: this.id})
-      .then((data: EditingOut) => {
+      .then((res: ResponseDto<EditingOut>) => {
+        var data = res.data;
         this.editingOut = data;
         this.initPost(data);
         console.log("success");
@@ -67,7 +69,8 @@ export class AdmineditComponent implements OnInit {
     this.post.status = status;
     this.post.content = this.vditorComponent.getEditorValue();
     this.http.post(environment.baseUrl + 'admin/post/update?AuthToken='+this.rootWebDto.accountProfile.authToken, this.post)
-      .then((data: any) => {
+      .then((res: ResponseDto<PostVO>) => {
+        var data = res.data.id;
         this.router.navigate(['/view', { id: data}]);
         console.log("success");
       })

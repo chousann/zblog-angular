@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpclientService } from '../../service/httpclient/httpclient.service';
 import { AdminOut } from '../../model/AdminOut';
 import { RootWebDto } from '../../model/RootWebDto';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-admin',
@@ -23,8 +24,8 @@ export class AdminComponent implements OnInit {
   getAdminInfo() {
 
     this.clientService.post(environment.baseUrl + 'admin?AuthToken='+this.rootWebDto.accountProfile.authToken, {})
-      .then((data: AdminOut) => {
-        this.adminOut.copy(data);
+      .then((res: ResponseDto<AdminOut>) => {
+        this.adminOut.copy(res.data);
         console.log("success");
       })
       .catch(() => {

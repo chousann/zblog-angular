@@ -16,6 +16,7 @@ import { PostListOut } from '../../../model/PostListOut';
 import { PostVO } from '../../../model/PostVO';
 import { RootWebDto } from '../../../model/RootWebDto';
 import { SiteInfo } from '../../../model/SiteInfo';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-header',
@@ -55,7 +56,8 @@ export class HeaderComponent implements OnInit {
 
   getChannelList() {
     this.http.post(environment.baseUrl + 'admin/channel/list?AuthToken='+this.rootWebDto.accountProfile.authToken, {})
-      .then((data: ChannelOut) => {
+      .then((res: ResponseDto<ChannelOut>) => {
+        var data = res.data;
         this.channelOut = new ChannelOut();
         this.channelOut.copy(data);
         console.log("success");

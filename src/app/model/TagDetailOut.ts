@@ -3,14 +3,16 @@ import { BadgesCount } from './BadgesCount';
 import { Menu } from './Menu';
 import { Page } from './Page';
 import { PostTagVO } from './PostTagVO';
+import { ResponseData } from './ResponseData';
 
 @Injectable(
   {
     providedIn: 'root'
   }
 )
-export class TagDetailOut {
+export class TagDetailOut extends ResponseData {
 	constructor() {
+    super();
     this.results = new Page<PostTagVO>();
    }
   public results: Page<PostTagVO>;

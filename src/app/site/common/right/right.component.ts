@@ -6,6 +6,7 @@ import { LocalstorageService } from '../../../service/localstorage/localstorage.
 import { LastestOut } from '../../../model/LastestOut';
 import { RootWebDto } from '../../../model/RootWebDto';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { ResponseDto } from 'src/app/model/ResponseDto';
 
 @Component({
   selector: 'app-right',
@@ -26,7 +27,8 @@ export class RightComponent implements OnInit {
 
   getLastest() {
     return this.http.post(environment.baseUrl + 'latest', {})
-    .then(async (data: LastestOut) => {
+    .then(async (res: ResponseDto<LastestOut>) => {
+      var data = res.data;
       if (data) {
         this.lastestOut.copy(data);
       }
