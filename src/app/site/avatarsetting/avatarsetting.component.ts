@@ -5,6 +5,7 @@ import { ProfileIn } from 'src/app/model/ProfileIn';
 import { ProfileOut } from 'src/app/model/ProfileOut';
 import { ResponseDto } from 'src/app/model/ResponseDto';
 import { RootWebDto } from 'src/app/model/RootWebDto';
+import { UploadDto } from 'src/app/model/UploadDto';
 import { UploadResult } from 'src/app/model/UploadResult';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
 import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
@@ -61,7 +62,8 @@ export class AvatarsettingComponent implements OnInit {
 
     // 上传至服务器
     this.http.post(environment.baseUrl + "settings/avatar?AuthToken="+this.rootWebDto.accountProfile.authToken, formData)
-      .then((data: UploadResult) => {
+      .then((res: ResponseDto<UploadDto>) => {
+        var data = res.data.uploadList[0];
         this.rootWebDto.accountProfile.avatar = environment.baseUrl + data.path;
         console.log(data.path);
       })

@@ -38,7 +38,6 @@ export class AdminComponent implements OnInit {
     this.clientService.post(environment.baseUrl + 'admin/options/reload_options?AuthToken='+this.rootWebDto.accountProfile.authToken, {})
       .then((data: Object) => {
         console.log(data);
-        alert(data);
       })
       .catch(() => {
         console.log("error");

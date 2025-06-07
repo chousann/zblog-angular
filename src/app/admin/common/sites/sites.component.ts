@@ -5,6 +5,8 @@ import { HttpclientService } from 'src/app/service/httpclient/httpclient.service
 import { environment } from 'src/environments/environment';
 import { RootWebDto } from '../../../model/RootWebDto';
 import { SiteInfo } from '../../../model/SiteInfo';
+import { ResponseDto } from 'src/app/model/ResponseDto';
+import { ResponseData } from 'src/app/model/ResponseData';
 
 @Component({
   selector: 'app-sites',
@@ -29,7 +31,8 @@ export class SitesComponent implements OnInit {
 
   updateSiteInfo() {
     this.http.post(environment.baseUrl + 'admin/options/update?AuthToken='+this.rootWebDto.accountProfile.authToken, this.siteInfo.options)
-    .then(async (data: Map<any, any>) => {
+    .then(async (res: ResponseDto<ResponseData>) => {
+      var data = res.data.map;
       this.siteInfo.options = data;
       this.router.navigate(['/admin']);
     })

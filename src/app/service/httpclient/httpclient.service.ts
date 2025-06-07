@@ -34,10 +34,9 @@ export class HttpclientService {
         if (data.common.statusCode != 200) {
           alert(url + "： ResponseDto error");
           return;
-        }
+        } 
       } else {
         alert(url + ": 改善中");
-        this.router.navigate(['/']);
         return;
       }
       return data;

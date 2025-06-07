@@ -7,6 +7,7 @@ import { Channel } from '../../model/Channel';
 import { RootWebDto } from '../../model/RootWebDto';
 import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
 import { ResponseDto } from 'src/app/model/ResponseDto';
+import { SiteInfo } from 'src/app/model/SiteInfo';
 
 @Component({
   selector: 'app-channelview',
@@ -54,11 +55,10 @@ export class ChannelviewComponent implements OnInit {
 
     submit() {
       this.http.post(environment.baseUrl + 'admin/channel/update?AuthToken='+this.rootWebDto.accountProfile.authToken, this.view)
-      .then(async (data: Channel) => {
+      .then(async (res: ResponseDto<SiteInfo>) => {
+        var data = res.data.list;
         if(data) {
           console.log(data);
-          this.view = new Channel();
-          this.view.copy(data);
           this.router.navigate(['/channels']);
         }
       })
