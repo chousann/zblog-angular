@@ -2,7 +2,7 @@
   <li class="list-group-item user-card">
     <div class="user-avatar">
       <a [routerLink]="['/userhome', {userId:info.user.id}]">
-        <img class="img-circle" [src]="baseUrl + info.user.avatar"/>
+        <img class="img-circle" [src]="info.user.avatar  == null ? '' : baseUrl + info.user.avatar"/>
     </a>
     </div>
     <div class="user-name">

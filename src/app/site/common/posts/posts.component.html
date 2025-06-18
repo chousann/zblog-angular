@@ -17,7 +17,7 @@
             <ul>
               <li class="post-author hidden-xs">
                 <div class="avatar">
-                  <img [src]="baseUrl + (row.author != null ? row.author.avatar: '')" class="lazy avatar avatar-50 photo"
+                  <img [src]="(row.author != null && row.author.avatar != null ? baseUrl + row.author.avatar: '')" class="lazy avatar avatar-50 photo"
                     height="50" width="50">
                 </div>
                 <a href="/users/{{row.authorId}}" target="_blank" disabled>{{row.author != null ? row.author.name: ''}}</a>

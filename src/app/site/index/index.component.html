@@ -1,37 +1,3 @@
-<ng-container *ngIf="posts.content.length > 0">
-    <div class="row banner">
-        <div class="banner-item col-xs-12 col-sm-4 col-md-4">
-            <ng-container *ngFor="let row of posts.content">
-                <div class="banner-item col-xs-12 col-sm-4 col-md-4">
-                    <div class="index-banner-box" *ngIf="row.thumbnail && row.thumbnail.length > 0"
-                        style="background-image:url(<@resource src=row.thumbnail/>)">
-                        <a class="top" href="/post/{{row.id}}">
-                            <div class="overlay"></div>
-                            <div class="line"></div>
-                            <div class="title">
-                                <h3>{{row.title}}</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="index-banner-box" *ngIf="!(row.thumbnail && row.thumbnail.length > 0)"
-                        style="background-image:url(${base}/dist/images/spinner-overlay.png)">
-                        <a class="top" href="/post/{{row.id}}">
-                            <div class="overlay"></div>
-                            <div class="line"></div>
-                            <div class="title">
-                                <h3>{{row.title}}</h3>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </ng-container>
-        </div>
-
-    </div>
-</ng-container>
-
-<!-- top/end -->
-
 <div class="row">
     <div class="col-xs-12 col-md-9 side-left">
         <div class="posts">

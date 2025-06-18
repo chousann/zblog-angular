@@ -145,7 +145,12 @@ export class AppComponent implements OnInit {
       .then(async (responseDto:ResponseDto<AccountProfile>) => {
         var authData = responseDto.data;
         if (authData) {
-          authData.avatar = environment.baseUrl + authData.avatar;
+          if (authData.avatar) {
+            authData.avatar = environment.baseUrl + authData.avatar;
+          } else {
+            authData.avatar = "https://en.gravatar.com/userimage/154673030/b9a54b5b990a61cc074668b2e2a0b8c0.png";
+          }
+          
           this.rootWebDto.accountProfile = authData;
           this.localstorage.set("authToken", authData.authToken);
           //this.router.navigate(['/']);
