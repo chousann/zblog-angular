@@ -4,11 +4,13 @@ var MdEditor = {
         undo: function undo(editor) {
             editor.undo();
         },
+
         redo: function redo(editor) {
             editor.redo();
         },
+
         setBold: function setBold(editor) {
-            editor.replaceSelection("**" + editor.getSelection() + "**");
+            editor.replaceSelection(`**${editor.getSelection()}**`);
             var cursor = editor.getCursor();
             editor.setCursor({
                 line: cursor.line,
@@ -16,8 +18,9 @@ var MdEditor = {
             });
             editor.focus();
         },
+
         setItalic: function setItalic(editor) {
-            editor.replaceSelection("*" + editor.getSelection() + "*");
+            editor.replaceSelection(`*${editor.getSelection()}*`);
             var cursor = editor.getCursor();
             editor.setCursor({
                 line: cursor.line,
@@ -25,6 +28,7 @@ var MdEditor = {
             });
             editor.focus();
         },
+
         setBlockQuote: function setBlockQuote(editor) {
             var cursorLine = editor.getCursor().line;
             editor.replaceRange('> ', {
@@ -36,6 +40,7 @@ var MdEditor = {
             });
             editor.focus();
         },
+
         setHeader: function setHeader(editor, level) {
             var cursorLine = editor.getCursor().line;
             switch (level) {
@@ -90,7 +95,7 @@ var MdEditor = {
             editor.focus();
         },
         setLink: function setLink(editor) {
-            editor.replaceSelection("[](https://)");
+            editor.replaceSelection(`[](https://)`);
             var cursor = editor.getCursor();
             editor.setCursor({
                 line: cursor.line,
@@ -98,8 +103,9 @@ var MdEditor = {
             });
             editor.focus();
         },
+
         setImage: function setImage(editor) {
-            editor.replaceSelection("![]()");
+            editor.replaceSelection(`![]()`);
             var cursor = editor.getCursor();
             editor.setCursor({
                 line: cursor.line,
@@ -107,8 +113,9 @@ var MdEditor = {
             });
             editor.focus();
         },
+
         setInlineCode: function setInlineCode(editor) {
-            editor.replaceSelection("`" + editor.getSelection() + "`");
+            editor.replaceSelection(`\`${editor.getSelection()}\``);
             var cursor = editor.getCursor();
             editor.setCursor({
                 line: cursor.line,
@@ -116,7 +123,8 @@ var MdEditor = {
             });
             editor.focus();
         },
-        uploadImage: function (editor) {
+
+        uploadImage: function(editor) {
             var input_f = $('<input type="file" name="file" accept="image/jpg,image/jpeg,image/png,image/gif">');
             input_f.on('change', function () {
                 var file = input_f[0].files[0];
@@ -129,12 +137,12 @@ var MdEditor = {
                     url: _MTONS.BASE_PATH + "/post/upload",
                     data: form,
                     type: "POST",
-                    cache: false,
-                    processData: false,
-                    contentType: false,
+                    cache: false, //上传文件无需缓存
+                    processData: false, //用于对data参数进行序列化处理 这里必须false
+                    contentType: false, //必须
                     success: function (result) {
                         if (result.status === 200) {
-                            var image = "![" + result.name + "](" + _MTONS.BASE_PATH + result.path + ")";
+                            var image = `![` + result.name + `](` + _MTONS.BASE_PATH + result.path + `)`;
                             editor.replaceSelection(image);
                             var cursor = editor.getCursor();
                             editor.setCursor({
@@ -142,20 +150,22 @@ var MdEditor = {
                                 ch: cursor.ch - 3
                             });
                             editor.focus();
-                        }
-                        else {
+                        } else {
                             layer.alert(result.message);
                         }
                     }
                 });
             });
+
             input_f.click();
         },
+
         setPreMode: function setPreMode(element, mode, editor) {
-            $('button[event=premode].active').removeClass('active');
-            element.addClass('active');
-            $('.editor-container').removeClass('liveMode editMode previewMode').addClass(mode);
+			$('button[event=premode].active').removeClass('active');
+			element.addClass('active');
+			$('.editor-container').removeClass('liveMode editMode previewMode').addClass(mode);
         },
+        
         fullscreen: function (editor) {
             var $btn = $('button[event=fullscreen]');
             $btn.toggleClass('active');
@@ -163,33 +173,36 @@ var MdEditor = {
             var height = $(window).height() - 37;
             if ($btn.hasClass('active')) {
                 editor.setSize('auto', height + 'px');
-            }
-            else {
+            } else {
                 editor.setSize('auto', '450px');
             }
         }
     },
+
     initEditor: function () {
         var editor = CodeMirror.fromTextArea(document.getElementById("content"), {
-            mode: 'markdown',
-            lineNumbers: true,
-            indentUnit: 4,
+            mode: 'markdown',     // Markdown
+            lineNumbers: true,     // 显示行数
+            indentUnit: 4,         // 缩进4格
             tabSize: 4,
             autoCloseBrackets: true,
-            matchBrackets: true,
-            lineWrapping: true,
+            matchBrackets: true,   // 括号匹配
+            lineWrapping: true,    // 自动换行
             highlightFormatting: true,
             theme: 'idea',
             keyMap: 'sublime',
-            extraKeys: { "Enter": "newlineAndIndentContinueMarkdownList" }
+            extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"}
         });
         editor.setSize('auto', '450px');
+
         editor.on('change', function (editor) {
             var $content = $('#content');
             $content.text(editor.getValue());
             $('.editor-preview').html(marked(editor.getValue()));
         });
-        $('.editor-preview').html(marked($('#content').text()));
+		
+		$('.editor-preview').html(marked($('#content').text()));
+
         // Toolbar click
         $('div.editor-toolbar').on('click', 'button[event]', function () {
             var that = $(this);
@@ -238,7 +251,7 @@ var MdEditor = {
                     MdEditor.format.uploadImage(editor);
                     break;
                 case 'premode':
-                    var mode = that.data('value');
+					var mode = that.data('value');
                     MdEditor.format.setPreMode(that, mode, editor);
                     break;
                 case 'fullscreen':
@@ -250,4 +263,3 @@ var MdEditor = {
         });
     }
 };
-//# sourceMappingURL=app.markdown.js.map

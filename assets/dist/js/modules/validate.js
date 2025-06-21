@@ -7,16 +7,17 @@
 |
 +---------------------------------------------------------------------------
 */
-define(function (require, exports, module) {
+
+define(function(require, exports, module) {
     var J = jQuery, _BATH = _MTONS.BASE_PATH;
+
     var _configs = {
         errorElement: "p",
         errorPlacement: function (error, element) {
             error.addClass("help-block");
-            if (element.prop("name") === "email") {
+            if ( element.prop( "name" ) === "email" ) {
                 error.insertAfter(element.parent());
-            }
-            else {
+            } else {
                 error.insertAfter(element);
             }
         },
@@ -27,12 +28,15 @@ define(function (require, exports, module) {
             J(element).closest("div").addClass("has-success").removeClass("has-error");
         }
     };
+
     var _bind_validate = function (formId, configs) {
         var options = J.extend({}, _configs, configs);
+
         require.async(['validation', 'validation-additional'], function () {
             J(formId).validate(options);
         });
     };
+
     var Validate = {
         register: function (formId, sendCodeButtonId) {
             _bind_validate(formId, {
@@ -77,17 +81,18 @@ define(function (require, exports, module) {
                     }
                 }
             });
+
             J(sendCodeButtonId).click(function () {
                 var btn = J(this).button('sending');
                 var email = J('input[name=email]').val();
-                J.getJSON(_BATH + '/email/send_code', { 'email': email, 'type': 3 }, function (data) {
+                J.getJSON(_BATH + '/email/send_code', {'email': email, 'type': 3}, function (data) {
                     if (data.code === 0) {
                         btn.text('重新发送');
                         J('#message').html('<div class="alert alert-success">' + data.message + '</div>');
-                    }
-                    else {
+                    } else {
                         J('#message').html('<div class="alert alert-danger">' + data.message + '</div>');
                     }
+
                     btn.button('reset');
                 });
             });
@@ -112,17 +117,18 @@ define(function (require, exports, module) {
             J(sendCodeButtonId).click(function () {
                 var btn = J(this).button('sending');
                 var email = J('input[name=email]').val();
-                J.getJSON(_BATH + '/email/send_code', { 'email': email, 'type': 2 }, function (data) {
+                J.getJSON(_BATH + '/email/send_code', {'email': email, 'type': 2}, function (data) {
                     if (data.code === 0) {
                         btn.text('重新发送');
                         J('#message').html('<div class="alert alert-success">' + data.message + '</div>');
-                    }
-                    else {
+                    } else {
                         J('#message').html('<div class="alert alert-danger">' + data.message + '</div>');
                     }
+
                     btn.button('reset');
                 });
             });
+
             _bind_validate(formId, {
                 rules: {
                     email: {
@@ -171,21 +177,22 @@ define(function (require, exports, module) {
                     }
                 }
             });
+
             J(sendCodeButtonId).click(function () {
                 var btn = J(this).button('sending');
                 var email = J('input[name=email]').val();
-                J.getJSON(_BATH + '/email/send_code', { 'email': email, 'type': 1 }, function (data) {
+                J.getJSON(_BATH + '/email/send_code', {'email': email, 'type': 1}, function (data) {
                     if (data.code === 0) {
                         btn.text('重新发送');
                         J('#message').html('<div class="alert alert-success">' + data.message + '</div>');
-                    }
-                    else {
+                    } else {
                         J('#message').html('<div class="alert alert-danger">' + data.message + '</div>');
                     }
                     btn.button('reset');
                 });
             });
         },
+
         updatePassword: function (formId) {
             _bind_validate(formId, {
                 rules: {
@@ -206,6 +213,7 @@ define(function (require, exports, module) {
                 }
             });
         },
+
         updateProfile: function (formId) {
             _bind_validate(formId, {
                 rules: {
@@ -217,6 +225,6 @@ define(function (require, exports, module) {
             });
         }
     };
+
     module.exports = Validate;
 });
-//# sourceMappingURL=validate.js.map

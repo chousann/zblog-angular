@@ -2,6 +2,7 @@ seajs.config({
     base: _MTONS.BASE_PATH,
     alias: {
         'plugins': 'dist/js/plugins',
+
         /* modules */
         'main': 'dist/js/modules/main',
         'authc': 'dist/js/modules/authc',
@@ -13,42 +14,56 @@ seajs.config({
         'view': 'dist/js/modules/view',
         'validate': 'dist/js/modules/validate',
         'markdown': 'dist/js/modules/markdown',
+
         /* vendors */
         'pace': 'vendors/pace/pace.min',
         'pjax': 'vendors/pjax/jquery.pjax',
         'lazyload': 'vendors/lazyload/jquery.lazyload',
+
         'share': 'vendors/share.js/js/social-share.min.js',
         'share-css': 'vendors/share.js/css/share.min.css',
+
         'tagsinput': 'vendors/bootstrap-tagsinput/bootstrap-tagsinput',
-        'highlight': 'vendors/highlight/highlight.pack.js',
+
+        'highlight':'vendors/highlight/highlight.pack.js',
         'highlight-css': 'vendors/highlight/styles/github.css',
+
         'validation': 'vendors/jquery-validation/jquery.validate.min.js',
         'validation-additional': 'vendors/jquery-validation/additional-methods.js',
         'validation-localization': 'vendors/jquery-validation/localization/messages_zh.min.js',
+
         'tinymce': 'vendors/tinymce/tinymce.min',
         'form': 'dist/js/jquery.form.min',
+
         'owo': 'vendors/owo/OwO.min.js',
         'owo-css': 'vendors/owo/OwO.min.css',
+
         'codemirror': 'vendors/codemirror/lib/codemirror.js',
         'codemirror-markdown': 'vendors/codemirror/mode/markdown/markdown',
         'codemirror-css': 'vendors/codemirror/lib/codemirror.css',
         'codemirror-theme': 'vendors/codemirror/theme/idea.css',
         'codemirror-keymap': 'vendors/codemirror/keymap/sublime',
+
         'marked': 'vendors/marked/marked.min',
         'app.markdown': 'dist/js/app.markdown'
     },
+
     // 路径配置
     paths: {
         'vendors': _MTONS.BASE_PATH + '/dist/vendors',
         'dist': _MTONS.BASE_PATH + '/dist'
     },
+
     // 变量配置
     vars: {
         'locale': 'zh-cn'
     },
+
     charset: 'utf-8',
+
     debug: false
 });
+
 // var __SEAJS_FILE_VERSION = '?v=1.3';
 //
 // seajs.on('fetch', function(data) {
@@ -73,4 +88,3 @@ seajs.config({
 // 	    data.uri = data.uri.replace(__SEAJS_FILE_VERSION, '');
 // 	}
 // });
-//# sourceMappingURL=sea.config.js.map

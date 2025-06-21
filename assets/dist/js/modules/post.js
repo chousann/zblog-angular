@@ -7,40 +7,47 @@
 |
 +---------------------------------------------------------------------------
 */
-define(function (require, exports, module) {
-    J = jQuery;
-    require('tagsinput');
-    var PostView = function () { };
-    PostView.prototype = {
-        name: 'PostView',
-        init: function () {
-            this.bindEvents();
+
+define(function(require, exports, module) {
+	J = jQuery;
+	require('tagsinput');
+
+	var PostView = function () {};
+	
+	PostView.prototype = {
+        name : 'PostView',
+        init : function () {
+        	this.bindEvents();
         },
         defaults: {
-            type: 'text',
-            defaultEditor: 'ueditor',
-            maxFiles: 6,
+        	type : 'text',
+        	defaultEditor: 'ueditor',
+        	maxFiles : 6,
         },
-        bindEvents: function () {
-            var that = this;
-            that.bindTagit();
-            that.bindValidate();
-            that.bindUpload();
+        bindEvents : function () {
+        	var that = this;
+
+        	that.bindTagit();
+        	that.bindValidate();
+        	that.bindUpload();
+
             $('button[event="post_submit"]').click(function () {
                 var status = $(this).data('status');
                 $("input[name='status']").val(status);
                 $("#submitForm").submit();
             });
         },
-        bindTagit: function () {
+        
+        bindTagit : function () {
             $('#tags').tagsinput({
                 maxTags: 4,
                 trimValue: true
             });
         },
-        bindUpload: function () {
-            $('#upload_btn').change(function () {
-                $(this).upload(_MTONS.BASE_PATH + '/post/upload?crop=thumbnail_post_size', function (data) {
+        
+        bindUpload : function () {
+            $('#upload_btn').change(function(){
+                $(this).upload(_MTONS.BASE_PATH + '/post/upload?crop=thumbnail_post_size', function(data){
                     if (data.status == 200) {
                         var path = data.path;
                         $("#thumbnail_image").css("background", "url(" + path + ") no-repeat scroll center 0 rgba(0, 0, 0, 0)");
@@ -49,6 +56,7 @@ define(function (require, exports, module) {
                 });
             });
         },
+
         bindValidate: function () {
             require.async(['validation'], function () {
                 require.async(['validation-additional'], function () {
@@ -79,11 +87,9 @@ define(function (require, exports, module) {
                             error.addClass("help-block");
                             if (element.prop("type") === "checkbox") {
                                 error.insertAfter(element.parent("label"));
-                            }
-                            else if (element.is("textarea")) {
+                            } else if (element.is("textarea")) {
                                 error.insertAfter(element.closest(".form-group"));
-                            }
-                            else {
+                            } else {
                                 error.insertAfter(element);
                             }
                         },
@@ -98,8 +104,8 @@ define(function (require, exports, module) {
             });
         }
     };
-    exports.init = function () {
-        new PostView().init();
-    };
+	
+	exports.init = function () {
+	    new PostView().init();
+	}
 });
-//# sourceMappingURL=post.js.map
