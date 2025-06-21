@@ -12,11 +12,11 @@ import { ResponseData } from './ResponseData';
 )
 export class EditingOut extends ResponseData {
 
-	public editor: string;
+	public editor!: string;
 
-	public editing: string;
+	public editing!: string;
 
-	public channels: Array<Channel>;
+	public channels!: Array<Channel>;
 
-	public view: PostVO;
+	public view!: PostVO;
 }

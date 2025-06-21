@@ -1,12 +1,13 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { EditorConfig } from 'src/environments/EditorConfig';
+import { EditorConfig } from '../../../environments/EditorConfig';
 export const MYLIB_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => EditorComponent),
   multi: true,
 }
 @Component({
+  standalone: false,
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.sass'],
@@ -26,7 +27,7 @@ export class EditorComponent implements OnInit, ControlValueAccessor {
   markdown = '测试语句';
 
   // 同步属性内容
-  syncModel(str): void {
+  syncModel(str: string): void {
     this.markdown = str;
   }
 

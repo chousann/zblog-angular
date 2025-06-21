@@ -2,13 +2,12 @@ import { Component, ElementRef, EventEmitter, forwardRef, OnInit, Output, ViewCh
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { RootWebDto } from 'src/app/model/RootWebDto';
-import { UploadDto } from 'src/app/model/UploadDto';
-import { UploadResult } from 'src/app/model/UploadResult';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { LocalstorageService } from '../../service/localstorage/localstorage.service';
+import { RootWebDto } from '../../model/RootWebDto';
+import { ResponseDto } from '../../model/ResponseDto';
+import { UploadDto } from '../../model/UploadDto';
 
 export const upload_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -17,6 +16,7 @@ export const upload_VALUE_ACCESSOR = {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.sass'],
@@ -26,14 +26,15 @@ export class UploadComponent implements OnInit, ControlValueAccessor {
 
   paths: FormControl = new FormControl('');
 
-  path: string;
+  path!: string;
 
   baseUrl: string = environment.baseUrl;
 
   @Output() changePath = new EventEmitter<string>();
 
   // 获取文件上传的inputHTML元素
-  @ViewChild('filesMulti') private fileMulti: ElementRef;
+  @ViewChild('filesMulti')
+  private fileMulti!: ElementRef;
   constructor(private http: HttpclientService,
     private localstorage: LocalstorageService,
     private sanitizer: DomSanitizer,

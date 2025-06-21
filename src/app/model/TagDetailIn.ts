@@ -9,5 +9,5 @@ import { Menu } from './Menu';
 )
 export class TagDetailIn {
 	constructor() { }
-  public name: string;
+  public name!: string;
 }

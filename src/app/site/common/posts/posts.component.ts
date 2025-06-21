@@ -1,17 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { LocalstorageService } from '../../../service/localstorage/localstorage.service';
 import { ContentsIn } from '../../../model/ContentsIn';
 import { Page } from '../../../model/Page';
 import { PostVO } from '../../../model/PostVO';
 import { RootWebDto } from '../../../model/RootWebDto';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { PostDto } from 'src/app/model/PostDto';
+import { environment } from '../../../../environments/environment';
+import { PostDto } from '../../../model/PostDto';
+import { ResponseDto } from '../../../model/ResponseDto';
+import { HttpclientService } from '../../../service/httpclient/httpclient.service';
 
 @Component({
+  standalone: false,
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.sass']

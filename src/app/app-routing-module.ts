@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin/admin.component';
 import { AdmineditComponent } from './admin/adminedit/adminedit.component';
-import { AdminlayoutComponent } from './admin/common/adminlayout/adminlayout.component';
-import { ChannelComponent } from './site/channel/channel.component';
 import { ChannellistComponent } from './admin/channellist/channellist.component';
 import { ChannelviewComponent } from './admin/channelview/channelview.component';
-import { EditingComponent } from './site/editing/editing.component';
-import { FooterComponent } from './site/common/footer/footer.component';
-import { HeaderComponent } from './site/common/header/header.component';
-import { IndexComponent } from './site/index/index.component';
-import { LayoutComponent } from './site/common/layout/layout.component';
-import { LoginComponent } from './site/login/login.component';
+import { AdminlayoutComponent } from './admin/common/adminlayout/adminlayout.component';
 import { OptionsComponent } from './admin/options/options.component';
 import { PostlistComponent } from './admin/postlist/postlist.component';
+import { AuthorizecodeComponent } from './site/authorizecode/authorizecode.component';
+import { AvatarsettingComponent } from './site/avatarsetting/avatarsetting.component';
+import { ChannelComponent } from './site/channel/channel.component';
+import { FooterComponent } from './site/common/footer/footer.component';
+import { FrameComponent } from './site/common/frame/frame.component';
+import { HeaderComponent } from './site/common/header/header.component';
+import { LayoutComponent } from './site/common/layout/layout.component';
+import { EditingComponent } from './site/editing/editing.component';
+import { IndexComponent } from './site/index/index.component';
+import { LoginComponent } from './site/login/login.component';
+import { SearchComponent } from './site/search/search.component';
 import { TagComponent } from './site/tag/tag.component';
 import { TagsComponent } from './site/tags/tags.component';
-import { ViewComponent } from './site/view/view.component';
-import { FrameComponent } from './site/common/frame/frame.component';
 import { UserhomeComponent } from './site/userhome/userhome.component';
-import { AvatarsettingComponent } from './site/avatarsetting/avatarsetting.component';
-import { SearchComponent } from './site/search/search.component';
-import { AuthorizecodeComponent } from './site/authorizecode/authorizecode.component';
-
+import { ViewComponent } from './site/view/view.component';
 const routes: Routes = [
   {
     path: 'adminedit', component: AdminlayoutComponent,

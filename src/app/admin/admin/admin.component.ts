@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpclientService } from '../../service/httpclient/httpclient.service';
 import { AdminOut } from '../../model/AdminOut';
 import { RootWebDto } from '../../model/RootWebDto';
-import { ResponseDto } from 'src/app/model/ResponseDto';
+import { environment } from '../../../environments/environment';
+import { ResponseDto } from '../../model/ResponseDto';
 
 @Component({
+  standalone: false,
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.sass']

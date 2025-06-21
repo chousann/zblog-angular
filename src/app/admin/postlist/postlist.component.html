@@ -1,7 +1,7 @@
 <section class="content-header">
     <h1>文章管理</h1>
     <ol class="breadcrumb">
-        <li><a [routerLink]="['/admin']">首页</a></li>
+        <li><a routerLink="['/admin']">首页</a></li>
         <li class="active">文章管理</li>
     </ol>
 </section>
@@ -12,7 +12,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">文章列表</h3>
                     <div class="box-tools">
-                        <a class="btn btn-default btn-sm" [routerLink]="['/editing']">新建</a>
+                        <a class="btn btn-default btn-sm" routerLink="['/editing']">新建</a>
                         <a class="btn btn-default btn-sm" (click)="batch_del()">批量删除</a>
                     </div>
                 </div>
@@ -58,13 +58,13 @@
                                             <img [src]="baseUrl + 'store/storage/md/' + row.author.username + '/' + row.thumbnail" style="width: 80px;">
                                         </td>
                                         <td>
-                                            <a [routerLink]="['/view', {id:row.id}]">{{row.title}}</a>
+                                            <a routerLink="['/view', {id:row.id}]">{{row.title}}</a>
                                         </td>
                                         <td>{{row.author.username}}</td>
                                         <td>{{row.created}}</td>
                                         <td><span class="label label-default">{{row.views}}</span></td>
                                         <td>
-                                            <ng-container *ngIf="row.featured > 0">
+                                            <ng-container *ngIf="row.featured > '0'">
                                                 <span class="label label-danger">推荐</span>
                                             </ng-container>
                                             <ng-container *ngIf="row.weight > 0">
@@ -75,7 +75,7 @@
                                             <ng-container *ngIf="row.status == 0">
                                                 <span class="label label-default">已发布</span>
                                             </ng-container>
-                                            <ng-container *ngIf="row.status == 1">
+                                            <ng-container *ngIf="row.status == '1'">
                                                 <span class="label label-warning">草稿</span>
                                             </ng-container>
                                         </td>
@@ -98,7 +98,7 @@
                                                     data-id="${row.id}" rel="unweight" (click)="unweight(row.id)">消顶</a>
                                             </ng-container>
                                             adminedit
-                                            <a [routerLink]="['/adminedit', {id:row.id}]" class="btn btn-xs btn-info">修改</a>
+                                            <a routerLink="['/adminedit', {id:row.id}]" class="btn btn-xs btn-info">修改</a>
                                             <a href="javascript:void(0);" class="btn btn-xs btn-primary"
                                                 data-id="{{row.id}}" rel="delete" (click)="delete(row.id)">删除</a>
                                         </td>

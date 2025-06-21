@@ -9,7 +9,7 @@ import { Menu } from './Menu';
 )
 export class PasswordIn {
 	constructor() { }
-  public oldPassword: string;
-  public password: string;
-  public password2: string;
+  public oldPassword!: string;
+  public password!: string;
+  public password2!: string;
 }

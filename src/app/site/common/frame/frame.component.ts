@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { RootWebDto } from 'src/app/model/RootWebDto';
-import { SiteInfo } from 'src/app/model/SiteInfo';
+import { RootWebDto } from '../../../model/RootWebDto';
+import { SiteInfo } from '../../../model/SiteInfo';
+
 
 @Component({
+  standalone: false,
   selector: 'app-frame',
   templateUrl: './frame.component.html',
   styleUrls: ['./frame.component.sass']

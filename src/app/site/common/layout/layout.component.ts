@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RootWebDto } from '../../../model/RootWebDto';
 
 @Component({
+  standalone: false,
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.sass']

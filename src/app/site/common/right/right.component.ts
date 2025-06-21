@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { LocalstorageService } from '../../../service/localstorage/localstorage.service';
 import { LastestOut } from '../../../model/LastestOut';
 import { RootWebDto } from '../../../model/RootWebDto';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { ResponseDto } from 'src/app/model/ResponseDto';
+import { environment } from '../../../../environments/environment';
+import { ResponseDto } from '../../../model/ResponseDto';
+import { HttpclientService } from '../../../service/httpclient/httpclient.service';
 
 @Component({
+  standalone: false,
   selector: 'app-right',
   templateUrl: './right.component.html',
   styleUrls: ['./right.component.sass']

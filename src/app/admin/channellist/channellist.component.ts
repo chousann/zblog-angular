@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { environment } from 'src/environments/environment';
 import { ChannelOut } from '../../model/ChannelOut';
 import { RootWebDto } from '../../model/RootWebDto';
 import { SiteInfo } from '../../model/SiteInfo';
-import { ResponseDto } from 'src/app/model/ResponseDto';
+import { environment } from '../../../environments/environment';
+import { ResponseDto } from '../../model/ResponseDto';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
 
 @Component({
+  standalone: false,
   selector: 'app-channellist',
   templateUrl: './channellist.component.html',
   styleUrls: ['./channellist.component.sass']

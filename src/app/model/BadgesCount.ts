@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
   }
 )
 export class BadgesCount {
-	public messages: number; // 消息数量
+	public messages!: number; // 消息数量
 }

@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { environment } from 'src/environments/environment';
 import { AccountProfile } from '../../../model/AccountProfile';
 import { AdminOut } from '../../../model/AdminOut';
 import { BadgesCount } from '../../../model/BadgesCount';
@@ -16,17 +14,20 @@ import { PostListOut } from '../../../model/PostListOut';
 import { PostVO } from '../../../model/PostVO';
 import { RootWebDto } from '../../../model/RootWebDto';
 import { SiteInfo } from '../../../model/SiteInfo';
-import { ResponseDto } from 'src/app/model/ResponseDto';
+import { HttpclientService } from '../../../service/httpclient/httpclient.service';
+import { environment } from '../../../../environments/environment';
+import { ResponseDto } from '../../../model/ResponseDto';
 
 @Component({
+  standalone: false,
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
 
-  base: String;
-  row: object;
+  base!: String;
+  row!: object;
   AccountProfile: AccountProfile = new AccountProfile();
   AdminOut: AdminOut = new AdminOut();
   BadgesCount: BadgesCount =new BadgesCount();
@@ -38,11 +39,11 @@ export class HeaderComponent implements OnInit {
   PostListOut: PostListOut = new PostListOut();
   PostVO: PostVO = new PostVO();
 
-  public queryString: string;
+  public queryString!: string;
 
   public baseurl: string;
 
-  channelOut: ChannelOut;
+  channelOut!: ChannelOut;
   constructor(public rootWebDto: RootWebDto,
     public siteInfo: SiteInfo,
     private router: Router,

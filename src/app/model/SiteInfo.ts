@@ -10,7 +10,7 @@ import { ResponseData } from './ResponseData';
 )
 export class SiteInfo extends ResponseData {
 
-  public options: Map<any, any> = new Map<any, any>();
+  public options = new Map<any, any>();
   public list: Channel[];
 
   public copy(data: SiteInfo) {

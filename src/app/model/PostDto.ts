@@ -11,6 +11,6 @@ import { PostVO } from './PostVO';
 )
 export class PostDto extends ResponseData {
 
-    postList: Page<PostVO>;
+    postList!: Page<PostVO>;
 
 }

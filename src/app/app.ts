@@ -1,24 +1,25 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { LocalstorageService } from './service/localstorage/localstorage.service';
 import { Title, Meta } from '@angular/platform-browser';
-import { SiteInfo } from './model/SiteInfo';
-import { Channel } from './model/Channel';
-import { HttpclientService } from './service/httpclient/httpclient.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../environments/environment';
 import { AccountProfile } from './model/AccountProfile';
-import { RootWebDto } from './model/RootWebDto';
 import { ResponseDto } from './model/ResponseDto';
+import { RootWebDto } from './model/RootWebDto';
+import { SiteInfo } from './model/SiteInfo';
+import { HttpclientService } from './service/httpclient/httpclient.service';
+import { LocalstorageService } from './service/localstorage/localstorage.service';
+
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.html',
+  standalone: false,
+  styleUrl: './app.scss'
 })
-export class AppComponent implements OnInit {
+export class App implements OnInit{
   title = 'zblog';
-  test: string;
-  AUTHTOKEN: string;
+  test!: string;
+  AUTHTOKEN!: string;
 
   constructor(
     private http: HttpclientService,

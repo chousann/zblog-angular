@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { User } from '../../model/user';
-import { environment } from 'src/environments/environment';
 import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AccountProfile } from '../../model/AccountProfile';
 import { RootWebDto } from '../../model/RootWebDto';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { environment } from '../../../environments/environment';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
 
 @Component({
+  standalone: false,
   selector: 'authorize-code',
   templateUrl: './authorizecode.component.html',
   styleUrls: ['./authorizecode.component.sass']

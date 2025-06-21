@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { User } from '../../model/user';
-import { environment } from 'src/environments/environment';
-import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { AccountProfile } from '../../model/AccountProfile';
 import { RootWebDto } from '../../model/RootWebDto';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { LocalstorageService } from '../../service/localstorage/localstorage.service';
+
 
 @Component({
+  standalone: false,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']

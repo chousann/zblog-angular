@@ -1,12 +1,14 @@
 import { AfterViewInit, Attribute, Directive, EventEmitter, Input, Output } from '@angular/core';
-import { EditorConfig } from 'src/environments/EditorConfig';
+import { EditorConfig } from '../environments/EditorConfig';
 declare var editormd: any;
 declare var $: any;
 @Directive({
+  standalone: false,
   selector: '[appEditor]'
 })
 export class EditorDirective implements AfterViewInit {
-  @Input() editormdConfig: EditorConfig; // 配置选项
+  @Input()
+  editormdConfig: EditorConfig = new EditorConfig; // 配置选项
   @Output() onEditorChange: EventEmitter<string> = new EventEmitter<string>(); // 发射器
   editor: any; // editormd编辑器
 

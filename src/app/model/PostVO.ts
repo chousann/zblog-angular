@@ -16,8 +16,8 @@ export class PostVO extends Post {
 		this.channel = new Channel();
 		this.attribute = new PostAttribute();
 	 }
-	public editor: string;
-	public content: string;
+	public editor!: string;
+	public content!: string;
 
 	public author: UserVO;
 	public channel: Channel;
@@ -29,7 +29,7 @@ export class PostVO extends Post {
 			return this.tags.split(",");
 		}
 
-		return null;
+		return [];
 	}
 
 	public copy(p: PostVO) {

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RootWebDto } from 'src/app/model/RootWebDto';
-import { SiteInfo } from 'src/app/model/SiteInfo';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
+import { RootWebDto } from '../../../model/RootWebDto';
+import { SiteInfo } from '../../../model/SiteInfo';
+import { HttpclientService } from '../../../service/httpclient/httpclient.service';
 
 @Component({
+  standalone: false,
   selector: 'app-oauth',
   templateUrl: './oauth.component.html',
   styleUrls: ['./oauth.component.sass']

@@ -14,8 +14,8 @@ export class ChannelDetailOut extends ResponseData{
 		this.channel = new Channel();
 	 }
 	public channel: Channel;
-	public order: string;
-	public pageNo: number;
+	public order!: string;
+	public pageNo!: number;
 
 	public copy(data: ChannelDetailOut) {
 		this.channel = data.channel;

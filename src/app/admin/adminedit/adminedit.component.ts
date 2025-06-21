@@ -1,17 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { EditingOut } from '../../model/EditingOut';
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
 import { SiteInfo } from '../../model/SiteInfo';
 import { User } from '../../model/user';
 import { VditorComponent } from '../../common/vditor/vditor.component';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { ResponseDto } from 'src/app/model/ResponseDto';
+import { environment } from '../../../environments/environment';
+import { ResponseDto } from '../../model/ResponseDto';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
 
 @Component({
+  standalone: false,
   selector: 'app-adminedit',
   templateUrl: './adminedit.component.html',
   styleUrls: ['./adminedit.component.sass']

@@ -12,18 +12,18 @@ export class AccountProfile extends ResponseData {
 	constructor() { 
     super();
   }
-  public id: string;
-  public username: string;
-  public avatar: string;
-  public name: string;
-  public email: string;
+  public id!: string;
+  public username!: string;
+  public avatar!: string;
+  public name!: string;
+  public email!: string;
 
-  public lastLogin: Date;
-  public status: string;
+  public lastLogin!: Date;
+  public status!: string;
 
-  public badgesCount: BadgesCount;
+  public badgesCount!: BadgesCount;
   
-  public authToken: string;
+  public authToken!: string;
 
-  public menus: Menu[];
+  public menus!: Menu[];
 }

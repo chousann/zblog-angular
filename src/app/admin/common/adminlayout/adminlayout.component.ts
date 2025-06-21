@@ -1,10 +1,11 @@
 import { Compiler, Component, ComponentFactory, NgModule, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { environment } from 'src/environments/environment';
 import { AdminOut } from '../../../model/AdminOut';
 import { RootWebDto } from '../../../model/RootWebDto';
+import { environment } from '../../../../environments/environment';
+import { HttpclientService } from '../../../service/httpclient/httpclient.service';
 @Component({
+  standalone: false,
   selector: 'app-adminlayout',
   templateUrl: './adminlayout.component.html',
   styleUrls: ['./adminlayout.component.sass']

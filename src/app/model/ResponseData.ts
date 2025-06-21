@@ -4,5 +4,5 @@ export class ResponseData {
     constructor() {
     }
 
-    map: Map<any, any>;
+    map!: Map<any, any>;
 }

@@ -7,6 +7,7 @@ export const MYLIB_VALUE_ACCESSOR = {
   multi: true,
 }
 @Component({
+  standalone: false,
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
   styleUrls: ['./markdown.component.sass'],

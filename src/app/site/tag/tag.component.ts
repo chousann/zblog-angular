@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Compiler, Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { LocalstorageService } from '../../service/localstorage/localstorage.service';
+import { environment } from '../../../environments/environment';
+import { ResponseDto } from '../../model/ResponseDto';
 import { RootWebDto } from '../../model/RootWebDto';
 import { TagDetailIn } from '../../model/TagDetailIn';
 import { TagDetailOut } from '../../model/TagDetailOut';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { ResponseDto } from 'src/app/model/ResponseDto';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { LocalstorageService } from '../../service/localstorage/localstorage.service';
+
 
 @Component({
+  standalone: false,
   selector: 'app-tag',
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.sass']

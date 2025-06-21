@@ -12,17 +12,17 @@ import { ResponseData } from './ResponseData';
 )
 export class AdminOut extends ResponseData {
 
-	public editor: string;
-	public channelCount: string;
-	public postCount: string;
-	public commentCount: string;
-	public userCount: string;
-	public freeMemory: string;
-	public totalMemory: string;
-	public usedMemory: string;
-	public memPercent: string;
-	public os: string;
-	public javaVersion: string;
+	public editor!: string;
+	public channelCount!: string;
+	public postCount!: string;
+	public commentCount!: string;
+	public userCount!: string;
+	public freeMemory!: string;
+	public totalMemory!: string;
+	public usedMemory!: string;
+	public memPercent!: string;
+	public os!: string;
+	public javaVersion!: string;
 	public copy(data: AdminOut) {
 
 		this.editor = data.editor;

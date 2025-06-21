@@ -9,12 +9,12 @@ import { Menu } from './Menu';
 )
 export class PostTag {
 	constructor() { }
-  public id: number;
+  public id!: number;
 
-  public postId: number;
+  public postId!: number;
 
-  public tagId: number;
+  public tagId!: number;
 
-  public weight: number;
+  public weight!: number;
 
 }

@@ -7,7 +7,7 @@ export class ResponseDto<T extends ResponseData> {
     }
     public common: ResponseCommon;
 	
-    public data: T;
+    public data!: T;
 
     public copy(dto: ResponseDto<T>) {
     }

@@ -1,16 +1,16 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Page } from 'src/app/model/Page';
-import { PostVO } from 'src/app/model/PostVO';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { RootWebDto } from 'src/app/model/RootWebDto';
-import { SearchResqponseOut } from 'src/app/model/SearchResqponseOut';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+import { ResponseDto } from '../../model/ResponseDto';
+import { RootWebDto } from '../../model/RootWebDto';
+import { SearchResqponseOut } from '../../model/SearchResqponseOut';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { LocalstorageService } from '../../service/localstorage/localstorage.service';
+
 
 @Component({
+  standalone: false,
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.sass']

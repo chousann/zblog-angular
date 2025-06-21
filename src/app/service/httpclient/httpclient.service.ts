@@ -2,9 +2,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { AccountProfile } from '../../model/AccountProfile';
 import { RootWebDto } from '../../model/RootWebDto';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 import { AccountProfile } from '../../model/AccountProfile';
 import { PostListOut } from '../../model/PostListOut';
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
+  standalone: false,
   selector: 'app-postlist',
   templateUrl: './postlist.component.html',
   styleUrls: ['./postlist.component.sass']

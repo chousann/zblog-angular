@@ -1,15 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, Component, ComponentFactory, ElementRef, NgModule, NgZone, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { HttpclientService } from '../../service/httpclient/httpclient.service';
 import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
 import Vditor from 'vditor'
-import { ResponseDto } from 'src/app/model/ResponseDto';
+import { environment } from '../../../environments/environment';
+import { ResponseDto } from '../../model/ResponseDto';
 
 @Component({
+  standalone: false,
   selector: 'app-view',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.sass']
@@ -19,11 +20,12 @@ export class ViewComponent implements OnInit, AfterViewInit  {
   // @ViewChild('content', { read: ViewContainerRef }) content: ViewContainerRef;
   public baseUrl: string = environment.baseUrl;
   @ViewChild("vditorPreview")
-  public priview: ElementRef;
+  public priview!: ElementRef;
 
-  @ViewChild('topic') topic: ElementRef;
+  @ViewChild('topic')
+  topic!: ElementRef;
 
-  id: string;
+  id!: string;
   public view: PostVO = new PostVO();
   constructor(private http: HttpClient,
     private localstorage: LocalstorageService,
@@ -75,29 +77,29 @@ export class ViewComponent implements OnInit, AfterViewInit  {
   }
 
 
-  create(templateString: string): ComponentFactory<any> {
+  // create(templateString: string): ComponentFactory<any> {
 
-    @Component({
-      selector: 'dynamic-component',
-      template: templateString
-    })
-    class Dy implements OnInit {
-      constructor() {
+  //   @Component({
+  //     selector: 'dynamic-component',
+  //     template: templateString
+  //   })
+  //   class Dy implements OnInit {
+  //     constructor() {
 
-      }
-      ngOnInit() {
-      }
-    }
+  //     }
+  //     ngOnInit() {
+  //     }
+  //   }
 
-    @NgModule({
-      declarations: [
-        Dy
-      ]
-    })
-    class DyModule { }
+  //   @NgModule({
+  //     declarations: [
+  //       Dy
+  //     ]
+  //   })
+  //   class DyModule { }
 
-    return this.compiler.compileModuleAndAllComponentsSync(DyModule)
-      .componentFactories.find(x => x.componentType ===Dy)
-  }
+  //   return this.compiler.compileModuleAndAllComponentsSync(DyModule)
+  //     .componentFactories.find(x => x.componentType ===Dy)
+  // }
 
 }

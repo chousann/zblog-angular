@@ -16,10 +16,10 @@ export class PostListOut extends ResponseData {
 		this.page = new Page<PostVO>();
 	 }
 	public page: Page<PostVO>;
-	public title: string;
-	public id: string;
-	public channelId: string;
-	public channels: Channel[];
+	public title!: string;
+	public id!: string;
+	public channelId!: string;
+	public channels!: Channel[];
 	public copy(data: any) {
 
 		this.page = data.page;

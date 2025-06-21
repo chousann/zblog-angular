@@ -9,8 +9,8 @@ import { Menu } from './Menu';
 )
 export class ContentsIn {
 	constructor() { }
-  public channelId: number;
-	public pageNo: number;
-	public order: string;
-	public size: number;
+  public channelId!: number;
+	public pageNo!: number;
+	public order!: string;
+	public size!: number;
 }

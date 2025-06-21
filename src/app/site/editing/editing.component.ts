@@ -1,31 +1,32 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { EditorConfig } from 'src/environments/EditorConfig';
-import { environment } from 'src/environments/environment';
 import { EditingOut } from '../../model/EditingOut';
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
 import { User } from '../../model/user';
 import { VditorComponent } from '../../common/vditor/vditor.component';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { Post } from 'src/app/model/Post';
+import { EditorConfig } from '../../../environments/EditorConfig';
+import { environment } from '../../../environments/environment';
+import { Post } from '../../model/Post';
+import { ResponseDto } from '../../model/ResponseDto';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
 
 @Component({
+  standalone: false,
   selector: 'app-editing',
   templateUrl: './editing.component.html',
   styleUrls: ['./editing.component.sass']
 })
 export class EditingComponent implements OnInit {
   public baseurl: string;
-  status: string;
+  status!: string;
   public post: PostVO = new PostVO();
   user: User = new User();
   public editingOut: EditingOut = new EditingOut();
 
   @ViewChild(VditorComponent)
-  private vditorComponent: VditorComponent;
+  private vditorComponent!: VditorComponent;
 
   constructor(private router: Router,
     public rootWebDto: RootWebDto,

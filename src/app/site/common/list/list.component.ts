@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Page } from '../../../model/Page';
 import { PostTagVO } from '../../../model/PostTagVO';
 import { TagDetailOut } from '../../../model/TagDetailOut';
+import { environment } from '../../../../environments/environment';
 
 @Component({
+  standalone: false,
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.sass']

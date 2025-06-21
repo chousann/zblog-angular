@@ -1,15 +1,17 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Page } from 'src/app/model/Page';
-import { PostDto } from 'src/app/model/PostDto';
-import { PostVO } from 'src/app/model/PostVO';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { RootWebDto } from 'src/app/model/RootWebDto';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
-import { environment } from 'src/environments/environment';
+import { PostVO } from '../../model/PostVO';
+import { environment } from '../../../environments/environment';
+import { Page } from '../../model/Page';
+import { PostDto } from '../../model/PostDto';
+import { ResponseDto } from '../../model/ResponseDto';
+import { RootWebDto } from '../../model/RootWebDto';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { LocalstorageService } from '../../service/localstorage/localstorage.service';
+
 
 @Component({
+  standalone: false,
   selector: 'app-userhome',
   templateUrl: './userhome.component.html',
   styleUrls: ['./userhome.component.sass']

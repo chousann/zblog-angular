@@ -1,13 +1,14 @@
 import { Component, Input, NgZone, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { RootWebDto } from 'src/app/model/RootWebDto';
-import { UserInfoOut } from 'src/app/model/UserInfoOut';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
+import { ResponseDto } from '../../../model/ResponseDto';
+import { RootWebDto } from '../../../model/RootWebDto';
+import { UserInfoOut } from '../../../model/UserInfoOut';
+import { HttpclientService } from '../../../service/httpclient/httpclient.service';
+import { LocalstorageService } from '../../../service/localstorage/localstorage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.sass']

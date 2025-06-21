@@ -8,9 +8,9 @@ import { UserVO } from './UserVO';
 )
 export class PostAttribute {
 
-    public id: string;
+    public id!: string;
 
-    public editor: string;
+    public editor!: string;
 
-    public content: string; // 内容
+    public content!: string; // 内容
 }

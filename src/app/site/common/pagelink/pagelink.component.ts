@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-pagelink',
   templateUrl: './pagelink.component.html',
   styleUrls: ['./pagelink.component.sass']

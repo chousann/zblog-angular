@@ -10,11 +10,11 @@ export class Page<T> {
 	 }
 	public content: T[];
 
-	public number: number;
+	public number!: number;
 
-	public totalPages: number;
+	public totalPages!: number;
 
-	public size: number;
+	public size!: number;
 
 	public copy(data: Page<T>) {
 		this.content = data.content;

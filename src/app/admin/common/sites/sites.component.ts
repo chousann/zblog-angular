@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { environment } from 'src/environments/environment';
 import { RootWebDto } from '../../../model/RootWebDto';
 import { SiteInfo } from '../../../model/SiteInfo';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { ResponseData } from 'src/app/model/ResponseData';
+import { HttpclientService } from '../../../service/httpclient/httpclient.service';
+import { environment } from '../../../../environments/environment';
+import { ResponseDto } from '../../../model/ResponseDto';
+import { ResponseData } from '../../../model/ResponseData';
 
 @Component({
+  standalone: false,
   selector: 'app-sites',
   templateUrl: './sites.component.html',
   styleUrls: ['./sites.component.sass']

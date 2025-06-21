@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Compiler, Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 import { Channel } from '../../model/Channel';
 import { RootWebDto } from '../../model/RootWebDto';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { SiteInfo } from 'src/app/model/SiteInfo';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { environment } from '../../../environments/environment';
+import { ResponseDto } from '../../model/ResponseDto';
+import { SiteInfo } from '../../model/SiteInfo';
 
 @Component({
+  standalone: false,
   selector: 'app-channelview',
   templateUrl: './channelview.component.html',
   styleUrls: ['./channelview.component.sass']

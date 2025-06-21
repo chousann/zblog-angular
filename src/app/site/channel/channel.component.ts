@@ -1,24 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 import { ChannelDetailOut } from '../../model/ChannelDetailOut';
 import { ContentsIn } from '../../model/ContentsIn';
 import { Page } from '../../model/Page';
 import { PostVO } from '../../model/PostVO';
 import { RootWebDto } from '../../model/RootWebDto';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { ResponseDto } from 'src/app/model/ResponseDto';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { environment } from '../../../environments/environment';
+import { ResponseDto } from '../../model/ResponseDto';
 
 @Component({
+  standalone: false,
   selector: 'app-channel',
   templateUrl: './channel.component.html',
   styleUrls: ['./channel.component.sass']
 })
 export class ChannelComponent implements OnInit {
 
-  id: number;
+  id!: number;
   channelDetailOut: ChannelDetailOut = new ChannelDetailOut();
   constructor(private http: HttpclientService,
     private localstorage: LocalstorageService,

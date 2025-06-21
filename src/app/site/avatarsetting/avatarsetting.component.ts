@@ -1,17 +1,17 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PasswordIn } from 'src/app/model/PasswordIn';
-import { ProfileIn } from 'src/app/model/ProfileIn';
-import { ProfileOut } from 'src/app/model/ProfileOut';
-import { ResponseDto } from 'src/app/model/ResponseDto';
-import { RootWebDto } from 'src/app/model/RootWebDto';
-import { UploadDto } from 'src/app/model/UploadDto';
-import { UploadResult } from 'src/app/model/UploadResult';
-import { HttpclientService } from 'src/app/service/httpclient/httpclient.service';
-import { LocalstorageService } from 'src/app/service/localstorage/localstorage.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+import { PasswordIn } from '../../model/PasswordIn';
+import { ProfileIn } from '../../model/ProfileIn';
+import { ProfileOut } from '../../model/ProfileOut';
+import { ResponseDto } from '../../model/ResponseDto';
+import { RootWebDto } from '../../model/RootWebDto';
+import { UploadDto } from '../../model/UploadDto';
+import { HttpclientService } from '../../service/httpclient/httpclient.service';
+import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-avatarsetting',
   templateUrl: './avatarsetting.component.html',
   styleUrls: ['./avatarsetting.component.sass']

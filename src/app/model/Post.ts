@@ -11,31 +11,31 @@ import { ResponseData } from './ResponseData';
 )
 export class Post extends ResponseData {
 
-	public id: string;
+	public id!: string;
 
-	public channelId: string;
+	public channelId!: string;
 
-	public title: string;
+	public title!: string;
 
-	public summary: string;
+	public summary!: string;
 
-	public thumbnail: string;
+	public thumbnail!: string;
 
-	public tags: string;
+	public tags!: string;
 
-	public authorId: string;
+	public authorId!: string;
 
-	public created: Date;
+	public created!: Date;
 
-	public favors: string;
+	public favors!: string;
 
-	public comments: string;
+	public comments!: string;
 
-	public views: string;
+	public views!: string;
 
-	public status: string;
+	public status!: string;
 
-	public featured: string;
+	public featured!: string;
 
-	public weight: string;
+	public weight!: string;
 }

@@ -4,7 +4,7 @@ import { UserVO } from './UserVO';
 
 export class CommentVO extends Comment{
 
-	public created: Date;
+	//public created: Date;
 
 	// extend parameter
 	public author: UserVO;

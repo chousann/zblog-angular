@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { RootWebDto } from 'src/app/model/RootWebDto';
-import { environment } from 'src/environments/environment';
 import Vditor from 'vditor'
+import { RootWebDto } from '../../model/RootWebDto';
+import { environment } from '../../../environments/environment';
 
 @Component({
+  standalone: false,
   selector: 'app-vditor',
   templateUrl: './vditor.component.html',
   styleUrls: ['./vditor.component.sass']
@@ -13,7 +14,7 @@ export class VditorComponent implements OnInit {
   
   constructor(public rootWebDto: RootWebDto) { }
 
-  public vditor: Vditor; 
+  public vditor!: Vditor; 
   // File:[];
   ngOnInit(): void {
     this.vditor = new Vditor('vditor', {

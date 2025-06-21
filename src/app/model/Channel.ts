@@ -9,19 +9,19 @@ import { ResponseData } from './ResponseData';
 )
 export class Channel extends ResponseData {
 
-	public id: number;
+	public id!: number;
 
-	public type: number;
+	public type!: number;
 
-	public name: string;
+	public name!: string;
 
-	public key: string;
+	public key!: string;
 
-	public thumbnail: string;
+	public thumbnail!: string;
 
-	public status: string;
+	public status!: string;
 
-	public weight: string;
+	public weight!: string;
 
 	public copy(data: Channel) {
 		this.id = data.id;

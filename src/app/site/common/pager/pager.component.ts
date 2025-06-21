@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-pager',
   templateUrl: './pager.component.html',
   styleUrls: ['./pager.component.sass']

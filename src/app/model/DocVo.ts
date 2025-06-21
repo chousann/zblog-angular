@@ -12,9 +12,9 @@ import { UserVO } from './UserVO';
 export class DocVo {
 	constructor() {
 	 }
-	 public id: string;
-	 public title: string;
-	 public summy:string;
+	 public id!: string;
+	 public title!: string;
+	 public summy!: string;
 
 	public copy(p: DocVo) {
 		this.id = p.id;

@@ -9,34 +9,34 @@ import { Menu } from './Menu';
 )
 export class Tag {
 	constructor() { }
-  public id: number;
+  public id!: number;
 
   /**
    * 标签名称
    */
-  public name: string;
+  public name!: string;
 
   /**
    * 预览图
    */
-  public thumbnail: string;
+  public thumbnail!: string;
 
   /**
    * 描述
    */
-  public description: string;
+  public description!: string;
 
   /**
    * 最后发表的文章Id
    */
-  public latestPostId: number;
+  public latestPostId!: number;
 
-  public created: Date;
+  public created!: Date;
 
-  public updated: Date;
+  public updated!: Date;
 
   /**
    * 标签下的文章数
    */
-  public posts: number;
+  public posts!: number;
 }
