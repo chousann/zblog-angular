@@ -23,6 +23,7 @@ import { TagsComponent } from './site/tags/tags.component';
 import { UserhomeComponent } from './site/userhome/userhome.component';
 import { ViewComponent } from './site/view/view.component';
 import { Ai } from './ai/ai';
+import { App } from './app';
 const routes: Routes = [
   {
     path: 'adminedit', component: AdminlayoutComponent,
@@ -278,6 +279,8 @@ const routes: Routes = [
     ]
   },{
     path: 'ai', component: Ai
+  },{
+    path: '**', component: App
   }
 ];
 
