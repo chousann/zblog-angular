@@ -22,6 +22,7 @@ import { TagComponent } from './site/tag/tag.component';
 import { TagsComponent } from './site/tags/tags.component';
 import { UserhomeComponent } from './site/userhome/userhome.component';
 import { ViewComponent } from './site/view/view.component';
+import { Ai } from './ai/ai';
 const routes: Routes = [
   {
     path: 'adminedit', component: AdminlayoutComponent,
@@ -275,7 +276,9 @@ const routes: Routes = [
         component: FooterComponent
       }
     ]
-  },
+  },{
+    path: 'ai', component: Ai
+  }
 ];
 
 @NgModule({

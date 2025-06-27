@@ -42,6 +42,7 @@ import { TagsComponent } from './site/tags/tags.component';
 import { UserhomeComponent } from './site/userhome/userhome.component';
 import { ViewComponent } from './site/view/view.component';
 import { EditorDirective } from './editor.directive';
+import { Ai } from './ai/ai';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { EditorDirective } from './editor.directive';
     UploadComponent,
     OauthComponent,
     SearchComponent,
-    AuthorizecodeComponent
+    AuthorizecodeComponent,
+    Ai
   ],
   imports: [
     AppRoutingModule,

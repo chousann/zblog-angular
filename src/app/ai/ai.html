@@ -1,0 +1,23 @@
+<div style="position: absolute; top: 0px; width: 100%; padding-left: 10%; padding-right: 10%;">
+    <input [(ngModel)]="token" name="token" autocomplete="false" style="width: 75%;" placeholder="请输入你的TOKEN，然后点击连接按钮">
+    <button (click)="connect()" style="width: 25%;">连接</button>
+</div>
+<div
+    style="display: flex; flex-direction: column; position: absolute; height: 100%; width: 100%; padding-left: 10%; padding-right: 10%;">
+    <div style="flex-grow: 1; overflow-x: auto;">
+        <div *ngFor="let msg of msgList">
+            <div *ngIf="msg.type == 'q'" style="display: flex;">
+                <p style="max-width: 80%; margin-left: auto; color: blue;" [innerHtml]="mdToHtml(msg.content)"></p>
+            </div>
+
+            <div *ngIf="msg.type == 'a'" style="display: flex;">
+                <p style="max-width: 80%; margin-right: auto; color: black;" [innerHtml]="mdToHtml(msg.content)"></p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <input [(ngModel)]="msg" name="msg" autocomplete="false" style="width: 75%;">
+        <button (click)="click()" style="width: 25%;">send</button>
+    </div>
+</div>
+<div id="vditor" style="display: none;"></div>
