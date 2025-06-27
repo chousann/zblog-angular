@@ -84,3 +84,11 @@ npm start
 
 6：编译发布包
 npm run build
+
+
+github marketplace ai
+教程
+https://github.com/marketplace/models/azure-openai/gpt-4-1
+
+将 Angular 部署到 GitHub Pages
+https://github.com/marketplace/actions/deploy-angular-to-github-pages

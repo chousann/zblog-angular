@@ -2,9 +2,15 @@
     <input [(ngModel)]="token" name="token" autocomplete="false" style="width: 75%;" placeholder="请输入你的TOKEN，然后点击连接按钮">
     <button (click)="connect()" style="width: 25%;">连接</button>
 </div>
+<div style="height: 100%; width: 100%; position: absolute; 
+    background-image: url(assets/20829838.png);
+    background-size: cover;
+    opacity: 0.6;">
+
+</div>
 <div
     style="display: flex; flex-direction: column; position: absolute; height: 100%; width: 100%; padding-left: 10%; padding-right: 10%;">
-    <div style="flex-grow: 1; overflow-x: auto;">
+    <div style="flex-grow: 1; overflow-x: auto; opacity: 1;">
         <div *ngFor="let msg of msgList">
             <div *ngIf="msg.type == 'q'" style="display: flex;">
                 <p style="max-width: 80%; margin-left: auto; color: blue;" [innerHtml]="mdToHtml(msg.content)"></p>
