@@ -1,6 +1,8 @@
 <div style="position: absolute; top: 0px; width: 100%; padding-left: 10%; padding-right: 10%;">
-    <input [(ngModel)]="token" name="token" autocomplete="false" style="width: 75%;" placeholder="请输入你的TOKEN，然后点击连接按钮">
-    <button (click)="connect()" style="width: 25%;">连接</button>
+    <input [(ngModel)]="endpoint" name="endpoint" autocomplete="false" style="width: 35%;" placeholder="endpoint">
+    <input [(ngModel)]="model" name="model" autocomplete="false" style="width: 15%;" placeholder="model">
+    <input [(ngModel)]="token" name="token" autocomplete="false" style="width: 35%;" placeholder="请输入你的TOKEN，然后点击连接按钮">
+    <button (click)="connect()" style="width: 15%;">连接</button>
 </div>
 <div style="height: 100%; width: 100%; position: absolute; 
     background-image: url(assets/20829838.png);

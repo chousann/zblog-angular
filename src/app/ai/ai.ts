@@ -15,8 +15,8 @@ export class Ai implements OnInit {
   public msg: string = "";
 
   public token: string = "";
-  endpoint: string = "https://models.github.ai/inference";
-  model: string = "openai/gpt-4.1";
+  public endpoint: string = "https://models.github.ai/inference";
+  public model: string = "openai/gpt-4.1";
   client: any;
   vditor: Vditor;
   constructor(
