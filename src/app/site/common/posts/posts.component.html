@@ -78,6 +78,7 @@
     </ng-container>
   </li>
 </ng-container>
+<app-pager [p]="allposts" [spans]="5" (pageChange)="pageChange($event)"></app-pager>
 <ng-container *ngIf="allposts.content.length < 1">
   <li class="content">
     <div class="content-box posts-aside">

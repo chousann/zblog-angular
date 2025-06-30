@@ -28,7 +28,6 @@ import { FrameComponent } from './site/common/frame/frame.component';
 import { HeaderComponent } from './site/common/header/header.component';
 import { LayoutComponent } from './site/common/layout/layout.component';
 import { ListComponent } from './site/common/list/list.component';
-import { PagelinkComponent } from './site/common/pagelink/pagelink.component';
 import { PagerComponent } from './site/common/pager/pager.component';
 import { PostsComponent } from './site/common/posts/posts.component';
 import { RightComponent } from './site/common/right/right.component';
@@ -76,7 +75,6 @@ import { Ai } from './ai/ai';
     UserhomeComponent,
     SidebarComponent,
     PagerComponent,
-    PagelinkComponent,
     AvatarsettingComponent,
     UploadComponent,
     OauthComponent,

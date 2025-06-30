@@ -4,52 +4,25 @@
     <!-- <#assign pageNo=p.number + 1 />
     <#assign pageCount=p.totalPages /> -->
     <ng-container *ngIf="p.number +1 > 1">
-      <li><a href="${cURL}${pageNo - 1}" pageNo="${pageNo - 1}" class="prev"><i class="fa fa-angle-left"></i></a></li>
+      <li (click)="click(p.number-1)"><span pageNo="${p.number - 1}" class="prev"><i
+            class="fa fa-angle-left"></i></span></li>
     </ng-container>
     <ng-container *ngIf="!(p.number + 1 > 1)">
       <li class="disabled"><span><i class="fa fa-angle-left"></i></span></li>
     </ng-container>
 
-    <!-- <#local totalNo=span * 2 + 3 />
-    <#local totalNo1=totalNo - 1 /> -->
-
-    <ng-container *ngIf="p.totalPages > spans">
-      <!-- <#if (pageNo <=span + 2)>
-        <#list 1..totalNo1 as i>
-          <app-pagelink [pageNo]="pageNo" [idx]="i" [url]="cURL"></app-pagelink>
-        </#list>
-        <app-pagelink [pageNo]="0" [idx]="0" [url]="#"></app-pagelink>
-        <app-pagelink [pageNo]="pageNo" [idx]="pageCount" [url]="cURL"></app-pagelink>
-        <#elseif (pageNo> (pageCount - (span + 2)))>
-          <app-pagelink [pageNo]="pageNo" [idx]="1" [url]="cURL"></app-pagelink>
-          <app-pagelink [pageNo]="0" [idx]="0" [url]="#"></app-pagelink>
-          <#local num=pageCount - totalNo + 2 />
-          <#list num..pageCount as i>
-            <app-pagelink [pageNo]="pageNo" [idx]="i" [url]="cURL"></app-pagelink>
-          </#list>
-          <#else>
-            <app-pagelink [pageNo]="pageNo" [idx]="i" [url]="cURL"></app-pagelink>
-            <app-pagelink [pageNo]="0" [idx]="0" [url]="#"></app-pagelink>
-            <#local num=pageNo - span />
-            <#local num2=pageNo + span />
-            <#list num..num2 as i>
-              <app-pagelink [pageNo]="pageNo" [idx]="i" [url]="cURL"></app-pagelink>
-            </#list>
-            <app-pagelink [pageNo]="0" [idx]="0" [url]="#"></app-pagelink>
-            <app-pagelink [pageNo]="pageNo" [idx]="pageCount" [url]="cURL"></app-pagelink>
-      </#if> -->
-    </ng-container>
-    <ng-container *ngIf="p.totalPages <= spans && p.totalPages > 1">
-      <ng-container *ngFor="let in of constructor(p.totalPages); let i = index">
-        <app-pagelink [pageNo]="pageNo" [idx]="i" [url]="cURL"></app-pagelink>
+    <ng-container *ngFor="let item of [].constructor(p.totalPages); let i = index">
+      <ng-container *ngIf="getstatue(p.totalPages, p.number + 1, spans, i + 1) == 1">
+        <li (click)="click(p.number+i+1)"><span>{{1+1}}</span></li>
+      </ng-container>
+      <ng-container *ngIf="getstatue(p.totalPages, p.number + 1, spans, i + 1) == 0">
+        <li  class="active"><span>{{i+1}}</span></li>
       </ng-container>
     </ng-container>
-    <ng-container *ngIf="p.totalPages <= 1">
-      <app-pagelink [pageNo]="1" [idx]="1" [url]="cURL"></app-pagelink>
-    </ng-container>
+
 
     <ng-container *ngIf="p.number + 1 < p.totalPages">
-      <li><a href="{{cURL}}{{pageNo + 1}}"  class="next"><i class="fa fa-angle-right"></i></a></li>
+      <li (click)="click(p.number+2)"><span class="next"><i class="fa fa-angle-right"></i></span></li>
     </ng-container>
     <ng-container *ngIf="!(p.number + 1 < p.totalPages)">
       <li class="disabled"><span><i class="fa fa-angle-right"></i></span></li>

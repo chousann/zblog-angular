@@ -23,6 +23,8 @@ export class PostsComponent implements OnInit, OnChanges {
   @Input() pageNo: number;
   @Input() order: string;
 
+  public showChild: boolean = true;
+
   public baseUrl: string = environment.baseUrl;
 
   public allposts: Page<PostVO> = new Page<PostVO>();
@@ -32,21 +34,21 @@ export class PostsComponent implements OnInit, OnChanges {
     public rootWebDto: RootWebDto) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.getAllContents();
+    this.getAllContents(1);
   }
 
   ngOnInit() {
-    this.getAllContents();
+    this.getAllContents(1);
   }
 
   view() {
     this.router.navigate(['/view', { id: "1"}]);
   }
 
-  getAllContents() {
+  getAllContents(num: number) {
 
     var contentsIn: ContentsIn = new ContentsIn();
-    contentsIn.pageNo = this.pageNo ? this.pageNo : 1;
+    contentsIn.pageNo = num ? num : 1;
     contentsIn.channelId = this.channelId;
     contentsIn.order = this.order;
     return this.http.post(environment.baseUrl + 'contents', contentsIn)
@@ -59,6 +61,10 @@ export class PostsComponent implements OnInit, OnChanges {
     .catch(async (e: any) => {
       this.router.navigate(['/']);
     });
+  }
+
+  pageChange(page: number) {
+    this.getAllContents(page);
   }
 
 }
