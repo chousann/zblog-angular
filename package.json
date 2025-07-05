@@ -16,13 +16,14 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "vditor": "^3.11.1",
-    "zone.js": "~0.15.0",
     "@azure-rest/ai-inference": "latest",
     "@azure/core-auth": "latest",
-    "@azure/core-sse": "latest"
+    "@azure/core-sse": "latest",
+    "rxjs": "~7.8.0",
+    "three": "^0.178.0",
+    "tslib": "^2.3.0",
+    "vditor": "^3.11.1",
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular/build": "^20.0.3",
