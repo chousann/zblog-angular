@@ -1,10 +1,12 @@
-<router-outlet name="header"></router-outlet>
-<!-- content -->
-<div class="wrap">
-  <!-- Main -->
-  <div class="container">
-    <router-outlet name="content"></router-outlet>
+<div class="body-layout">
+  <router-outlet name="header"></router-outlet>
+  <!-- content -->
+  <div class="wrap">
+    <!-- Main -->
+    <div class="container">
+      <router-outlet name="content"></router-outlet>
+    </div>
   </div>
+  <!-- /content -->
+  <router-outlet name="footer"></router-outlet>
 </div>
-<!-- /content -->
-<router-outlet name="footer"></router-outlet>

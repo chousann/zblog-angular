@@ -1,8 +1,8 @@
-html, body {
+html, .body-layout {
     height: 100%;
 }
 
-body {
+.body-layout {
     margin: 0;
     padding-top: 50px;
     background: #f6f6f6;
