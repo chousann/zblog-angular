@@ -19,7 +19,8 @@ import { HttpclientService } from '../../../service/httpclient/httpclient.servic
 })
 export class PostsComponent implements OnInit, OnChanges {
 
-  @Input() channelId: number;
+  @Input() 
+  public channelId: number;
   @Input() pageNo: number;
   @Input() order: string;
 
@@ -47,11 +48,18 @@ export class PostsComponent implements OnInit, OnChanges {
 
   getAllContents(num: number) {
 
+    var uri = "";
+    if (this.channelId == 4) {
+
+      uri = "api/contents";
+    } else {
+      uri = "contents";
+    }
     var contentsIn: ContentsIn = new ContentsIn();
     contentsIn.pageNo = num ? num : 1;
     contentsIn.channelId = this.channelId;
     contentsIn.order = this.order;
-    return this.http.post(environment.baseUrl + 'contents', contentsIn)
+    return this.http.post(environment.baseUrl + uri, contentsIn)
     .then(async (res: ResponseDto<PostDto>) => {
       var data = res.data.postList;
       if (data) {

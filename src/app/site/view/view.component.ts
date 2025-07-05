@@ -26,6 +26,7 @@ export class ViewComponent implements OnInit, AfterViewInit  {
   topic!: ElementRef;
 
   id!: string;
+  channel!: string;
   public view: PostVO = new PostVO();
   constructor(private http: HttpClient,
     private localstorage: LocalstorageService,
@@ -39,6 +40,7 @@ export class ViewComponent implements OnInit, AfterViewInit  {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => { 
         this.id = this.activatedRoute.snapshot.params['id'];
+        this.channel = this.activatedRoute.snapshot.params['channdel'];
         this.getPostDetail();
       });
   }
@@ -50,7 +52,13 @@ export class ViewComponent implements OnInit, AfterViewInit  {
   }
 
   getPostDetail() {
-    this.clientService.post(environment.baseUrl + 'view', {id: this.id})
+    var uri = "";
+    if (this.channel == "4") {
+      uri = "api/view";
+    } else {
+      uri = "view";
+    }
+    this.clientService.post(environment.baseUrl + uri, {id: this.id})
     .then(async (res: ResponseDto<PostVO>) => {
       var data = res.data;
         console.log(data);

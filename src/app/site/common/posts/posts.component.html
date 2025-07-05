@@ -3,13 +3,13 @@
     <ng-container *ngIf="row.thumbnail && row.thumbnail.length > 0">
       <div class="content-box">
         <div class="posts-item-img">
-          <a [routerLink]="['/view', {id:row.id}]" title="">
+          <a [routerLink]="['/view', {id:row.id, channdel: channelId}]" title="">
             <div class="overlay"></div>
             <img class="lazy thumbnail" [src]="baseUrl + 'store/storage/md/' + row.author.username + '/' + row.thumbnail" style="display: inline-block;">
           </a>
         </div>
         <div class="posts-item posts-item-gallery">
-          <h2><a [routerLink]="['/view', {id:row.id}]">
+          <h2><a [routerLink]="['/view', {id:row.id, channdel: channelId}]">
               {{row.title}}
             </a></h2>
           <div class="item-text">{{row.summary}}</div>
@@ -52,7 +52,7 @@
       <div class="content-box posts-aside">
         <div class="posts-item">
           <div class="item-title">
-            <h2><a [routerLink]="['/view', {id:row.id}]">
+            <h2><a [routerLink]="['/view', {id:row.id, channdel: channelId}]">
                 {{row.title}}
               </a></h2>
           </div>
