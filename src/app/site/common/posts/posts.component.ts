@@ -29,6 +29,8 @@ export class PostsComponent implements OnInit, OnChanges {
   public baseUrl: string = environment.baseUrl;
 
   public allposts: Page<PostVO> = new Page<PostVO>();
+  public loading: boolean = false;
+  
   constructor(private http: HttpclientService,
     private localstorage: LocalstorageService,
     private router: Router,
@@ -47,6 +49,7 @@ export class PostsComponent implements OnInit, OnChanges {
   }
 
   getAllContents(num: number) {
+    this.loading = true;
 
     var uri = "";
     if (this.channelId == 4) {
@@ -68,6 +71,9 @@ export class PostsComponent implements OnInit, OnChanges {
     })
     .catch(async (e: any) => {
       this.router.navigate(['/']);
+    })
+    .finally(() => {
+      this.loading = false;
     });
   }
 

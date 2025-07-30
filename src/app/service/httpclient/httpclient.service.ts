@@ -42,6 +42,7 @@ export class HttpclientService {
       return data;
     }).catch(async(e: any) => {
       console.log("error!!!");
+      alert(url + "： ResponseDto error");
       throw e;
     });
   }

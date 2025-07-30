@@ -20,6 +20,8 @@ import { LocalstorageService } from '../../service/localstorage/localstorage.ser
 export class TagsComponent implements OnInit {
 
   tags: Page<TagVO> = new Page<TagVO>();
+  loading: boolean = false;
+  
   constructor(private http: HttpclientService,
     private localstorage: LocalstorageService,
     private activatedRoute: ActivatedRoute,
@@ -33,12 +35,17 @@ export class TagsComponent implements OnInit {
   }
 
   getTags() {
+    this.loading = true;
+    
     this.http.post(environment.baseUrl + 'tags', {})
     .then(async (res: ResponseDto<TagDto>) => {
         this.tags.copy(res.data.list);
     })
     .catch(() => {
       console.log("error");
+    })
+    .finally(() => {
+      this.loading = false;
     });
   }
 

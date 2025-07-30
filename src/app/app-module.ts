@@ -42,6 +42,7 @@ import { UserhomeComponent } from './site/userhome/userhome.component';
 import { ViewComponent } from './site/view/view.component';
 import { EditorDirective } from './editor.directive';
 import { Ai } from './ai/ai';
+import { LoadingComponent } from './common/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { Ai } from './ai/ai';
     OauthComponent,
     SearchComponent,
     AuthorizecodeComponent,
-    Ai
+    Ai,
+    LoadingComponent
   ],
   imports: [
     AppRoutingModule,
