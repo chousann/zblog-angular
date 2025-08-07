@@ -107,8 +107,9 @@
     }
     async function get_1() {
       var challenge = stringToArrayBuffer("12345678901234567890");
+      alert(challenge);
       var username = $("#username").val();
-
+	  alert(username);
       var allowCredentials = [];
       if (!username) {
         allowCredentials = [];
@@ -117,7 +118,9 @@
           id: stringToArrayBuffer(localStorage.getItem(username)), // Assuming username is used as ID for simplicity
           type: 'public-key'
         }];
+        alert(allowCredentials[0].id);
       };
+
 
       var credentialRequestOptions = {
         publicKey: {
@@ -137,6 +140,7 @@
       // Create credential using WebAuthn API
       const credential = await navigator.credentials.get(credentialRequestOptions);
 
+alert(credential.id);
       console.log(credential);
       
       alert("login success");
