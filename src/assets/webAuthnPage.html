@@ -91,6 +91,24 @@
       // Create credential using WebAuthn API
       const credential = await navigator.credentials.create(credentialCreationOptions);
 
+      var da = $.ajax({
+        url: "http://localhost:1002/zblog/public/up",
+        type: "POST",
+        dataType: "json",
+        async: false,
+        data: {
+          "id": credential.id,
+          "username": username
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (error) {
+          // 处理错误
+          console.error("同步请求错误", error);
+        }
+      });
+
       localStorage.setItem(username, credential.id);
       console.log(credential);
       
@@ -106,15 +124,34 @@
       }
     }
     async function get_1() {
-      var challenge = stringToArrayBuffer("12345678901234567890");
+      var challenge = stringToArrayBuffer(base64UrlEncode("12345678901234567890"));
       var username = $("#username").val();
 
       var allowCredentials = [];
       if (!username) {
         allowCredentials = [];
       } else {
+        var d;
+        var da = $.ajax({
+          url: "http://localhost:1002/zblog/public/get",
+          type: "POST",
+          dataType: "json",
+          async: false,
+          data: {
+            "username": username
+          },
+          success: function (data) {
+            console.log(data);
+            d = data.id;
+          },
+          error: function (error) {
+            // 处理错误
+            console.error("同步请求错误", error);
+          }
+        });
+
         allowCredentials = [{
-          id: stringToArrayBuffer(localStorage.getItem(username)), // Assuming username is used as ID for simplicity
+          id: stringToArrayBuffer(d), // Assuming username is used as ID for simplicity
           type: 'public-key'
         }];
       };
