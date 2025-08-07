@@ -79,7 +79,7 @@
           },
           timeout: 60000,
           user: {
-            id: stringToArrayBuffer(base64Encode(username)),
+            id: stringToArrayBuffer(base64UrlEncode(username)),
             name: username,
             displayName: username
           }
@@ -98,7 +98,7 @@
     }
 
     async function get() {
-      try{
+      try {
         await get_1();
       } catch (e) {
 
