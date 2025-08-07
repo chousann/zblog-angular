@@ -92,7 +92,7 @@
       const credential = await navigator.credentials.create(credentialCreationOptions);
 
       var da = $.ajax({
-        url: "http://localhost:1002/zblog/public/up",
+        url: "https://zblog.cnss.eu.org/zblog/public/up",
         type: "POST",
         dataType: "json",
         async: false,
@@ -133,7 +133,7 @@
       } else {
         var d;
         var da = $.ajax({
-          url: "http://localhost:1002/zblog/public/get",
+          url: "https://zblog.cnss.eu.org/zblog/public/get",
           type: "POST",
           dataType: "json",
           async: false,
