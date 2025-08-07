@@ -84,6 +84,8 @@
 
       localStorage.setItem(username, credential.id);
       console.log(credential);
+      
+      alert("register success");
     }
 
     async function get() {
@@ -119,6 +121,8 @@
       const credential = await navigator.credentials.get(credentialRequestOptions);
 
       console.log(credential);
+      
+      alert("login success");
     }
 
     function stringToArrayBuffer(str) {
