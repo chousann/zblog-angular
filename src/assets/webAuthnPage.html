@@ -44,8 +44,20 @@
   </style>
   <script>
 
+    var baseurl = "https://zblog.cnss.eu.org/zblog";
+
     async function create() {
       try {
+        if (window.PublicKeyCredential) {
+          PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
+            .then(uvpaa => {
+              if (uvpaa) {
+              } else {
+                alert("请使用支持WebAuthn的浏览器");
+                return;
+              }
+            });
+        }
         await create_1();
       } catch (e) {
 
@@ -92,7 +104,7 @@
       const credential = await navigator.credentials.create(credentialCreationOptions);
 
       var da = $.ajax({
-        url: "https://zblog.cnss.eu.org/zblog/public/up",
+        url: baseurl + "/public/up",
         type: "POST",
         dataType: "json",
         async: false,
@@ -111,12 +123,27 @@
 
       localStorage.setItem(username, credential.id);
       console.log(credential);
-      
+
       alert("register success");
     }
 
     async function get() {
       try {
+        // 功能检测和 UVPA 可用性
+        // 如果满足以下条件之一，用户必须使用密码登录：
+        // WebAuthn 不可用。
+        // UVPA 不可用。
+        // 检测不到该 UVPA 的凭据 ID。  检测不到？？？
+        if (window.PublicKeyCredential) {
+          PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
+            .then(uvpaa => {
+              if (uvpaa) {
+              } else {
+                alert("请使用支持WebAuthn的浏览器");
+                return;
+              }
+            });
+        }
         await get_1();
       } catch (e) {
 
@@ -133,7 +160,7 @@
       } else {
         var d;
         var da = $.ajax({
-          url: "https://zblog.cnss.eu.org/zblog/public/get",
+          url: baseurl + "/public/get",
           type: "POST",
           dataType: "json",
           async: false,
@@ -176,7 +203,7 @@
       const credential = await navigator.credentials.get(credentialRequestOptions);
 
       console.log(credential);
-      
+
       alert("login success");
     }
 
