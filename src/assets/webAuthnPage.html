@@ -105,7 +105,7 @@
         },
         error: function (error) {
           // 处理错误
-          console.error("同步请求错误", error);
+          alert("同步请求错误", error);
         }
       });
 
@@ -146,7 +146,7 @@
           },
           error: function (error) {
             // 处理错误
-            console.error("同步请求错误", error);
+            alert("同步请求错误", error);
           }
         });
 
@@ -175,6 +175,8 @@
       const credential = await navigator.credentials.get(credentialRequestOptions);
 
       console.log(credential);
+      
+      alert("login success");
     }
 
     function stringToArrayBuffer(str) {
