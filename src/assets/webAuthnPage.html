@@ -45,6 +45,7 @@
   <script>
 
     var baseurl = "https://webauthn.cnss.eu.org/zblog";
+    var rpid = "chousann.github.io";
 
     async function create() {
       try {
@@ -74,8 +75,9 @@
         publicKey: {
           attestation: 'none',
           authenticatorSelection: {
-            authenticatorAttachment: undefined,
-            residentKey: undefined,
+            authenticatorAttachment: "platform",
+            residentKey: "required",
+            requireResidentKey: true,  // 使用passkey，必须是常驻凭证
             userVerification: 'preferred'
           },
           challenge,
@@ -87,7 +89,7 @@
           ],
           rp: {
             name: 'WebAuthn Demo',
-            id: 'chousann.github.io'
+            id: rpid
           },
           timeout: 60000,
           user: {
@@ -96,7 +98,8 @@
             displayName: username
           }
         },
-        signal: undefined
+        signal: undefined,
+        conditional: "optional"
       };
 
       console.log(credentialCreationOptions);
@@ -189,7 +192,7 @@
           allowCredentials,
           challenge,
           //extensions: undefined,
-          rpId: 'chousann.github.io',
+          rpId: rpid,
           timeout: 60000,
           userVerification: "preferred"
         },
