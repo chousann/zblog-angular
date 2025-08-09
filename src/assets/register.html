@@ -47,13 +47,8 @@
     var baseurl = "https://webauthn.cnss.eu.org/zblog";
     var rpid = "chousann.github.io";
 
-    async function get() {
+    async function create() {
       try {
-        // 功能检测和 UVPA 可用性
-        // 如果满足以下条件之一，用户必须使用密码登录：
-        // WebAuthn 不可用。
-        // UVPA 不可用。
-        // 检测不到该 UVPA 的凭据 ID。  检测不到？？？
         if (window.PublicKeyCredential) {
           await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
             .then(uvpaa => {
@@ -64,71 +59,75 @@
               }
             });
         }
-        await get_1();
+        await create_1();
       } catch (e) {
 
         alert(e)
       }
     }
-    async function get_1() {
-      var challenge = stringToArrayBuffer(base64UrlEncode("12345678901234567890"));
+    //获取验证码
+    async function create_1() {
+
       var username = $("#username").val();
+      var challenge = stringToArrayBuffer(base64UrlEncode("12345678901234567890"));
 
-      var allowCredentials = [];
-      if (!username) {
-        allowCredentials = [];
-      } else {
-        var d;
-        await $.ajax({
-          url: baseurl + "/public/get",
-          type: "POST",
-          dataType: "json",
-          async: false,
-          data: {
-            "username": username
-          },
-          success: function (data) {
-            console.log(data);
-            if (data.id) {
-              d = JSON.parse(base64UrlDecode(data.id));
-            }
-          },
-          error: function (error) {
-            // 处理错误
-            alert("同步请求错误", error);
-          }
-        });
-
-        if (d && d.id) {
-          allowCredentials = [{
-            id: stringToArrayBuffer(d.id), // Assuming username is used as ID for simplicity
-            type: 'public-key',
-            transports: d.response.transports
-          }];
-        }
-      };
-
-      var credentialRequestOptions = {
+      var credentialCreationOptions = {
         publicKey: {
-          allowCredentials,
+          attestation: 'none',
+          authenticatorSelection: {
+            authenticatorAttachment: $("#authenticatorAttachment").val(),
+            residentKey: $("#residentKey").val(),
+            requireResidentKey: $("#requireResidentKey").val(),
+            userVerification: $("#userVerification").val()
+          },
           challenge,
-          //extensions: undefined,
-          rpId: rpid,
+          excludeCredentials: [],
+          extensions: undefined,
+          pubKeyCredParams: [
+            { alg: -7, type: 'public-key' },  // ES256
+            { alg: -257, type: 'public-key' } // RS256
+          ],
+          rp: {
+            name: 'WebAuthn Demo',
+            id: rpid
+          },
           timeout: 60000,
-          userVerification: $("#userVerification").val()
+          user: {
+            id: stringToArrayBuffer(base64UrlEncode(username)),
+            name: username,
+            displayName: username
+          }
         },
-        // signal: new AbortController().signal,
-        mediation: $("#conditional").val() == "undefined" ? undefined : $("#conditional").val()
+        signal: new AbortController().signal,
+        conditional: $("#conditional").val()
       };
 
-      console.log(credentialRequestOptions);
-
+      console.log(credentialCreationOptions);
       // Create credential using WebAuthn API
-      const credential = await navigator.credentials.get(credentialRequestOptions);
+      const credential = await navigator.credentials.create(credentialCreationOptions);
+      var cred = credential.toJSON();
+      var da = $.ajax({
+        url: baseurl + "/public/up",
+        type: "POST",
+        dataType: "json",
+        async: false,
+        data: {
+          id: base64UrlEncode(JSON.stringify(cred)),
+          "username": username
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (error) {
+          // 处理错误
+          alert("同步请求错误", error);
+        }
+      });
 
+      localStorage.setItem(username, credential.id);
       console.log(credential);
 
-      alert("login success");
+      alert("register success");
     }
 
     function stringToArrayBuffer(str) {
@@ -221,19 +220,47 @@
       return base64Encode(binary);
     }
 
+    // get();
+
 
   </script>
 </head>
 
 <body>
   <div class="container">
-    <form class="form-signin w-100 m-auto" method="get" action="register.html">
-      <a href="register.html">注册</a>
+    <form class="form-signin w-100 m-auto" method="post" action="registerByMail">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
       <div class="form-floating">
-        <input type="text" id="username" name="username" class="form-control" autocomplete="username webauthn"
-          placeholder="Username" onchange="get()" />
+        <input type="text" id="username" name="username" class="form-control" required autofocus
+          autocomplete="username webauthn" placeholder="Username" />
         <label for="username">Username</label>
+      </div>
+
+      <div class="form-floating">
+        authenticatorAttachment
+        <select id="authenticatorAttachment" name="authenticatorAttachment" class="form-control">
+          <option value="undefined">undefined</option>
+          <option value="platform" selected>Platform</option>
+          <option value="cross-platform">Cross-Platform</option>
+        </select>
+      </div>
+      <div class="form-floating">
+        residentKey
+        <select id="residentKey" name="residentKey" class="form-control">
+          <option value="undefined">undefined</option>
+          <option value="discouraged">discouraged</option>
+          <option value="preferred">preferred</option>
+          <option value="required" selected>required</option>
+        </select>
+      </div>
+
+      <div class="form-floating">
+        requireResidentKey
+        <select id="requireResidentKey" name="requireResidentKey" class="form-control">
+          <option value="undefined">undefined</option>
+          <option value="true" selected>true</option>
+          <option value="false">false</option>
+        </select>
       </div>
 
       <div class="form-floating">
@@ -245,29 +272,22 @@
           <option value="required">required</option>
         </select>
       </div>
+
       <div class="form-floating">
         conditional
         <select id="conditional" name="conditional" class="form-control">
           <option value="undefined">undefined</option>
-          <option value="conditional" selected>conditional</option>
-          <option value="optional">optional</option>
+          <option value="conditional">conditional</option>
+          <option value="optional" selected>optional</option>
         </select>
       </div>
+
       <input name="_csrf" type="hidden" value="a9b4b5d6-f63e-4875-8f6e-390202b050f4" />
       <div>
-        <button type="submit" class="w-100 btn btn-lg btn-primary btn-block">Sign in</button>
-      </div>
-      <div>
-        <button type="button" class="w-100 btn btn-lg btn-primary btn-block" onclick="get()">test</button>
+        <button type="button" class="w-100 btn btn-lg btn-primary btn-block" onclick="create()">Sign up</button>
       </div>
     </form>
   </div>
-  <script>
-
-    // get();
-
-
-  </script>
 </body>
 
 </html>
