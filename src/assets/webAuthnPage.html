@@ -44,12 +44,12 @@
   </style>
   <script>
 
-    var baseurl = "https://zblog.cnss.eu.org/zblog";
+    var baseurl = "https://webauthn.cnss.eu.org/zblog";
 
     async function create() {
       try {
         if (window.PublicKeyCredential) {
-          PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
+          await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
             .then(uvpaa => {
               if (uvpaa) {
               } else {
@@ -135,7 +135,7 @@
         // UVPA 不可用。
         // 检测不到该 UVPA 的凭据 ID。  检测不到？？？
         if (window.PublicKeyCredential) {
-          PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
+          await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
             .then(uvpaa => {
               if (uvpaa) {
               } else {
