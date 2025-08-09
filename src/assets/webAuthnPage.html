@@ -75,10 +75,10 @@
         publicKey: {
           attestation: 'none',
           authenticatorSelection: {
-            authenticatorAttachment: "platform",
-            residentKey: "required",
-            requireResidentKey: true,  // 使用passkey，必须是常驻凭证
-            userVerification: 'preferred'
+            authenticatorAttachment: $("#authenticatorAttachment").val(),
+            residentKey: $("#residentKey").val(),
+            requireResidentKey: $("#requireResidentKey").val(),
+            userVerification: $("#userVerification").val()
           },
           challenge,
           excludeCredentials: [],
@@ -194,7 +194,7 @@
           //extensions: undefined,
           rpId: rpid,
           timeout: 60000,
-          userVerification: "preferred"
+          userVerification: $("#userVerification").val()
         },
         //signal: undefined,
         mediation: "conditional"
@@ -310,9 +310,37 @@
     <form class="form-signin w-100 m-auto" method="post" action="registerByMail">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
       <div class="form-floating">
-        <input type="text" id="username" name="username" class="form-control" required autofocus autocomplete="username webauthn"
-          placeholder="Username" />
+        <input type="text" id="username" name="username" class="form-control" required autofocus
+          autocomplete="username webauthn" placeholder="Username" />
         <label for="username">Username</label>
+      </div>
+      <div class="form-floating">
+        <select id="authenticatorAttachment" name="authenticatorAttachment" class="form-control">
+          <option value="platform" selected>Platform</option>
+          <option value="cross-platform">Cross-Platform</option>
+        </select>
+      </div>
+      <div class="form-floating">
+        <select id="residentKey" name="residentKey" class="form-control">
+          <option value="discouraged">discouraged</option>
+          <option value="preferred">preferred</option>
+          <option value="required" selected>required</option>
+        </select>
+      </div>
+
+      <div class="form-floating">
+        <select id="requireResidentKey" name="requireResidentKey" class="form-control">
+          <option value="true" selected>true</option>
+          <option value="false">false</option>
+        </select>
+      </div>
+
+      <div class="form-floating">
+        <select id="userVerification" name="userVerification" class="form-control">
+          <option value="discouraged">discouraged</option>
+          <option value="preferred" selected>preferred</option>
+          <option value="required">required</option>
+        </select>
       </div>
 
       <input name="_csrf" type="hidden" value="a9b4b5d6-f63e-4875-8f6e-390202b050f4" />
