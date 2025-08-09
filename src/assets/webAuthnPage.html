@@ -314,13 +314,16 @@
           autocomplete="username webauthn" placeholder="Username" />
         <label for="username">Username</label>
       </div>
+      
       <div class="form-floating">
+        authenticatorAttachment
         <select id="authenticatorAttachment" name="authenticatorAttachment" class="form-control">
           <option value="platform" selected>Platform</option>
           <option value="cross-platform">Cross-Platform</option>
         </select>
       </div>
       <div class="form-floating">
+        residentKey
         <select id="residentKey" name="residentKey" class="form-control">
           <option value="discouraged">discouraged</option>
           <option value="preferred">preferred</option>
@@ -329,6 +332,7 @@
       </div>
 
       <div class="form-floating">
+        requireResidentKey
         <select id="requireResidentKey" name="requireResidentKey" class="form-control">
           <option value="true" selected>true</option>
           <option value="false">false</option>
@@ -336,6 +340,7 @@
       </div>
 
       <div class="form-floating">
+        userVerification
         <select id="userVerification" name="userVerification" class="form-control">
           <option value="discouraged">discouraged</option>
           <option value="preferred" selected>preferred</option>
