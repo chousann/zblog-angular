@@ -108,7 +108,7 @@
       var cred = {
         id: credential.id,
         response: {
-          transports:["internal"]
+          transports: credential.response.getTransports();
         }
       };
       var da = $.ajax({
