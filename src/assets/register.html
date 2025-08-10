@@ -105,7 +105,12 @@
       console.log(credentialCreationOptions);
       // Create credential using WebAuthn API
       const credential = await navigator.credentials.create(credentialCreationOptions);
-      var cred = credential.toJSON();
+      var cred = {
+        id: credential.id,
+        response: {
+          transports:["internal"]
+        }
+      };
       var da = $.ajax({
         url: baseurl + "/public/up",
         type: "POST",
