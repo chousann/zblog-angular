@@ -75,6 +75,9 @@
         type: "POST",
         dataType: "json",
         async: false,
+        xhrFields: {
+          withCredentials: true
+        },
         data: {
         },
         success: function (data) {
@@ -122,10 +125,13 @@
       const credential = await navigator.credentials.create(credentialCreationOptions);
       var cred = credential.toJSON();
       var da = $.ajax({
-        url: "webauthn-register-submit",
+        url: baseurl + "account/webauthn-register-submit",
         type: "POST",
         dataType: "json",
         async: false,
+        xhrFields: {
+          withCredentials: true
+        },
         data: {
           id: base64UrlEncode(JSON.stringify(cred)),
           "username": username
@@ -243,7 +249,8 @@
 
 <body>
   <div class="container">
-    <form class="form-signin w-100 m-auto" method="post" action="https://auth.cnss.eu.org/oauth/webauthn-register-submit">
+    <form class="form-signin w-100 m-auto" method="post"
+      action="https://auth.cnss.eu.org/oauth/webauthn-register-submit">
       <h1 class="h3 mb-3 fw-normal">认证器登录</h1>
       <div class="form-floating">
         <input type="text" id="username" name="username" class="form-control" required autofocus
