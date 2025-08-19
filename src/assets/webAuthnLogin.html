@@ -77,7 +77,7 @@
       var allowCredentials = [];
       var publicKeyCredentialRequestOptions;
       await $.ajax({
-        url: "client/webauthn-auth-challenge",
+        url: baseurl + "client/webauthn-auth-challenge",
         type: "POST",
         dataType: "json",
         async: false,
