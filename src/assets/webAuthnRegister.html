@@ -74,7 +74,7 @@
         url: baseurl + "account/webauthn-challenge-code",
         type: "POST",
         dataType: "json",
-        //async: false,
+        async: true,
         beforeSend: function (xhr) {
           xhr.withCredentials = true;
         },
