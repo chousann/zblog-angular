@@ -78,6 +78,9 @@
         beforeSend: function (xhr) {
           xhr.withCredentials = true;
         },
+        xhrFields: {
+          withCredentials: true
+        },
         crossDomain: true,
         data: {
         },
