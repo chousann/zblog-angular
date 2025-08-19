@@ -78,6 +78,7 @@
         xhrFields: {
           withCredentials: true
         },
+        crossDomain: true,
         data: {
         },
         success: function (data) {
@@ -132,6 +133,7 @@
         xhrFields: {
           withCredentials: true
         },
+        crossDomain: true,
         data: {
           id: base64UrlEncode(JSON.stringify(cred)),
           "username": username
