@@ -44,8 +44,8 @@
   </style>
   <script>
 
-    var baseurl = "https://webauthn.cnss.eu.org/zblog";
-    var rpid = "chousann.github.io";
+    var baseurl = "https://auth.cnss.eu.org/oauth/";
+    var rpid = "localhost";
 
     async function get() {
       try {
@@ -75,45 +75,35 @@
       var username = $("#username").val();
 
       var allowCredentials = [];
-      if (!username) {
-        allowCredentials = [];
-      } else {
-        var d;
-        await $.ajax({
-          url: baseurl + "/public/get",
-          type: "POST",
-          dataType: "json",
-          async: false,
-          data: {
-            "username": username
-          },
-          success: function (data) {
-            console.log(data);
-            if (data.id) {
-              d = JSON.parse(base64UrlDecode(data.id));
-            }
-          },
-          error: function (error) {
-            // 处理错误
-            alert("同步请求错误", error);
+      var publicKeyCredentialRequestOptions;
+      await $.ajax({
+        url: "client/webauthn-auth-challenge",
+        type: "POST",
+        dataType: "json",
+        async: false,
+        data: {
+          "username": username
+        },
+        success: function (data) {
+          console.log(data);
+          if (data.publicKeyCredentialRequestOptions) {
+            publicKeyCredentialRequestOptions = JSON.parse(base64UrlDecode(data.publicKeyCredentialRequestOptions));
           }
-        });
-
-        if (d && d.id) {
-          allowCredentials = [{
-            id: stringToArrayBuffer(d.id), // Assuming username is used as ID for simplicity
-            type: 'public-key',
-            transports: d.response.transports
-          }];
+        },
+        error: function (error) {
+          // 处理错误
+          alert("同步请求错误", error);
         }
-      };
+      });
 
+
+      challenge = base64UrlToArrayBuffer(publicKeyCredentialRequestOptions.challenge);
       var credentialRequestOptions = {
         publicKey: {
           allowCredentials,
           challenge,
           //extensions: undefined,
-          rpId: rpid,
+          rpId: publicKeyCredentialRequestOptions.rpId,
           timeout: 60000,
           userVerification: $("#userVerification").val()
         },
@@ -127,6 +117,10 @@
       const credential = await navigator.credentials.get(credentialRequestOptions);
 
       console.log(credential);
+
+      $("#authenticationResponseJSON").val(base64UrlEncode(JSON.stringify(credential.toJSON())));
+
+      $("#webauthn").click();
 
       alert("login success");
     }
@@ -227,12 +221,11 @@
 
 <body>
   <div class="container">
-    <form class="form-signin w-100 m-auto" method="get" action="register.html">
-      <a href="register.html">注册</a>
+    <form class="form-signin w-100 m-auto" method="post" action="register.html">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
       <div class="form-floating">
         <input type="text" id="username" name="username" class="form-control" autocomplete="username webauthn"
-          placeholder="Username" onchange="get()" />
+          placeholder="Username" />
         <label for="username">Username</label>
       </div>
 
@@ -254,8 +247,10 @@
         </select>
       </div>
       <input name="_csrf" type="hidden" value="a9b4b5d6-f63e-4875-8f6e-390202b050f4" />
+      <input name="authenticationResponseJSON" id="authenticationResponseJSON" type="hidden" />
       <div>
         <button type="submit" class="w-100 btn btn-lg btn-primary btn-block">Sign in</button>
+        <button type="submit" id="webauthn" formaction="https://auth.cnss.eu.org/oauth/client/webauthn-auth" style="display: none"></button>
       </div>
       <div>
         <button type="button" class="w-100 btn btn-lg btn-primary btn-block" onclick="get()">test</button>
