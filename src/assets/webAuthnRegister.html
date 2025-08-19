@@ -75,8 +75,8 @@
         type: "POST",
         dataType: "json",
         async: false,
-        xhrFields: {
-          withCredentials: true
+        beforeSend: function (xhr) {
+          xhr.withCredentials = true;
         },
         crossDomain: true,
         data: {
@@ -130,8 +130,8 @@
         type: "POST",
         dataType: "json",
         async: false,
-        xhrFields: {
-          withCredentials: true
+        beforeSend: function (xhr) {
+          xhr.withCredentials = true;
         },
         crossDomain: true,
         data: {
