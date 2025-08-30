@@ -28,18 +28,18 @@
                 <li class="ico-cat">
                   <ng-container *ngIf="row.featured > 0">
                     <ng-container *ngIf="row.weight > 0">
-                      <span class=" hidden-xs label label-default channel_featured channel_top">{{row.channel.name}}</span>
+                      <span class=" hidden-xs label label-default channel_featured channel_top">{{row.channel?.name}}</span>
                     </ng-container>
                     <ng-container *ngIf="!(row.weight > 0)">
-                      <span class=" hidden-xs label label-default channel_featured">{{row.channel.name}}</span>
+                      <span class=" hidden-xs label label-default channel_featured">{{row.channel?.name}}</span>
                     </ng-container>
                   </ng-container>
                   <ng-container *ngIf="!(row.featured > 0)">
                     <ng-container *ngIf="row.weight > 0">
-                      <span class=" hidden-xs label label-default channel_top">{{row.channel.name}}</span>
+                      <span class=" hidden-xs label label-default channel_top">{{row.channel?.name}}</span>
                     </ng-container>
                     <ng-container *ngIf="!(row.weight > 0)">
-                      <span class=" hidden-xs label label-default">{{row.channel.name}}</span>
+                      <span class=" hidden-xs label label-default">{{row.channel?.name}}</span>
                     </ng-container>
                   </ng-container>
                 </li>

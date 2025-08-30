@@ -37,11 +37,13 @@ export class PostsComponent implements OnInit, OnChanges {
     public rootWebDto: RootWebDto) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.getAllContents(1);
+    if (this.channelId || this.pageNo) {
+      this.getAllContents(1);
+    }
   }
 
   ngOnInit() {
-    this.getAllContents(1);
+
   }
 
   view() {
