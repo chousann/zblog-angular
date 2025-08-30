@@ -4,8 +4,11 @@
     <!-- <#assign pageNo=p.number + 1 />
     <#assign pageCount=p.totalPages /> -->
     <ng-container *ngIf="p.number +1 > 1">
-      <li (click)="click(p.number-1)"><span pageNo="${p.number - 1}" class="prev"><i
-            class="fa fa-angle-left"></i></span></li>
+      <li (click)="click(p.number)">
+        <span class="prev">
+          <i class="fa fa-angle-left"></i>
+        </span>
+      </li>
     </ng-container>
     <ng-container *ngIf="!(p.number + 1 > 1)">
       <li class="disabled"><span><i class="fa fa-angle-left"></i></span></li>
@@ -13,7 +16,7 @@
 
     <ng-container *ngFor="let item of [].constructor(p.totalPages); let i = index">
       <ng-container *ngIf="getstatue(p.totalPages, p.number + 1, spans, i + 1) == 1">
-        <li (click)="click(p.number+i+1)"><span>{{i+1}}</span></li>
+        <li (click)="click(i+1)"><span>{{i+1}}</span></li>
       </ng-container>
       <ng-container *ngIf="getstatue(p.totalPages, p.number + 1, spans, i + 1) == 0">
         <li  class="active"><span>{{i+1}}</span></li>
